@@ -1,3 +1,3 @@
-#README du repo FRONT de MAGA SAMA 
+# README du repo FRONT de MAGA SAMA 
 
-##Bienvenue!
+## Bienvenue!
