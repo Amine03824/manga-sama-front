@@ -10,14 +10,36 @@
   background-color: v.$grey-menu;
   padding: 1rem;
 
+  @media screen and (min-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15rem;
+    height: 100vh;
+  }
+
   &__toggle-button {
     height: 3rem;
     width: 3rem;
     border-radius: 50% 50% 50% 50%;
     background-color: v.$grey-menu;
 
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+
     &--icon {
       width: 90%;
+      margin: auto;
+    }
+  }
+
+  &__logo {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      display: block;
+      width: 6rem;
       margin: auto;
     }
   }
@@ -28,6 +50,10 @@
     &--inputSearch {
       padding: 0.5rem;
       border-radius: 0.8rem;
+
+      @media screen and (min-width: 768px) {
+        width: 100%;
+      }
     }
   }
 
