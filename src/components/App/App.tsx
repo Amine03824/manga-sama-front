@@ -1,7 +1,9 @@
+import Header from '../Header/Header';
+
 function App() {
   return (
     <div>
-      <h1 className="text-red-600">hello</h1>
+      <Header />
     </div>
   );
 }
