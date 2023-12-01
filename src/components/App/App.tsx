@@ -1,7 +1,9 @@
+import Menu from '../Menu/Menu';
+
 function App() {
   return (
     <div>
-      <h1 className="text-red-600">hello</h1>
+      <Menu />
     </div>
   );
 }
