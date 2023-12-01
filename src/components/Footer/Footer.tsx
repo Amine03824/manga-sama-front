@@ -1,3 +1,6 @@
+
+
+
 import './Footer.scss';
 
 function Footer() {
@@ -37,3 +40,4 @@ function Footer() {
 }
 
 export default Footer;
+
