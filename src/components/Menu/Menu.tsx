@@ -1,6 +1,13 @@
+import { useState } from 'react';
 import './Menu.scss';
+import clsx from 'clsx';
 
 function Menu() {
+  const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
+  function handleOnCategoryButton() {
+    setCategoriesIsVisible(!categoriesIsVisible);
+  }
+
   return (
     <div className="home-menu">
       <div className="home-menu__container">
@@ -20,10 +27,25 @@ function Menu() {
           />
         </form>
         <nav className="home-menu__nav">
-          <button type="button" className="nav__categories-button">
+          <button
+            onClick={handleOnCategoryButton}
+            type="button"
+            className="nav__categories-button"
+          >
             Catégories
+            <img
+              className={clsx('nav__categories-arrowicon', {
+                'nav__categories-arrowicon--rotated': categoriesIsVisible,
+              })}
+              src="/assets/icons/fleche-vers-le-cote.png"
+              alt="arrow-icon"
+            />
           </button>
-          <ul className="nav__categories-list">
+          <ul
+            className={clsx('nav__categories-list', {
+              'nav__categories-list--hidden': !categoriesIsVisible,
+            })}
+          >
             <li className="nav__categories-item">Shonen</li>
             <li className="nav__categories-item">Seinen</li>
             <li className="nav__categories-item">Shojo</li>

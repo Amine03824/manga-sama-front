@@ -75,6 +75,18 @@
 .nav {
   &__categories-button {
     background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__categories-arrowicon {
+    width: 1.5rem;
+    transition: 300ms ease;
+
+    &--rotated {
+      transform: rotate(90deg);
+    }
   }
 
   &__categories-list {
@@ -82,5 +94,9 @@
     flex-direction: column;
     justify-items: center;
     margin-left: 2rem;
+
+    &--hidden {
+      display: none;
+    }
   }
 }
