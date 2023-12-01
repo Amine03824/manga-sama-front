@@ -33,13 +33,13 @@ function Menu() {
 
       <div className="home-menu__socials">
         <a href="/" className="home-menu__socials-icon">
-          FB
+          <img src="/assets/icons/facebook.png" alt="facebook logo" />
         </a>
         <a href="/" className="home-menu__socials-icon">
-          INSTA
+          <img src="/assets/icons/instagram.png" alt="instagram logo" />
         </a>
         <a href="/" className="home-menu__socials-icon">
-          X
+          <img src="/assets/icons/twitter.png" alt="x logo" />
         </a>
       </div>
     </div>

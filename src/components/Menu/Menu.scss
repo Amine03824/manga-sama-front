@@ -40,9 +40,12 @@
   &__socials {
     display: flex;
     justify-content: space-around;
+
+    &-icon {
+      width: 2rem;
+    }
   }
 }
-
 .nav {
   &__categories-button {
     background-color: transparent;
