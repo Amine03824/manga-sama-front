@@ -51,9 +51,13 @@
     width: 80%;
     background-color: V.$color-dark;
     border-radius: 15px;
-    padding: 1rem;
+    padding: 1.5rem;
     color: white;
     font-weight: 600;
+    position: relative;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
   &__bottom_content {
     display: flex;
@@ -62,16 +66,22 @@
     justify-content: center;
     gap: 0.5rem;
   }
+  &__bottom_content-title {
+    font-size: 2.3rem;
+  }
+  &__bottom_content-text {
+    font-size: 1.5rem;
+  }
+
   &__bottom_button {
     display: flex;
+    color: white;
     justify-content: center;
     background-color: V.$color-red;
     border-radius: 10px;
-    padding: 0.5rem;
+    padding: 1rem;
     max-width: 300px;
     box-shadow: 2px 2px 5px black;
-    position: relative;
-    bottom: -35px;
     margin: 0 auto;
   }
   &__bottom_button-link {
@@ -81,5 +91,20 @@
   }
   &__bottom_button-logo {
     width: 25px;
+  }
+  &__bottom_input-area {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &__bottom_input-text {
+    background-color: #eaeaea;
+
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+    width: 500px;
   }
 }

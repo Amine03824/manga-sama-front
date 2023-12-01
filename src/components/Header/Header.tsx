@@ -29,18 +29,27 @@ function Header() {
           <h2 className="header__bottom_content-title">
             Bienvenue sur Manga-Sama
           </h2>
-          <h3 className="header__bottom_content-text">blablabla</h3>
+          <h3 className="header__bottom_content-text">
+            Leader français de la vente de mangas entre particulier
+          </h3>
         </div>
-        <div className="header__bottom_button">
-          <a href="/" className="header__bottom_button-link">
-            Publier une annonce
-            <img
-              src="public/assets/add.png"
-              alt="logo-publier-une-annonce"
-              className="header__bottom_button-logo"
-            />
-          </a>
-        </div>
+      </div>
+      <div className="header__bottom_button">
+        <a href="/" className="header__bottom_button-link">
+          Publier une annonce
+          <img
+            src="public/assets/add.png"
+            alt="logo-publier-une-annonce"
+            className="header__bottom_button-logo"
+          />
+        </a>
+      </div>
+      <div className="header__bottom_input-area">
+        <input
+          type="text"
+          placeholder="rechercher"
+          className="header__bottom_input-text"
+        />
       </div>
     </div>
   );
