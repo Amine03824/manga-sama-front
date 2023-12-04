@@ -10,12 +10,11 @@ function Root() {
   return (
     <div className="root">
       <Menu setMenuIsVisible={setMenuIsVisible} menuIsVisible={menuIsVisible} />
-      <div className="page">
+      <div className="right__section">
         <Header
           menuIsVisible={menuIsVisible}
           setMenuIsVisible={setMenuIsVisible}
         />
-
         <Outlet />
       </div>
     </div>

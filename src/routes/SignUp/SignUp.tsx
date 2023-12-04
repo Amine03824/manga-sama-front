@@ -2,11 +2,12 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import Footer from '../../components/Footer/Footer';
+import Page from '../../components/Page/Page';
 import './SignUp.scss';
 
 function SignUp() {
   return (
-    <div className="page-container">
+    <Page>
       <div className="signUp">
         <div className="signUp__logo-container">
           <img
@@ -46,7 +47,7 @@ function SignUp() {
         </div>
       </div>
       <Footer />
-    </div>
+    </Page>
   );
 }
 

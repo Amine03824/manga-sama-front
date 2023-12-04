@@ -1,12 +1,5 @@
 @use '../../styles/variables' as V;
 
-.page-container {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
 .signUp {
   display: flex;
   flex-direction: row-reverse;

@@ -1,11 +1,15 @@
 @use '../../styles/variables' as V;
 
 .header {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  border-bottom: solid 1px black;
   &__top_container {
     display: grid;
     grid-template-areas: 'empty logo links';
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    padding: 1.5rem 2.5rem;
+    // padding: 1.5rem 2.5rem;
     align-items: center;
     @media screen and (max-width: 768px) {
       grid-template-areas: 'logo' 'links';
