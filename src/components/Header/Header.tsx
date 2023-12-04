@@ -1,11 +1,24 @@
 import './Header.scss';
 
-function Header() {
+type HeaderProps = {
+  menuIsVisible: boolean;
+  setMenuIsVisible: (setMenuIsVisible: boolean) => void;
+};
+
+function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
+  function handleOnClickMenuButton() {
+    setMenuIsVisible(!menuIsVisible);
+  }
+
   return (
     <div className="header">
       <div className="header__top_container">
         <div className="header__top_container-button">
-          <button type="button" className="header__top_container-button-menu">
+          <button
+            onClick={handleOnClickMenuButton}
+            type="button"
+            className="header__top_container-button-menu"
+          >
             <img src="/assets/icons/menuPink.png" alt="logo-menu-burger" />
           </button>
         </div>
@@ -28,33 +41,6 @@ function Header() {
             </a>
           </div>
         </div>
-      </div>
-      <div className="header__bottom_container">
-        <div className="header__bottom_content">
-          <h2 className="header__bottom_content-title">
-            Bienvenue sur Manga-Sama
-          </h2>
-          <h3 className="header__bottom_content-text">
-            Leader français de la vente de mangas entre particulier
-          </h3>
-        </div>
-      </div>
-      <div className="header__bottom_button">
-        <a href="/" className="header__bottom_button-link">
-          Publier une annonce
-          <img
-            src="/assets/icons/add.png"
-            alt="logo-publier-une-annonce"
-            className="header__bottom_button-logo"
-          />
-        </a>
-      </div>
-      <div className="header__bottom_input-area">
-        <input
-          type="text"
-          placeholder="Rechercher un manga"
-          className="header__bottom_input-text"
-        />
       </div>
     </div>
   );
