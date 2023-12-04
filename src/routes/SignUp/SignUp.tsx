@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/no-unescaped-entities */
+
 import Footer from '../../components/Footer/Footer';
 import './SignUp.scss';
 
