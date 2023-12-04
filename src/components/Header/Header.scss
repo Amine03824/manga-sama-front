@@ -1,6 +1,7 @@
 @use '../../styles/variables' as V;
 
 .header {
+  margin: 1rem;
   &__top_container {
     display: grid;
     grid-template-areas: 'empty logo links';
@@ -29,7 +30,7 @@
   &__logo {
     grid-area: logo;
     margin: 0 auto;
-    width: 15rem;
+    width: 12.7rem;
     @media screen and (max-width: 768px) {
       width: 8rem;
     }
@@ -37,13 +38,15 @@
   &__top_container-links {
     grid-area: links;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-end;
+    margin-left: 2rem;
 
     gap: 2rem;
     @media screen and (max-width: 768px) {
       margin-top: 30px;
       justify-content: center;
+      flex-direction: row;
     }
   }
 
@@ -72,7 +75,7 @@
     margin: 1rem auto;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
+    // width: 75rem;
     background-color: V.$grey-menu;
     border-radius: 15px;
     padding: 2rem;
