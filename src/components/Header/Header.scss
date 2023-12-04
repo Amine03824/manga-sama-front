@@ -14,10 +14,25 @@
     }
   }
 
+  &__top_container-button-menu {
+    display: none;
+    @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 3rem;
+      display: block;
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+    }
+  }
+
   &__logo {
     grid-area: logo;
     margin: 0 auto;
-    width: 8rem;
+    width: 15rem;
+    @media screen and (max-width: 768px) {
+      width: 8rem;
+    }
   }
   &__top_container-links {
     grid-area: links;
@@ -31,17 +46,26 @@
       justify-content: center;
     }
   }
+
   &__top_container-signup {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     align-items: center;
+    transition: color 0.3s ease;
+  }
+  &__top_container-signup:hover {
+    color: V.$color-red;
   }
   &__top_container-login {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     align-items: center;
+    transition: color 0.3s ease;
+  }
+  &__top_container-login:hover {
+    color: V.$color-red;
   }
   &__bottom_container {
     display: flex;
@@ -51,9 +75,13 @@
     width: 80%;
     background-color: V.$color-dark;
     border-radius: 15px;
-    padding: 1rem;
+    padding: 2rem;
     color: white;
     font-weight: 600;
+    position: relative;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
   &__bottom_content {
     display: flex;
@@ -62,18 +90,30 @@
     justify-content: center;
     gap: 0.5rem;
   }
+  &__bottom_content-title {
+    font-size: 2.3rem;
+  }
+  &__bottom_content-text {
+    font-size: 1.5rem;
+  }
+
   &__bottom_button {
     display: flex;
+    color: white;
     justify-content: center;
     background-color: V.$color-red;
     border-radius: 10px;
-    padding: 0.5rem;
+    padding: 1rem;
     max-width: 300px;
     box-shadow: 2px 2px 5px black;
-    position: relative;
-    bottom: -35px;
     margin: 0 auto;
+    transform: translateY(-2rem);
+
+    @media screen and (max-width: 768px) {
+      transform: translateY(0);
+    }
   }
+
   &__bottom_button-link {
     display: flex;
     gap: 10px;
@@ -81,5 +121,19 @@
   }
   &__bottom_button-logo {
     width: 25px;
+  }
+  &__bottom_input-area {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &__bottom_input-text {
+    background-color: #eaeaea;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    margin: 15px;
   }
 }
