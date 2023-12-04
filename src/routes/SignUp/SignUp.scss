@@ -21,13 +21,14 @@
   &__logo-container {
     display: flex;
     justify-content: center;
-
     width: 50%;
     margin: auto;
+    align-items: center;
   }
 
   &__logo {
     width: 20rem;
+    margin-bottom: 180px;
   }
 
   &__area {
