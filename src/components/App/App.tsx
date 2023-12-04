@@ -3,6 +3,7 @@ import Footer from '../Footer/Footer';
 import MobileNav from '../MobileNav/MobileNav';
 
 function App() {
+
   return (
     <div>
       <Header />
@@ -10,6 +11,7 @@ function App() {
       <MobileNav />
     </div>
   );
+
 }
 
 export default App;

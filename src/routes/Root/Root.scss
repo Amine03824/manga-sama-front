@@ -1,14 +1,21 @@
 @use '../../styles/variables' as v;
 
 .root {
-  display: flex;
+  margin: 0;
   height: 100vh;
   max-height: 100vh;
   max-width: 100vw;
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 }
 
 .page {
   background-color: v.$pink-bg;
-  flex-grow: 1;
-  width: fit-content;
+  height: 100vh;
+
+  @media screen and (min-width: 768px) {
+    flex-grow: 1;
+    width: fit-content;
+  }
 }

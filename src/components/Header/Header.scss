@@ -1,7 +1,6 @@
 @use '../../styles/variables' as V;
 
 .header {
-  margin: 1rem;
   &__top_container {
     display: grid;
     grid-template-areas: 'empty logo links';
@@ -69,74 +68,5 @@
   }
   &__top_container-login:hover {
     color: V.$pink-color;
-  }
-  &__bottom_container {
-    display: flex;
-    margin: 1rem auto;
-    justify-content: center;
-    flex-direction: column;
-    // width: 75rem;
-    background-color: V.$grey-menu;
-    border-radius: 15px;
-    padding: 2rem;
-    color: white;
-    font-weight: 600;
-    position: relative;
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
-  }
-  &__bottom_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-  &__bottom_content-title {
-    font-size: 2.3rem;
-  }
-  &__bottom_content-text {
-    font-size: 1.5rem;
-  }
-
-  &__bottom_button {
-    display: flex;
-    color: white;
-    justify-content: center;
-    background-color: V.$pink-color;
-    border-radius: 10px;
-    padding: 1rem;
-    max-width: 300px;
-    box-shadow: 2px 2px 5px black;
-    margin: 0 auto;
-    transform: translateY(-2rem);
-
-    @media screen and (max-width: 768px) {
-      transform: translateY(0);
-    }
-  }
-
-  &__bottom_button-link {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  &__bottom_button-logo {
-    width: 25px;
-  }
-  &__bottom_input-area {
-    display: none;
-    @media screen and (max-width: 768px) {
-      display: flex;
-      justify-content: center;
-    }
-  }
-  &__bottom_input-text {
-    background-color: #eaeaea;
-    border-radius: 10px;
-    padding: 20px;
-    width: 500px;
-    margin: 15px;
   }
 }

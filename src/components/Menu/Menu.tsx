@@ -2,17 +2,30 @@ import { useState } from 'react';
 import './Menu.scss';
 import clsx from 'clsx';
 
-function Menu() {
+type MenuProps = {
+  menuIsVisible: boolean;
+  setMenuIsVisible: (setMenuIsVisible: boolean) => void;
+};
+
+function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
   function handleOnCategoryButton() {
     setCategoriesIsVisible(!categoriesIsVisible);
   }
 
+  function handleOnMenuButton() {
+    setMenuIsVisible(!menuIsVisible);
+  }
+
   return (
-    <div className="home-menu home-menu--hidden">
+    <div className={clsx('home-menu', { 'home-menu--hidden': !menuIsVisible })}>
       <div className="home-menu__container">
         <img className="home-menu__logo" src="/assets/logo/logo.png" alt="" />
-        <button type="button" className="home-menu__toggle-button">
+        <button
+          onClick={handleOnMenuButton}
+          type="button"
+          className="home-menu__toggle-button"
+        >
           <img
             className="home-menu__toggle-button--icon"
             src="/assets/icons/menuPink.png"
