@@ -13,6 +13,9 @@
   align-items: center;
   font-weight: bold;
   color: #6f6f6f;
+  @media screen and (min-width: 768px) {
+    visibility: hidden;
+  }
 
   &__element {
     display: flex;
@@ -27,7 +30,7 @@
     text-align: center;
   }
 
-  &__icon:touch {
+  &__icon_title:active {
     color: #ff2e63;
   }
 }
