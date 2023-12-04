@@ -18,7 +18,7 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   }
 
   return (
-    <div className={clsx('home-menu', { 'home-menu--hidden': menuIsVisible })}>
+    <div className={clsx('home-menu', { 'home-menu--hidden': !menuIsVisible })}>
       <div className="home-menu__container">
         <img className="home-menu__logo" src="/assets/logo/logo.png" alt="" />
         <button

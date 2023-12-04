@@ -5,7 +5,7 @@ import Menu from '../../components/Menu/Menu';
 import './Root.scss';
 
 function Root() {
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
+  const [menuIsVisible, setMenuIsVisible] = useState(true);
 
   return (
     <div className="root">
