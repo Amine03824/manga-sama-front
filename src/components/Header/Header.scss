@@ -14,10 +14,25 @@
     }
   }
 
+  &__top_container-button-menu {
+    display: none;
+    @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 3rem;
+      display: block;
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+    }
+  }
+
   &__logo {
     grid-area: logo;
     margin: 0 auto;
-    width: 8rem;
+    width: 15rem;
+    @media screen and (max-width: 768px) {
+      width: 8rem;
+    }
   }
   &__top_container-links {
     grid-area: links;
@@ -31,17 +46,26 @@
       justify-content: center;
     }
   }
+
   &__top_container-signup {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     align-items: center;
+    transition: color 0.3s ease;
+  }
+  &__top_container-signup:hover {
+    color: V.$color-red;
   }
   &__top_container-login {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     align-items: center;
+    transition: color 0.3s ease;
+  }
+  &__top_container-login:hover {
+    color: V.$color-red;
   }
   &__bottom_container {
     display: flex;
@@ -51,7 +75,7 @@
     width: 80%;
     background-color: V.$color-dark;
     border-radius: 15px;
-    padding: 1.5rem;
+    padding: 2rem;
     color: white;
     font-weight: 600;
     position: relative;
@@ -83,7 +107,13 @@
     max-width: 300px;
     box-shadow: 2px 2px 5px black;
     margin: 0 auto;
+    transform: translateY(-2rem);
+
+    @media screen and (max-width: 768px) {
+      transform: translateY(0);
+    }
   }
+
   &__bottom_button-link {
     display: flex;
     gap: 10px;
@@ -101,10 +131,9 @@
   }
   &__bottom_input-text {
     background-color: #eaeaea;
-
     border-radius: 10px;
     padding: 20px;
-    margin-top: 15px;
     width: 500px;
+    margin: 15px;
   }
 }

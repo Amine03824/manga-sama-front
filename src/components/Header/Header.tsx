@@ -4,6 +4,11 @@ function Header() {
   return (
     <div className="header">
       <div className="header__top_container">
+        <div className="header__top_container-button">
+          <button type="button" className="header__top_container-button-menu">
+            <img src="public/assets/menuPink.png" alt="logo-menu-burger" />
+          </button>
+        </div>
         <img
           src="public/assets/logo.png"
           alt="logo-manga-sama"
@@ -47,7 +52,7 @@ function Header() {
       <div className="header__bottom_input-area">
         <input
           type="text"
-          placeholder="rechercher"
+          placeholder="Rechercher un manga"
           className="header__bottom_input-text"
         />
       </div>
