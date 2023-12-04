@@ -6,11 +6,14 @@ function Header() {
       <div className="header__top_container">
         <div className="header__top_container-button">
           <button type="button" className="header__top_container-button-menu">
-            <img src="public/assets/menuPink.png" alt="logo-menu-burger" />
+            <img
+              src="public/assets/icons/menuPink.png"
+              alt="logo-menu-burger"
+            />
           </button>
         </div>
         <img
-          src="public/assets/logo.png"
+          src="public/assets/logo/logo.png"
           alt="logo-manga-sama"
           className="header__logo"
         />
@@ -18,13 +21,16 @@ function Header() {
           <div className="header__top_container-links-signup">
             <a href="/" className="header__top_container-signup">
               Inscription
-              <img src="public/assets/register-icon.png" alt="signup-logo" />
+              <img
+                src="public/assets/icons/register-icon.png"
+                alt="signup-logo"
+              />
             </a>
           </div>
           <div className="header__top_container-links-login">
             <a href="/" className="header__top_container-login">
               Connexion
-              <img src="public/assets/user-icon.png" alt="login-logo" />
+              <img src="public/assets/icons/user-icon.png" alt="login-logo" />
             </a>
           </div>
         </div>
@@ -43,7 +49,7 @@ function Header() {
         <a href="/" className="header__bottom_button-link">
           Publier une annonce
           <img
-            src="public/assets/add.png"
+            src="public/assets/icons/add.png"
             alt="logo-publier-une-annonce"
             className="header__bottom_button-logo"
           />

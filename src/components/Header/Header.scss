@@ -55,7 +55,7 @@
     transition: color 0.3s ease;
   }
   &__top_container-signup:hover {
-    color: V.$color-red;
+    color: V.$pink-color;
   }
   &__top_container-login {
     display: flex;
@@ -65,7 +65,7 @@
     transition: color 0.3s ease;
   }
   &__top_container-login:hover {
-    color: V.$color-red;
+    color: V.$pink-color;
   }
   &__bottom_container {
     display: flex;
@@ -73,7 +73,7 @@
     justify-content: center;
     flex-direction: column;
     width: 80%;
-    background-color: V.$color-dark;
+    background-color: V.$grey-menu;
     border-radius: 15px;
     padding: 2rem;
     color: white;
@@ -101,7 +101,7 @@
     display: flex;
     color: white;
     justify-content: center;
-    background-color: V.$color-red;
+    background-color: V.$pink-color;
     border-radius: 10px;
     padding: 1rem;
     max-width: 300px;
