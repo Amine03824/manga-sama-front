@@ -23,11 +23,13 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
             <img src="/assets/icons/menuPink.png" alt="logo-menu-burger" />
           </button>
         </div>
-        <img
-          src="/assets/logo/logo.png"
-          alt="logo-manga-sama"
-          className="header__logo"
-        />
+        <Link to="/">
+          <img
+            src="/assets/logo/logo.png"
+            alt="logo-manga-sama"
+            className="header__logo"
+          />
+        </Link>
         <div className="header__top_container-links">
           <div className="header__top_container-links-login">
             <Link to="login" className="header__top_container-login">
