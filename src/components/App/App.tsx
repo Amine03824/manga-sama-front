@@ -1,9 +1,11 @@
-import Menu from '../Menu/Menu';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 function App() {
   return (
     <div>
-      <Menu />
+      <Header />
+      <Footer />
     </div>
   );
 }
