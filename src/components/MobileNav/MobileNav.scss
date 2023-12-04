@@ -1,0 +1,33 @@
+@use '../../styles/variables' as V;
+
+.MobileNav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 9;
+  height: 5rem;
+  background-color: white;
+  border-top: 1px solid #ff2e63;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: bold;
+  color: #6f6f6f;
+
+  &__element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+  }
+
+  &__icon:touch {
+    color: #ff2e63;
+  }
+}
