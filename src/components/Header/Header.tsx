@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Header.scss';
 
 type HeaderProps = {
@@ -30,15 +31,15 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
         <div className="header__top_container-links">
           <div className="header__top_container-links-signup">
             <a href="/" className="header__top_container-signup">
-              Inscription
+              Connexion
               <img src="/assets/icons/register-icon.png" alt="signup-logo" />
             </a>
           </div>
           <div className="header__top_container-links-login">
-            <a href="/" className="header__top_container-login">
-              Connexion
+            <Link to="signup" className="header__top_container-login">
+              Inscription
               <img src="/assets/icons/user-icon.png" alt="login-logo" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
