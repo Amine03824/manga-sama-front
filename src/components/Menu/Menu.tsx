@@ -9,7 +9,7 @@ function Menu() {
   }
 
   return (
-    <div className="home-menu">
+    <div className="home-menu home-menu--hidden">
       <div className="home-menu__container">
         <img className="home-menu__logo" src="/assets/logo/logo.png" alt="" />
         <button type="button" className="home-menu__toggle-button">
