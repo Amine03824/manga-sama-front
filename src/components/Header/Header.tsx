@@ -29,16 +29,16 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
           className="header__logo"
         />
         <div className="header__top_container-links">
-          <div className="header__top_container-links-signup">
-            <a href="/" className="header__top_container-signup">
-              Connexion
-              <img src="/assets/icons/register-icon.png" alt="signup-logo" />
-            </a>
-          </div>
           <div className="header__top_container-links-login">
-            <Link to="signup" className="header__top_container-login">
-              Inscription
+            <Link to="login" className="header__top_container-login">
+              Connexion
               <img src="/assets/icons/user-icon.png" alt="login-logo" />
+            </Link>
+          </div>
+          <div className="header__top_container-links-signup">
+            <Link to="signup" className="header__top_container-signup">
+              Inscription
+              <img src="/assets/icons/register-icon.png" alt="signup-logo" />
             </Link>
           </div>
         </div>
