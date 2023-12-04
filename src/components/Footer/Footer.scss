@@ -2,6 +2,7 @@
 
 .Footer {
   background-color: black;
+  font-family: V.$main-font;
   color: white;
   width: 100%;
   position: fixed;
@@ -15,7 +16,7 @@
     margin: 1rem auto;
     padding: 1.5rem;
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 500;
 
     @media screen and (min-width: 768px) {
       width: 35%;
