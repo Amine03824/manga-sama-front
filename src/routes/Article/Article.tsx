@@ -25,6 +25,17 @@ function Article() {
             </div>
 
             <p className="Article__container_top-right-price">59 €</p>
+
+            <div className="Article__container_top-right-description">
+              <p className="Article__container_top-right-description-title">
+                Description :
+              </p>
+              <p className="Article__container_top-right-description-content">
+                Livre de type Naruto avec des mangas de type japonais se lisant
+                à l’envers. Fait en papier.
+              </p>
+            </div>
+
             <div className="Article__container_top-right-state">
               <h5 className="Article__container_top-right-state-title">
                 Etat de l'article :
@@ -41,6 +52,14 @@ function Article() {
                 Jean_guy_17
               </p>
             </div>
+            <button className="Article__container_top-right-purchase-btn">
+              Acheter{' '}
+              <img
+                className="Article__container_top-right-img"
+                src="public\assets\icons\cart-icon-32px.png"
+                alt="icône de caddy"
+              ></img>
+            </button>
           </div>
         </div>
         <div className="Article__container_bottom">
@@ -58,6 +77,30 @@ function Article() {
             alt="icône de caddy"
           ></img>
         </button>
+
+        <div className="Article__bottom_section">
+          <h5 className="Article__bottom_section-title">
+            Annonces qui pourraient vous plaire
+          </h5>
+          <div className="Article__bottom_section-card">
+            <img
+              src="public\assets\icons\naruto01.jpg"
+              className="Article__bottom_section-card-img"
+            />
+            <img
+              src="public\assets\icons\naruto01.jpg"
+              className="Article__bottom_section-card-img"
+            />
+            <img
+              src="public\assets\icons\naruto01.jpg"
+              className="Article__bottom_section-card-img"
+            />
+            <img
+              src="public\assets\icons\naruto01.jpg"
+              className="Article__bottom_section-card-img"
+            />
+          </div>
+        </div>
       </div>
 
       <Footer />
