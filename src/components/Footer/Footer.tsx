@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 function Footer() {
@@ -8,23 +9,23 @@ function Footer() {
         <div className="Footer__top_container-left">
           <ul className="Footer__list">
             <li className="Footer__list_item">
-              <a href="/">Mentions légales</a>
+              <Link to="/">Mentions légales</Link>
             </li>
             <li className="Footer__list_item">
-              <a href="/">Politique de confidentialité</a>
+              <Link to="/">Politique de confidentialité</Link>
             </li>
             <li className="Footer__list_item">
-              <a href="/">C.G.V.</a>
+              <Link to="/">C.G.V.</Link>
             </li>
           </ul>
         </div>
         <div className="Footer__top_container-right">
           <ul className="Footer__list">
             <li className="Footer__list_item">
-              <a href="/">L'équipe</a>
+              <Link to="/">L'équipe</Link>
             </li>
             <li className="Footer__list_item">
-              <a href="/">Nous contacter</a>
+              <Link to="/contact">Nous contacter</Link>
             </li>
           </ul>
         </div>
