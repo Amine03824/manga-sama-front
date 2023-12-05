@@ -1,6 +1,18 @@
 import './Home.scss';
 
-function Home() {
+type Article = {
+  id: number;
+  avatar_url: string;
+  name: string;
+  price: number;
+  localisation: string;
+  tome: number;
+};
+type HomeProps = {
+  articles: Article[];
+};
+
+function Home({ articles }: HomeProps) {
   return (
     <div className="home">
       <div className="home__articles">
@@ -18,90 +30,25 @@ function Home() {
         </div>
         <div className="home__articles-area">
           <ul className="home__articles-list">
-            <li className="home__articles-item">
-              <img
-                src="public/assets/icons/naruto01.jpg"
-                alt="/"
-                className="home__articles-image"
-              />
-              <div className="home__articles-info">
-                <h3 className="home__articles-info-title">Nom du manga</h3>
-                <p className="home__articles-info-price">50€</p>
-                <p className="home__articles-info-localisation">Konoha</p>
-              </div>
-            </li>
-            <li className="home__articles-item">
-              <img
-                src="public/assets/icons/naruto01.jpg"
-                alt="/"
-                className="home__articles-image"
-              />
-              <div className="home__articles-info">
-                <h3 className="home__articles-info-title">Nom du manga</h3>
-                <p className="home__articles-info-price">50€</p>
-                <p className="home__articles-info-localisation">Konoha</p>
-              </div>
-            </li>
-            <li className="home__articles-item">
-              <img
-                src="public/assets/icons/naruto01.jpg"
-                alt="/"
-                className="home__articles-image"
-              />
-              <div className="home__articles-info">
-                <h3 className="home__articles-info-title">Nom du manga</h3>
-                <p className="home__articles-info-price">50€</p>
-                <p className="home__articles-info-localisation">Konoha</p>
-              </div>
-            </li>
-            <li className="home__articles-item">
-              <img
-                src="public/assets/icons/naruto01.jpg"
-                alt="/"
-                className="home__articles-image"
-              />
-              <div className="home__articles-info">
-                <h3 className="home__articles-info-title">Nom du manga</h3>
-                <p className="home__articles-info-price">50€</p>
-                <p className="home__articles-info-localisation">Konoha</p>
-              </div>
-            </li>
-            <li className="home__articles-item">
-              <img
-                src="public/assets/icons/naruto01.jpg"
-                alt="/"
-                className="home__articles-image"
-              />
-              <div className="home__articles-info">
-                <h3 className="home__articles-info-title">Nom du manga</h3>
-                <p className="home__articles-info-price">50€</p>
-                <p className="home__articles-info-localisation">Konoha</p>
-              </div>
-            </li>
-            <li className="home__articles-item">
-              <img
-                src="public/assets/icons/naruto01.jpg"
-                alt="/"
-                className="home__articles-image"
-              />
-              <div className="home__articles-info">
-                <h3 className="home__articles-info-title">Nom du manga</h3>
-                <p className="home__articles-info-price">50€</p>
-                <p className="home__articles-info-localisation">Konoha</p>
-              </div>
-            </li>
-            <li className="home__articles-item">
-              <img
-                src="public/assets/icons/naruto01.jpg"
-                alt="/"
-                className="home__articles-image"
-              />
-              <div className="home__articles-info">
-                <h3 className="home__articles-info-title">Nom du manga</h3>
-                <p className="home__articles-info-price">50€</p>
-                <p className="home__articles-info-localisation">Konoha</p>
-              </div>
-            </li>
+            {articles.map((article) => (
+              <li className="home__articles-item" key={article.id}>
+                <img
+                  src="public/assets/icons/naruto01.jpg"
+                  alt="/"
+                  className="home__articles-item-image"
+                />
+                <div className="home__articles-info">
+                  <h3 className="home__articles-info-title">{article.name}</h3>
+                  <p className="home__articles-info-tome">
+                    Tome {article.tome}
+                  </p>
+                  <p className="home__articles-info-price">{article.price} €</p>
+                  <p className="home__articles-info-localisation">
+                    {article.localisation}
+                  </p>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
