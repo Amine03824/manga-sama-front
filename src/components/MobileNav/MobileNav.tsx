@@ -19,7 +19,7 @@ function MobileNav() {
         type="button"
       >
         <img
-          src={`public/assets/icons/MobileNavSearchIcon${
+          src={`/assets/icons/MobileNavSearchIcon${
             clickedButton === 'search' ? 'Red' : ''
           }.png`}
           className="MobileNav__icon"
@@ -40,7 +40,7 @@ function MobileNav() {
         type="button"
       >
         <img
-          src={`public/assets/icons/MobileNavPublishIcon${
+          src={`/assets/icons/MobileNavPublishIcon${
             clickedButton === 'publish' ? 'Red' : ''
           }.png`}
           className="MobileNav__icon"
@@ -61,7 +61,7 @@ function MobileNav() {
         type="button"
       >
         <img
-          src={`public/assets/icons/MobileNavAccountIcon${
+          src={`/assets/icons/MobileNavAccountIcon${
             clickedButton === 'account' ? 'Red' : ''
           }.png`}
           className="MobileNav__icon"
