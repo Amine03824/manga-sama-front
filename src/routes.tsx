@@ -13,13 +13,17 @@ import Contact from './routes/Contacts/Contacts';
 import LegalNotice from './routes/LegalNotice/LegalNotice';
 import About from './routes/About/About';
 import Team from './routes/Team/Team';
-
+import Home from './routes/Home/Home';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
     children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
       {
         path: 'signup',
         element: <SignUp />,

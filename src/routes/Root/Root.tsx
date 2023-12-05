@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
 import './Root.scss';
 import MobileNav from '../../components/MobileNav/MobileNav';
+import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
 
 function Root() {
   const [menuIsVisible, setMenuIsVisible] = useState(true);
@@ -16,6 +17,7 @@ function Root() {
           menuIsVisible={menuIsVisible}
           setMenuIsVisible={setMenuIsVisible}
         />
+        <HeaderBottom />
         <Outlet />
       </div>
       <MobileNav />
