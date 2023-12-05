@@ -9,7 +9,7 @@ function Footer() {
         <div className="Footer__top_container-left">
           <ul className="Footer__list">
             <li className="Footer__list_item">
-              <Link to="/">Mentions légales</Link>
+              <Link to="/copyright">Mentions légales</Link>
             </li>
             <li className="Footer__list_item">
               <Link to="/">Politique de confidentialité</Link>
@@ -22,7 +22,10 @@ function Footer() {
         <div className="Footer__top_container-right">
           <ul className="Footer__list">
             <li className="Footer__list_item">
-              <Link to="/">L'équipe</Link>
+              <Link to="/team">L'équipe</Link>
+            </li>
+            <li className="Footer__list_item">
+              <Link to="/about">A propos</Link>
             </li>
             <li className="Footer__list_item">
               <Link to="/contact">Nous contacter</Link>

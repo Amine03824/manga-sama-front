@@ -1,0 +1,44 @@
+@use '../../styles/variables' as v;
+
+.team {
+  @media screen and (min-width: 768px) {
+    margin: 0 4rem;
+    margin-bottom: 4rem;
+  }
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    color: v.$pink-color;
+    font-weight: bold;
+    padding: 2rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &-img {
+      width: 10rem;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      background-color: v.$pink-bg;
+      border-radius: 2rem;
+    }
+
+    &-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    &-role {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+  }
+}
