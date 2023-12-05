@@ -1,0 +1,104 @@
+@use '../../styles/variables' as V;
+
+.Article {
+  width: 95%;
+  background-color: #fcf3f3;
+  margin: 1.5rem auto;
+  border-radius: 15px;
+  padding: 1.5rem;
+  font-family: V.$main-font;
+
+  &__container_top {
+    display: flex;
+
+    &-left {
+      width: 50%;
+
+      &-img {
+        border-radius: 15px;
+      }
+    }
+    &-right {
+      width: 50%;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+
+      &-title-booktitle {
+        font-weight: bold;
+        font-size: 1.8rem;
+      }
+
+      &-title-booksubtitle {
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+
+      &-price {
+        font-weight: bold;
+        font-size: 2rem;
+        color: V.$pink-color;
+      }
+
+      &-state-title {
+        font-weight: bold;
+        font-size: 0.85rem;
+      }
+
+      &-state-described {
+        font-weight: bold;
+        font-size: 0.8rem;
+        padding: 0.2rem;
+        border-radius: 15px;
+        text-align: center;
+        background: #74de85;
+      }
+
+      &-soldby-title {
+        font-family: V.$secondary-font;
+        font-size: 0.85rem;
+      }
+      &-soldby-sellername {
+        font-family: V.$secondary-font;
+        font-weight: bold;
+        font-size: 0.85rem;
+        margin-top: -0.2rem;
+      }
+    }
+  }
+
+  &__container_bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem 0;
+
+    &-title {
+      text-align: left;
+      font-weight: bold;
+    }
+    &-content {
+      text-align: left;
+      font-family: V.$secondary-font;
+      font-size: 0.9rem;
+    }
+  }
+  &__purchase_btn {
+    font-family: V.$main-font;
+    font-weight: bold;
+    font-size: 1.75rem;
+    margin: 1rem auto;
+    border-radius: 20px;
+    background: V.$pink-color;
+    padding: 0.5rem 1rem;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  &__purchase_img {
+    width: 32px;
+  }
+}
