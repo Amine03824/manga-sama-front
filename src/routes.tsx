@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Root from './routes/Root/Root';
 import SignUp from './routes/SignUp/SignUp';
 import Login from './routes/Login/Login';
+import Contact from './routes/Contacts/Contacts';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'contact',
+        element: <Contact />,
       },
     ],
   },
