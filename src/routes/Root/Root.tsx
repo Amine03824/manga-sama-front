@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
 import './Root.scss';
+import MobileNav from '../../components/MobileNav/MobileNav';
 
 function Root() {
   const [menuIsVisible, setMenuIsVisible] = useState(true);
@@ -17,6 +18,7 @@ function Root() {
         />
         <Outlet />
       </div>
+      <MobileNav />
     </div>
   );
 }
