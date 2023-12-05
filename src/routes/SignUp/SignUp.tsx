@@ -9,13 +9,13 @@ function SignUp() {
   return (
     <Page>
       <div className="signUp">
-        {/* <div className="signUp__logo-container">
+        <div className="signUp__logo-container">
           <img
             className="signUp__logo"
             src="public/assets/logo/logo.png"
             alt="logo-Manga-Sama"
           />
-        </div> */}
+        </div>
         <div className="signUp__area">
           <h2 className="signUp__area-title">Création de compte</h2>
           <div className="signUp__area-fields">
