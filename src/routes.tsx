@@ -4,6 +4,9 @@ import Root from './routes/Root/Root';
 import SignUp from './routes/SignUp/SignUp';
 import Login from './routes/Login/Login';
 import Contact from './routes/Contacts/Contacts';
+import LegalNotice from './routes/LegalNotice/LegalNotice';
+import About from './routes/About/About';
+import Team from './routes/Team/Team';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +25,15 @@ export const router = createBrowserRouter([
         path: 'contact',
         element: <Contact />,
       },
+      {
+        path: 'copyright',
+        element: <LegalNotice />,
+      },
+      {
+        path: 'about',
+        element: <About />,
+      },
+      { path: 'team', element: <Team /> },
     ],
   },
 ]);
