@@ -3,10 +3,13 @@ import { createBrowserRouter } from 'react-router-dom';
 import Root from './routes/Root/Root';
 import SignUp from './routes/SignUp/SignUp';
 import Login from './routes/Login/Login';
+
 import Contact from './routes/Contacts/Contacts';
 import LegalNotice from './routes/LegalNotice/LegalNotice';
 import About from './routes/About/About';
 import Team from './routes/Team/Team';
+
+import Article from './routes/Article/Article';
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +37,10 @@ export const router = createBrowserRouter([
         element: <About />,
       },
       { path: 'team', element: <Team /> },
+      {
+        path: 'article',
+        element: <Article />,
+      },
     ],
   },
 ]);
