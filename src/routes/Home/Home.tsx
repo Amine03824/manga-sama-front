@@ -1,6 +1,6 @@
 import './Home.scss';
 import { Link } from 'react-router-dom';
-import mangaData from '../../data/data';
+import articleData from '../../data/data';
 import Footer from '../../components/Footer/Footer';
 
 // type Article = {
@@ -33,26 +33,26 @@ function Home() {
         </div>
         <div className="home__articles-area">
           <ul className="home__articles-list">
-            {mangaData.map((article) => (
+            {articleData.map((article) => (
               <Link to="/" key={article.id}>
                 <li className="home__articles-item" key={article.id}>
                   <img
-                    src={article.avatar_url}
+                    src={article.image_url}
                     alt="/"
                     className="home__articles-item-image"
                   />
                   <div className="home__articles-info">
                     <h3 className="home__articles-info-title">
-                      {article.name}
+                      {article.title}
                     </h3>
                     <p className="home__articles-info-tome">
-                      Tome {article.tome}
+                      Tome {article.manga.volume}
                     </p>
                     <p className="home__articles-info-price">
                       {article.price} €
                     </p>
                     <p className="home__articles-info-localisation">
-                      {article.localisation}
+                      {article.user.city}
                     </p>
                   </div>
                 </li>
