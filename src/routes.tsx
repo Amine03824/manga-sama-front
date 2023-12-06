@@ -15,7 +15,7 @@ import About from './routes/About/About';
 import Team from './routes/Team/Team';
 import Home from './routes/Home/Home';
 
-import mangaData from './data/data';
+// import mangaData from './data/data';
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home articles={mangaData} />,
+        element: <Home />,
       },
       {
         path: 'signup',
