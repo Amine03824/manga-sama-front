@@ -1,7 +1,7 @@
 import './Home.scss';
 import { Link } from 'react-router-dom';
-import articleData from '../../data/data';
 import Footer from '../../components/Footer/Footer';
+import { useAppSelector } from '../../hooks/redux';
 
 // type Article = {
 //   id: number;
@@ -16,6 +16,8 @@ import Footer from '../../components/Footer/Footer';
 // };
 
 function Home() {
+  const articles = useAppSelector((state) => state.articles.articles);
+
   return (
     <div className="home">
       <div className="home__articles">
@@ -33,8 +35,8 @@ function Home() {
         </div>
         <div className="home__articles-area">
           <ul className="home__articles-list">
-            {articleData.map((article) => (
-              <Link to="/" key={article.id}>
+            {articles.map((article) => (
+              <Link to={`/article/${article.id}`} key={article.id}>
                 <li className="home__articles-item" key={article.id}>
                   <img
                     src={article.image_url}

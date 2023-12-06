@@ -1,10 +1,10 @@
 /* eslint-disable import/no-named-as-default */
 import { createSlice } from '@reduxjs/toolkit';
 import { ArticleState } from '../../@types';
-import mangas from '../../data/mangas';
+import data from '../../data/data';
 
 const initialState: ArticleState = {
-  articles: mangas,
+  articles: data,
   error: null,
   isLoading: true,
 };

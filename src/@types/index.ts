@@ -9,6 +9,7 @@ export type Article = {
     firstname: string;
     pseudo: string;
     email: string;
+    city: string;
   };
   manga: {
     code_isbn: string;
