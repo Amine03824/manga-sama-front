@@ -11,12 +11,21 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      justify-content: center;
       font-family: V.$secondary-font;
       font-weight: bold;
+      @media screen and (min-width: 768px) {
+        font-size: 30px;
+        align-items: center;
+      }
       &-icon {
         width: 20px;
+        @media screen and (min-width: 768px) {
+          width: 25px;
+        }
       }
     }
+
     &-list {
       display: flex;
       flex-wrap: wrap;
@@ -25,20 +34,24 @@
     &-item {
       display: flex;
       flex-direction: column;
-      // V.$pink-bg
+      background-color: V.$pink-bg;
       border-radius: 10px;
-      width: 30vw;
+      width: 60vw;
       margin-bottom: 20px;
-      &-image {
-        width: auto;
-        height: auto;
+      @media screen and (min-width: 768px) {
+        width: 20vw;
+        margin-bottom: 60px;
+        padding: 10px;
+        margin: 30px;
       }
     }
     &-info {
       display: flex;
       flex-direction: column;
       align-items: center;
+
       font-family: V.$secondary-font;
+
       // font-weight: 500;
       &-title {
         font-weight: 500;

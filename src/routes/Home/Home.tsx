@@ -1,18 +1,21 @@
 import './Home.scss';
+import { Link } from 'react-router-dom';
+import mangaData from '../../data/data';
+import Footer from '../../components/Footer/Footer';
 
-type Article = {
-  id: number;
-  avatar_url: string;
-  name: string;
-  price: number;
-  localisation: string;
-  tome: number;
-};
-type HomeProps = {
-  articles: Article[];
-};
+// type Article = {
+//   id: number;
+//   avatar_url: string;
+//   name: string;
+//   price: number;
+//   localisation: string;
+//   tome: number;
+// };
+// type HomeProps = {
+//   articles: Article[];
+// };
 
-function Home({ articles }: HomeProps) {
+function Home() {
   return (
     <div className="home">
       <div className="home__articles">
@@ -30,28 +33,35 @@ function Home({ articles }: HomeProps) {
         </div>
         <div className="home__articles-area">
           <ul className="home__articles-list">
-            {articles.map((article) => (
-              <li className="home__articles-item" key={article.id}>
-                <img
-                  src="public/assets/icons/naruto01.jpg"
-                  alt="/"
-                  className="home__articles-item-image"
-                />
-                <div className="home__articles-info">
-                  <h3 className="home__articles-info-title">{article.name}</h3>
-                  <p className="home__articles-info-tome">
-                    Tome {article.tome}
-                  </p>
-                  <p className="home__articles-info-price">{article.price} €</p>
-                  <p className="home__articles-info-localisation">
-                    {article.localisation}
-                  </p>
-                </div>
-              </li>
+            {mangaData.map((article) => (
+              <Link to="/" key={article.id}>
+                <li className="home__articles-item" key={article.id}>
+                  <img
+                    src={article.avatar_url}
+                    alt="/"
+                    className="home__articles-item-image"
+                  />
+                  <div className="home__articles-info">
+                    <h3 className="home__articles-info-title">
+                      {article.name}
+                    </h3>
+                    <p className="home__articles-info-tome">
+                      Tome {article.tome}
+                    </p>
+                    <p className="home__articles-info-price">
+                      {article.price} €
+                    </p>
+                    <p className="home__articles-info-localisation">
+                      {article.localisation}
+                    </p>
+                  </div>
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
