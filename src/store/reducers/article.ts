@@ -11,7 +11,8 @@ const initialState: ArticleState = {
 };
 
 export const getArticles = createAsyncThunk('articles/fetch', async () => {
-  const { data } = await axios.get<Article[]>('urlfetch');
+  const { data } = await axios.get<Article[]>('http://localhost:3001/article');
+
   return data;
 });
 

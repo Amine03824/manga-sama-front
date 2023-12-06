@@ -16,24 +16,14 @@ function Login() {
     (state) => state.loginForm.credentials.password
   );
 
-  const handleOnChangeInputEmailField = (
-    event: ChangeEvent<HTMLInputElement>
+  const handleOnChangeInputField = (
+    event: ChangeEvent<HTMLInputElement>,
+    name: 'email' | 'password'
   ) => {
     dispatch(
       changeLoginFormInputsField({
         value: event.target.value,
-        fieldName: 'email',
-      })
-    );
-  };
-
-  const handleOnChangeInputPasswordField = (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
-    dispatch(
-      changeLoginFormInputsField({
-        value: event.target.value,
-        fieldName: 'password',
+        fieldName: name,
       })
     );
   };
@@ -48,7 +38,9 @@ function Login() {
               <ul className="login__area-lists">
                 <li className="login__area-item">
                   <input
-                    onChange={handleOnChangeInputEmailField}
+                    onChange={(event) =>
+                      handleOnChangeInputField(event, 'email')
+                    }
                     value={emailInputValue}
                     type="text"
                     placeholder="Nom d'utilisateur"
@@ -56,7 +48,9 @@ function Login() {
                 </li>
                 <li className="login__area-item">
                   <input
-                    onChange={handleOnChangeInputPasswordField}
+                    onChange={(event) =>
+                      handleOnChangeInputField(event, 'password')
+                    }
                     value={passwordInputValue}
                     type="text"
                     placeholder="Mot de passe"
