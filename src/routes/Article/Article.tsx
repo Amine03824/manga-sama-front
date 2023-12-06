@@ -1,8 +1,33 @@
+/* eslint-disable no-alert */
+/* eslint-disable react/no-unescaped-entities */
+import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './Article.scss';
+import { useAppSelector } from '../../hooks/redux';
+import { findArticle } from '../../store/selectors/articles';
 
 function Article() {
+  const { id } = useParams();
+
+  if (!id) {
+    throw new Error('id is missing');
+  }
+
+  const parsedId = parseInt(id, 10);
+
+  const article = useAppSelector((state) =>
+    findArticle(state.article.list_articles, parsedId)
+  );
+  if (!article) {
+    throw new Error('Article not found');
+  }
+
+  // const articles = useAppSelector((state) => state.article.list_articles);
+  // const article = articles.find((testedArticle) => {
+  //   return testedArticle.id === parsedId;
+  // });
+
   return (
     <Page>
       <div className="Article">
@@ -10,29 +35,30 @@ function Article() {
           <div className="Article__container_top-left">
             <img
               className="Article__container_top-left-img"
-              src="public\assets\icons\naruto01.jpg"
-              alt="image de couverture du manga"
-            ></img>
+              src={article.image_url}
+              alt="couverture du manga"
+            />
           </div>
           <div className="Article__container_top-right">
             <div className="Article__container_top-right-title">
               <h2 className="Article__container_top-right-title-booktitle">
-                Naruto
+                {article.title}
               </h2>
               <h4 className="Article__container_top-right-title-booksubtitle">
-                Volume 3
+                Volume {article.manga.volume}
               </h4>
             </div>
 
-            <p className="Article__container_top-right-price">59 €</p>
+            <p className="Article__container_top-right-price">
+              {article.price}€
+            </p>
 
             <div className="Article__container_top-right-description">
               <p className="Article__container_top-right-description-title">
                 Description :
               </p>
               <p className="Article__container_top-right-description-content">
-                Livre de type Naruto avec des mangas de type japonais se lisant
-                à l’envers. Fait en papier.
+                {article.description}
               </p>
             </div>
 
@@ -49,36 +75,38 @@ function Article() {
                 Vendu par :
               </p>
               <p className="Article__container_top-right-soldby-sellername">
-                Jean_guy_17
+                {article.user.pseudo}
               </p>
             </div>
-            <button className="Article__container_top-right-purchase-btn">
-              Acheter{' '}
+            <button
+              type="button"
+              className="Article__container_top-right-purchase-btn"
+            >
+              Acheter
               <img
                 className="Article__container_top-right-img"
                 src="public\assets\icons\cart-icon-32px.png"
                 alt="icône de caddy"
-              ></img>
+              />
             </button>
           </div>
         </div>
         <div className="Article__container_bottom">
           <p className="Article__container_bottom-title">Description :</p>
           <p className="Article__container_bottom-content">
-            Livre de type Naruto avec des mangas de type japonais se lisant à
-            l’envers. Fait en papier.
+            {article.description}
           </p>
         </div>
-        <button className="Article__purchase_btn">
-          Acheter{' '}
+        <button type="button" className="Article__purchase_btn">
+          Acheter
           <img
             className="Article__purchase_img"
             src="public\assets\icons\cart-icon-32px.png"
             alt="icône de caddy"
-          ></img>
+          />
         </button>
 
-        <div className="Article__bottom_section">
+        {/* <div className="Article__bottom_section">
           <h5 className="Article__bottom_section-title">
             Annonces qui pourraient vous plaire
           </h5>
@@ -86,21 +114,25 @@ function Article() {
             <img
               src="public\assets\icons\naruto01.jpg"
               className="Article__bottom_section-card-img"
+              alt="icône de caddy"
             />
             <img
               src="public\assets\icons\naruto01.jpg"
               className="Article__bottom_section-card-img"
+              alt="icône de caddy"
             />
             <img
               src="public\assets\icons\naruto01.jpg"
               className="Article__bottom_section-card-img"
+              alt="icône de caddy"
             />
             <img
               src="public\assets\icons\naruto01.jpg"
               className="Article__bottom_section-card-img"
+              alt="icône de caddy"
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <Footer />

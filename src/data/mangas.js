@@ -1,6 +1,6 @@
 export default [
   {
-    id : 1,
+    id: 1,
     title: 'Aventures de Houd',
     description:
       'Découvrez les incroyables aventures de Houd dans ce passionnant manga. Action, mystère et amitié vous attendent!',
@@ -25,7 +25,7 @@ export default [
     },
   },
   {
-    id : 2,
+    id: 2,
     title: 'Olivier et les Étoiles Perdues',
     description:
       "Suivez Olivier dans une quête épique pour retrouver les étoiles perdues. Un récit magique et rempli d'émotions!",
@@ -50,7 +50,7 @@ export default [
     },
   },
   {
-    id : 3,
+    id: 3,
     title: 'Tanguy le Voyageur',
     description:
       'Accompagnez Tanguy dans ses périples autour du monde. Découvrez des cultures fascinantes et des rencontres extraordinaires!',
@@ -75,7 +75,7 @@ export default [
     },
   },
   {
-    id : 4 ,
+    id: 4,
     title: 'Houd et la Quête des Gemmes',
     description:
       'Rejoignez Houd dans sa quête passionnante pour collecter les gemmes magiques. Un voyage épique rempli de dangers et de découvertes!',
@@ -100,7 +100,7 @@ export default [
     },
   },
   {
-    id : 5,
+    id: 5,
     title: "Les Joyeuses Aventures d'Olivier et Tanguy",
     description:
       'Accompagnez Olivier et Tanguy dans des aventures hilarantes et pleines de rebondissements. Rires garantis!',
@@ -125,7 +125,7 @@ export default [
     },
   },
   {
-    id : 6,
+    id: 6,
     title: "Légendes de l'Espace avec Tanguy",
     description:
       "Explorez les mystères de l'espace aux côtés de Tanguy. Des extraterrestres intrigants, des planètes lointaines et des aventures intergalactiques vous attendent!",
@@ -150,7 +150,7 @@ export default [
     },
   },
   {
-    id : 7,
+    id: 7,
     title: 'Houd et les Secrets de la Forêt Enchantée',
     description:
       'Plongez dans la forêt enchantée avec Houd et découvrez ses secrets magiques. Une aventure mystérieuse et pleine de surprises!',
@@ -175,7 +175,7 @@ export default [
     },
   },
   {
-    id : 8,
+    id: 8,
     title: 'Voyage dans le Temps avec Olivier',
     description:
       'Accompagnez Olivier dans un voyage passionnant à travers le temps. Des époques fascinantes, des rencontres historiques et des aventures temporelles vous attendent!',
@@ -200,7 +200,7 @@ export default [
     },
   },
   {
-    id, 9 ,
+    id: 9,
     title: 'Tanguy et les Gardiens de la Galaxie',
     description:
       'Rejoignez Tanguy dans une mission intergalactique pour sauver la galaxie. Des combats épiques, des alliances interstellaires et des surprises cosmiques vous attendent!',
@@ -225,7 +225,7 @@ export default [
     },
   },
   {
-    id : 10,
+    id: 10,
     title: 'Houd et le Monde des Rêves',
     description:
       'Explorez le monde enchanteur des rêves avec Houd. Des paysages oniriques, des créatures fantastiques et des énigmes oniriques vous attendent!',
@@ -250,7 +250,7 @@ export default [
     },
   },
   {
-    id : 11,
+    id: 11,
     title: "Les Merveilleuses Aventures d'Olivier",
     description:
       'Accompagnez Olivier dans des aventures remplies de merveilles. Des découvertes étonnantes, des rencontres extraordinaires et des mystères enchanteurs vous attendent!',
@@ -274,7 +274,8 @@ export default [
       category: 'Shōjo',
     },
   },
-  { id : 12,
+  {
+    id: 12,
     title: 'Olivier et la Confrérie des Artisans',
     description:
       "Plongez dans le monde de l'artisanat avec Olivier et ses compagnons. Des créations magiques, des compétitions passionnantes et des secrets artisanaux vous attendent!",
@@ -299,7 +300,7 @@ export default [
     },
   },
   {
-    id : 13,
+    id: 13,
     title: 'Tanguy et les Portails Dimensionnels',
     description:
       'Voyagez à travers des dimensions parallèles avec Tanguy. Des mondes étranges, des rencontres extraordinaires et des aventures dimensionnelles vous attendent!',
@@ -324,7 +325,7 @@ export default [
     },
   },
   {
-    id : 14,
+    id: 14,
     title: 'Houd et la Cité des Cristaux',
     description:
       'Plongez dans la cité magique des cristaux avec Houd. Des pouvoirs cristallins, des énigmes enchantées et des révélations cristallines vous attendent!',
@@ -349,7 +350,7 @@ export default [
     },
   },
   {
-    id : 15,
+    id: 15,
     title: "Les Drôles d'Aventures d'Olivier et Tanguy",
     description:
       "Préparez-vous à rire avec les aventures comiques d'Olivier et Tanguy. Des situations loufoques, des blagues hilarantes et des moments mémorables vous attendent!",
@@ -374,7 +375,7 @@ export default [
     },
   },
   {
-    id : 16,
+    id: 16,
     title: 'Tanguy et la Quête des Orbes Magiques',
     description:
       'Rejoignez Tanguy dans sa quête pour trouver les orbes magiques. Des pouvoirs mystiques, des énigmes magiques et des découvertes extraordinaires vous attendent!',
