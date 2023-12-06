@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Menu.scss';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
 type MenuProps = {
   menuIsVisible: boolean;
@@ -59,10 +60,18 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
               'nav__categories-list--hidden': !categoriesIsVisible,
             })}
           >
-            <li className="nav__categories-item">Shonen</li>
-            <li className="nav__categories-item">Seinen</li>
-            <li className="nav__categories-item">Shojo</li>
-            <li className="nav__categories-item">Kodomo</li>
+            <Link to="category/shonen">
+              <li className="nav__categories-item">Shonen</li>
+            </Link>
+            <Link to="category/seinen">
+              <li className="nav__categories-item">Seinen</li>
+            </Link>
+            <Link to="category/shojo">
+              <li className="nav__categories-item">Shojo</li>
+            </Link>
+            <Link to="category/kodomo">
+              <li className="nav__categories-item">Kodomo</li>
+            </Link>
           </ul>
         </nav>
       </div>

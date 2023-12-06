@@ -1,6 +1,7 @@
 export default [
   {
     id: 1,
+    slug: 'shonen',
     title: 'Aventures de Houd',
     description:
       'Découvrez les incroyables aventures de Houd dans ce passionnant manga. Action, mystère et amitié vous attendent!',
@@ -22,11 +23,12 @@ export default [
       description:
         "Plongez dans l'univers fantastique des aventures de Houd, Olivier et Tanguy. Une histoire captivante qui vous tiendra en haleine!",
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Shōnen',
+      category: 'shonen',
     },
   },
   {
     id: 2,
+    slug: 'seinen',
     title: 'Olivier et les Étoiles Perdues',
     description:
       "Suivez Olivier dans une quête épique pour retrouver les étoiles perdues. Un récit magique et rempli d'émotions!",
@@ -48,11 +50,12 @@ export default [
       description:
         'Plongez dans un monde fantastique où Olivier part à la recherche des étoiles perdues pour sauver son royaume. Une aventure envoûtante vous attend!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Seinen',
+      category: 'seinen',
     },
   },
   {
     id: 3,
+    slug: 'shojo',
     title: 'Tanguy le Voyageur',
     description:
       'Accompagnez Tanguy dans ses périples autour du monde. Découvrez des cultures fascinantes et des rencontres extraordinaires!',
@@ -74,11 +77,12 @@ export default [
       description:
         'Explorez le monde aux côtés de Tanguy, un aventurier intrépide. Des paysages exotiques, des défis palpitants et des amis inoubliables vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Shōjo',
+      category: 'shojo',
     },
   },
   {
     id: 4,
+    slug: 'kodomo',
     title: 'Houd et la Quête des Gemmes',
     description:
       'Rejoignez Houd dans sa quête passionnante pour collecter les gemmes magiques. Un voyage épique rempli de dangers et de découvertes!',
@@ -100,11 +104,12 @@ export default [
       description:
         "Plongez dans l'univers magique de Houd, où chaque gemme détient un pouvoir mystérieux. Une aventure pleine de magie et d'intrigues vous attend!",
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Josei',
+      category: 'kodomo',
     },
   },
   {
     id: 5,
+    slug: 'shojo',
     title: "Les Joyeuses Aventures d'Olivier et Tanguy",
     description:
       'Accompagnez Olivier et Tanguy dans des aventures hilarantes et pleines de rebondissements. Rires garantis!',
@@ -126,11 +131,12 @@ export default [
       description:
         "Préparez-vous à rire aux éclats avec les péripéties comiques d'Olivier et Tanguy. Un manga hilarant qui illuminera votre journée!",
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Kodomo',
+      category: 'shojo',
     },
   },
   {
     id: 6,
+    slug: 'shonen',
     title: "Légendes de l'Espace avec Tanguy",
     description:
       "Explorez les mystères de l'espace aux côtés de Tanguy. Des extraterrestres intrigants, des planètes lointaines et des aventures intergalactiques vous attendent!",
@@ -152,11 +158,12 @@ export default [
       description:
         'Voyagez au-delà des étoiles avec Tanguy dans cette épopée spatiale captivante. Des découvertes étonnantes et des rencontres interstellaires vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Seijin',
+      category: 'shonen',
     },
   },
   {
     id: 7,
+    slug: 'seinen',
     title: 'Houd et les Secrets de la Forêt Enchantée',
     description:
       'Plongez dans la forêt enchantée avec Houd et découvrez ses secrets magiques. Une aventure mystérieuse et pleine de surprises!',
@@ -178,11 +185,12 @@ export default [
       description:
         'Explorez la beauté et les mystères de la forêt enchantée avec Houd. Des créatures magiques, des énigmes passionnantes et des révélations surprenantes vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Shōjo',
+      category: 'seinen',
     },
   },
   {
     id: 8,
+    slug: 'shonen',
     title: 'Voyage dans le Temps avec Olivier',
     description:
       'Accompagnez Olivier dans un voyage passionnant à travers le temps. Des époques fascinantes, des rencontres historiques et des aventures temporelles vous attendent!',
@@ -204,11 +212,12 @@ export default [
       description:
         'Explorez les méandres du temps avec Olivier. Des sauts temporels, des énigmes historiques et des aventures passionnantes vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Josei',
+      category: 'shonen',
     },
   },
   {
     id: 9,
+    slug: 'kodomo',
     title: 'Tanguy et les Gardiens de la Galaxie',
     description:
       'Rejoignez Tanguy dans une mission intergalactique pour sauver la galaxie. Des combats épiques, des alliances interstellaires et des surprises cosmiques vous attendent!',
@@ -235,6 +244,7 @@ export default [
   },
   {
     id: 10,
+    slug: 'shojo',
     title: 'Houd et le Monde des Rêves',
     description:
       'Explorez le monde enchanteur des rêves avec Houd. Des paysages oniriques, des créatures fantastiques et des énigmes oniriques vous attendent!',
@@ -256,11 +266,12 @@ export default [
       description:
         'Plongez dans le monde onirique aux côtés de Houd. Des aventures fantastiques, des énigmes magiques et des découvertes oniriques vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Seinen',
+      category: 'shojo',
     },
   },
   {
     id: 11,
+    slug: 'seinen',
     title: "Les Merveilleuses Aventures d'Olivier",
     description:
       'Accompagnez Olivier dans des aventures remplies de merveilles. Des découvertes étonnantes, des rencontres extraordinaires et des mystères enchanteurs vous attendent!',
@@ -282,11 +293,12 @@ export default [
       description:
         'Plongez dans un monde de merveilles avec Olivier. Des lieux enchantés, des créatures magiques et des aventures extraordinaires vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Shōjo',
+      category: 'seinen',
     },
   },
   {
     id: 12,
+    slug: 'shojo',
     title: 'Olivier et la Confrérie des Artisans',
     description:
       "Plongez dans le monde de l'artisanat avec Olivier et ses compagnons. Des créations magiques, des compétitions passionnantes et des secrets artisanaux vous attendent!",
@@ -308,11 +320,12 @@ export default [
       description:
         "Explorez les secrets de l'artisanat aux côtés d'Olivier et de ses amis. Des ateliers magiques, des compétitions enflammées et des révélations artisanales vous attendent!",
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Shōnen',
+      category: 'shojo',
     },
   },
   {
     id: 13,
+    slug: 'shonen',
     title: 'Tanguy et les Portails Dimensionnels',
     description:
       'Voyagez à travers des dimensions parallèles avec Tanguy. Des mondes étranges, des rencontres extraordinaires et des aventures dimensionnelles vous attendent!',
@@ -334,11 +347,12 @@ export default [
       description:
         'Explorez des dimensions inconnues avec Tanguy. Des portails mystérieux, des créatures dimensionnelles et des défis interdimensionnels vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Seinen',
+      category: 'shonen',
     },
   },
   {
     id: 14,
+    slug: 'seinen',
     title: 'Houd et la Cité des Cristaux',
     description:
       'Plongez dans la cité magique des cristaux avec Houd. Des pouvoirs cristallins, des énigmes enchantées et des révélations cristallines vous attendent!',
@@ -360,11 +374,12 @@ export default [
       description:
         'Explorez la magie des cristaux avec Houd. Une cité mystique, des pouvoirs éblouissants et des mystères cristallins vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Josei',
+      category: 'seinen',
     },
   },
   {
     id: 15,
+    slug: 'kodomo',
     title: "Les Drôles d'Aventures d'Olivier et Tanguy",
     description:
       "Préparez-vous à rire avec les aventures comiques d'Olivier et Tanguy. Des situations loufoques, des blagues hilarantes et des moments mémorables vous attendent!",
@@ -391,6 +406,7 @@ export default [
   },
   {
     id: 16,
+    slug: 'seinen',
     title: 'Tanguy et la Quête des Orbes Magiques',
     description:
       'Rejoignez Tanguy dans sa quête pour trouver les orbes magiques. Des pouvoirs mystiques, des énigmes magiques et des découvertes extraordinaires vous attendent!',
@@ -412,7 +428,7 @@ export default [
       description:
         'Plongez dans la magie des orbes avec Tanguy. Des quêtes mystiques, des pouvoirs magiques et des secrets enchantés vous attendent!',
       cover_url: 'https://picsum.photos/400/600/?random',
-      category: 'Seijin',
+      category: 'seinen',
     },
   },
 ];

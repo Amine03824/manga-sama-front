@@ -101,7 +101,7 @@ function Article() {
           Acheter
           <img
             className="Article__purchase_img"
-            src="public\assets\icons\cart-icon-32px.png"
+            src="\assets\icons\cart-icon-32px.png"
             alt="icône de caddy"
           />
         </button>
