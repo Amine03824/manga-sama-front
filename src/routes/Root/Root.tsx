@@ -1,13 +1,21 @@
 import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
 import './Root.scss';
 import MobileNav from '../../components/MobileNav/MobileNav';
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
+import { useAppDispatch } from '../../hooks/redux';
+import { getArticles } from '../../store/reducers/article';
 
 function Root() {
+  const dispatch = useAppDispatch();
+
   const [menuIsVisible, setMenuIsVisible] = useState(true);
+
+  useEffect(() => {
+    dispatch(getArticles());
+  }, [dispatch]);
 
   return (
     <div className="root">
