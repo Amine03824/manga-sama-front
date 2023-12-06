@@ -1,7 +1,7 @@
-import articlesReducer from './articles';
+import articlesReducer from './article';
 
 const reducer = {
-  articles: articlesReducer,
+  article: articlesReducer,
 };
 
 export default reducer;

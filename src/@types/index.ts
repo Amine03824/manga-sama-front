@@ -24,7 +24,7 @@ export type Article = {
 };
 
 export type ArticleState = {
-  articles: Article[];
+  list_articles: Article[];
   error: null | string;
   isLoading: boolean;
 };

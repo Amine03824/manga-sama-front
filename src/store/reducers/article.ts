@@ -4,7 +4,7 @@ import { ArticleState } from '../../@types';
 import data from '../../data/data';
 
 const initialState: ArticleState = {
-  articles: data,
+  list_articles: data,
   error: null,
   isLoading: true,
 };
