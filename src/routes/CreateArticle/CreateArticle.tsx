@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './CreateArticle.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { changeISBNFormIsVisible } from '../../store/reducers/manga';
+import {
+  changeISBNFormIsVisible,
+  changeISBNInputValue,
+  getMangaByISBN,
+} from '../../store/reducers/manga';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
@@ -16,6 +20,7 @@ function CreateArticle() {
 
   const ISBNModal = useAppSelector((state) => state.manga.ISBNFormIsVisible);
   const manga = useAppSelector((state) => state.manga.manga);
+  const ISBNInputValue = useAppSelector((state) => state.manga.ISBNInputValue);
 
   // Gestion de l'input de type select entre les différentes valeurs ("acceptable", "très bon", "neuf")
   const handleConditionChange = (e) => {
@@ -25,18 +30,18 @@ function CreateArticle() {
   // Gère la soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log('Données soumises :', {
-      title,
-      volume,
-      price,
-      description,
-      condition,
-    });
   };
 
   function handleClickModalFormButton() {
     dispatch(changeISBNFormIsVisible());
+  }
+
+  function handleChangeInputValue(event: ChangeEvent<HTMLInputElement>) {
+    dispatch(changeISBNInputValue(event.target.value));
+  }
+
+  function handleSubmitISBNForm(event: FormEvent<HTMLFormElement>): void {
+    dispatch(getMangaByISBN(ISBNInputValue));
   }
 
   return (
@@ -44,7 +49,7 @@ function CreateArticle() {
       <h2 className="CreateArticle__title">Créer une nouvelle annonce</h2>
       <div className="CreateArticle__container">
         <div className="CreateArticle__container_left">
-          <img src="\assets\icons\naruto01.jpg"></img>
+          <img src={manga?.cover_url}></img>
         </div>
         <div className="CreateArticle__container_right">
           <form onSubmit={handleSubmit} className="CreateArticle__form">
@@ -55,7 +60,7 @@ function CreateArticle() {
               className="CreateArticle__form_input"
               type="text"
               id="title"
-              value={title}
+              value={manga?.title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
@@ -90,7 +95,7 @@ function CreateArticle() {
             <textarea
               className="CreateArticle__form_input"
               id="description"
-              value={description}
+              value={manga?.description}
               onChange={(e) => setDescription(e.target.value)}
               required
             ></textarea>
@@ -124,11 +129,16 @@ function CreateArticle() {
           <h2>
             Entrez le code ISBN de ton manga (il se trouve au dos de ton livre)
           </h2>
-          <form className="createArticle__modal_form">
+          <form
+            className="createArticle__modal_form"
+            onSubmit={handleSubmitISBNForm}
+          >
             <input
               type="text"
               className="createArticle__modal_input"
               placeholder="Code ISBN de ton manga"
+              onChange={handleChangeInputValue}
+              value={ISBNInputValue}
             ></input>
             <button
               type="submit"

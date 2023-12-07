@@ -1,10 +1,15 @@
 @use '../../styles/variables' as V;
 
+body {
+  overflow-x: hidden;
+}
+
 .CreateArticle__title {
   font-family: V.$main-font;
   font-weight: bold;
   font-size: 1.7rem;
   margin: 0 auto;
+
   @media screen and (max-width: 768px) {
     width: 70%;
   }
