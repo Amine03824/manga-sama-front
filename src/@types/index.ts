@@ -17,7 +17,7 @@ export type Article = {
   year_publication: number;
   author: string;
   cover_url: string;
-  category: string;
+  category_id: number;
 };
 
 export type ArticleState = {

@@ -67,7 +67,10 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
             })}
           >
             {categories.map((category) => (
-              <Link key={category.category_name} to="category">
+              <Link
+                key={category.category_name}
+                to={`/category/${category.id}`}
+              >
                 <li className="nav__categories-item">
                   {category.category_name}
                 </li>

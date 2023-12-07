@@ -15,6 +15,7 @@ import About from './routes/About/About';
 import Team from './routes/Team/Team';
 import Home from './routes/Home/Home';
 import Category from './routes/Category/category';
+import CreateArticle from './routes/CreateArticle/CreateArticle';
 
 // import mangaData from './data/data';
 
@@ -53,8 +54,12 @@ export const router = createBrowserRouter([
         element: <Article />,
       },
       {
-        path: 'category/:slug',
+        path: 'category/:id',
         element: <Category />,
+      },
+      {
+        path: 'article/create',
+        element: <CreateArticle />,
       },
     ],
   },

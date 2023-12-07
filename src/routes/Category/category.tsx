@@ -5,15 +5,28 @@ import { useAppSelector } from '../../hooks/redux';
 
 function Category() {
   const articles = useAppSelector((state) => state.article.list_articles);
-  const { slug } = useParams();
-  const filteredArticles = articles.filter((article) => article.slug === slug);
+  const categories = useAppSelector(
+    (state) => state.categories.list_categories
+  );
+
+  const { id } = useParams();
+
+  if (!id) {
+    throw new Error("Id manquant dans l'url");
+  }
+  const findedCategory = categories.find(
+    (category) => category.id === parseInt(id, 10)
+  );
+  const filteredArticles = articles.filter(
+    (article) => article.category_id === parseInt(id, 10)
+  );
 
   return (
     <div className="category">
       <div className="category__articles">
         <div className="category__articles-title-area">
           <h2 className="category__articles-title">
-            {`Les dernières annonces de ${slug}`}
+            {`Les dernières annonces de ${findedCategory?.category_name}`}
             <span>
               <img
                 src="/assets/icons/register-icon.png"
@@ -38,14 +51,14 @@ function Category() {
                       {article.title}
                     </h3>
                     <p className="category__articles-info-tome">
-                      Tome {article.manga.volume}
+                      Tome {article.volume}
                     </p>
                     <p className="category__articles-info-price">
                       {article.price} €
                     </p>
-                    <p className="category__articles-info-localisation">
+                    {/* <p className="category__articles-info-localisation">
                       {article.user.city}
-                    </p>
+                    </p> */}
                   </div>
                 </li>
               </Link>

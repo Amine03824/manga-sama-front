@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './HeaderBottom.scss';
 
 function HeaderBottom() {
@@ -14,14 +15,14 @@ function HeaderBottom() {
         </div>
       </div>
       <div className="header__bottom_button">
-        <a href="/" className="header__bottom_button-link">
+        <Link to="/article/create" className="header__bottom_button-link">
           Publier une annonce
           <img
             src="/assets/icons/add.png"
             alt="logo-publier-une-annonce"
             className="header__bottom_button-logo"
           />
-        </a>
+        </Link>
       </div>
       <div className="header__bottom_input-area">
         <input
