@@ -14,6 +14,7 @@ import LegalNotice from './routes/LegalNotice/LegalNotice';
 import About from './routes/About/About';
 import Team from './routes/Team/Team';
 import Home from './routes/Home/Home';
+import CreateArticle from './routes/CreateArticle/CreateArticle';
 
 // import mangaData from './data/data';
 
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: 'article/:id',
         element: <Article />,
+      },
+      {
+        path: 'createarticle',
+        element: <CreateArticle />,
       },
     ],
   },
