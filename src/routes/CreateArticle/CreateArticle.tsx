@@ -2,14 +2,20 @@ import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './CreateArticle.scss';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { changeISBNFormIsVisible } from '../../store/reducers/manga';
 
 function CreateArticle() {
+  const dispatch = useAppDispatch();
   // Utilisation des useState pour gérer les valeurs des inputs
   const [title, setTitle] = useState('');
   const [volume, setVolume] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [condition, setCondition] = useState('');
+
+  const ISBNModal = useAppSelector((state) => state.manga.ISBNFormIsVisible);
+  const manga = useAppSelector((state) => state.manga.manga);
 
   // Gestion de l'input de type select entre les différentes valeurs ("acceptable", "très bon", "neuf")
   const handleConditionChange = (e) => {
@@ -28,6 +34,10 @@ function CreateArticle() {
       condition,
     });
   };
+
+  function handleClickModalFormButton() {
+    dispatch(changeISBNFormIsVisible());
+  }
 
   return (
     <Page>
@@ -57,7 +67,7 @@ function CreateArticle() {
               className="CreateArticle__form_input"
               type="text"
               id="volume"
-              value={volume}
+              value={manga?.volume}
               onChange={(e) => setVolume(e.target.value)}
               required
             />
@@ -109,21 +119,27 @@ function CreateArticle() {
           </form>
         </div>
       </div>
-      <dialog className="createArticle__modal">
-        <h2>
-          Entrez le code ISBN de ton manga (il se trouve au dos de ton livre)
-        </h2>
-        <form className="createArticle__modal_form">
-          <input
-            type="text"
-            className="createArticle__modal_input"
-            placeholder="Code ISBN de ton manga"
-          ></input>
-          <button type="submit" className="createArticle__modal_btn">
-            Confirmer mon ISBN
-          </button>
-        </form>
-      </dialog>
+      {ISBNModal && (
+        <dialog className="createArticle__modal">
+          <h2>
+            Entrez le code ISBN de ton manga (il se trouve au dos de ton livre)
+          </h2>
+          <form className="createArticle__modal_form">
+            <input
+              type="text"
+              className="createArticle__modal_input"
+              placeholder="Code ISBN de ton manga"
+            ></input>
+            <button
+              type="submit"
+              className="createArticle__modal_btn"
+              onClick={handleClickModalFormButton}
+            >
+              Confirmer mon ISBN
+            </button>
+          </form>
+        </dialog>
+      )}
       <Footer />
     </Page>
   );
