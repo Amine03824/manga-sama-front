@@ -1,0 +1,188 @@
+@use '../../styles/variables' as V;
+
+.Article {
+  width: 95%;
+  background-color: #fcf3f3;
+  margin: 1.5rem auto;
+  border-radius: 15px;
+  padding: 1.5rem;
+  font-family: V.$main-font;
+  @media screen and (min-width: 1000px) {
+    width: 75%;
+  }
+  @media screen and (min-width: 1500px) {
+    width: 65%;
+  }
+
+  &__container_top {
+    display: flex;
+
+    &-left {
+      width: 60%;
+      @media screen and (min-width: 1000px) {
+        width: 60%;
+      }
+      @media screen and (min-width: 1150px) {
+        width: 40%;
+      }
+
+      &-img {
+        border-radius: 15px;
+      }
+    }
+    &-right {
+      width: 65%;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+
+      &-title {
+        &-booktitle {
+          font-weight: bold;
+          font-size: 1.8rem;
+        }
+
+        &-booksubtitle {
+          font-weight: bold;
+          font-size: 0.9rem;
+        }
+      }
+
+      &-description {
+        display: none;
+        @media screen and (min-width: 1000px) {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          padding: 1rem 0;
+        }
+        &-title {
+          text-align: left;
+          font-weight: bold;
+        }
+        &-content {
+          text-align: left;
+          font-family: V.$secondary-font;
+          font-size: 0.9rem;
+        }
+      }
+      &-purchase-btn {
+        display: none;
+        @media screen and (min-width: 1150px) {
+          font-family: V.$main-font;
+          font-weight: bold;
+          font-size: 1.75rem;
+          margin: 1rem auto;
+          border-radius: 20px;
+          background: V.$pink-color;
+          padding: 0.5rem 1rem;
+          color: white;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          display: flex;
+        }
+      }
+      &-img {
+        width: 32px;
+      }
+
+      &-price {
+        font-weight: bold;
+        font-size: 2rem;
+        color: V.$pink-color;
+      }
+
+      &-state {
+        &-title {
+          font-weight: bold;
+          font-size: 0.85rem;
+        }
+
+        &-described {
+          font-weight: bold;
+          font-size: 0.8rem;
+          padding: 0.2rem 1rem;
+          border-radius: 15px;
+          text-align: center;
+          background: #74de85;
+          width: 8.5rem;
+        }
+      }
+
+      &-soldby-title {
+        font-family: V.$secondary-font;
+        font-size: 0.85rem;
+      }
+      &-soldby-sellername {
+        font-family: V.$secondary-font;
+        font-weight: bold;
+        font-size: 0.85rem;
+        margin-top: -0.2rem;
+      }
+    }
+  }
+
+  &__container_bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem 0;
+
+    &-title {
+      text-align: left;
+      font-weight: bold;
+      @media screen and (min-width: 1000px) {
+        display: none;
+      }
+    }
+    &-content {
+      text-align: left;
+      font-family: V.$secondary-font;
+      font-size: 0.9rem;
+      @media screen and (min-width: 1000px) {
+        display: none;
+      }
+    }
+  }
+  &__purchase_btn {
+    font-family: V.$main-font;
+    font-weight: bold;
+    font-size: 1.75rem;
+    margin: 1rem auto;
+    border-radius: 20px;
+    background: V.$pink-color;
+    padding: 0.5rem 1rem;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    @media screen and (min-width: 1150px) {
+      display: none;
+    }
+  }
+  &__purchase_img {
+    width: 32px;
+  }
+
+  &__bottom_section {
+    display: none;
+    @media screen and (min-width: 1000px) {
+      margin-top: 1rem;
+      display: block;
+    }
+    &-card {
+      display: flex;
+      justify-content: space-evenly;
+
+      &-img {
+        width: 15%;
+        border-radius: 20px;
+        padding-top: 1.5rem;
+      }
+    }
+  }
+}
