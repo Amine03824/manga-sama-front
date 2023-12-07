@@ -14,6 +14,7 @@ import LegalNotice from './routes/LegalNotice/LegalNotice';
 import About from './routes/About/About';
 import Team from './routes/Team/Team';
 import Home from './routes/Home/Home';
+
 import Category from './routes/Category/category';
 import CreateArticle from './routes/CreateArticle/CreateArticle';
 
