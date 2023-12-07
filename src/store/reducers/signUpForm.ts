@@ -32,7 +32,7 @@ type SignUpCredentials = {
 export const createUser = createAsyncThunk(
   'user/signUp',
   async (credentials: SignUpCredentials) => {
-    const { data } = await axios.post<{ pseudo: string }>(
+    const { data } = await axios.post(
       'http://localhost:3000/user',
       credentials
     );
