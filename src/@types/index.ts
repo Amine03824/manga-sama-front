@@ -32,3 +32,16 @@ export type TCategory = {
   created_at: string;
   updated_at: null | string;
 };
+
+export type TManga = {
+  code_isbn: number;
+  title: string;
+  volume: number;
+  year_publication: number;
+  author: string;
+  description: string | undefined;
+  cover_url: string | undefined;
+  category_id: number;
+  create_at: string;
+  updated_at: string;
+};
