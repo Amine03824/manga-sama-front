@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { TManga } from '../../@types';
 import axios from 'axios';
+import { TManga } from '../../@types';
 
 type MangaState = {
   manga: TManga | null;
@@ -24,6 +24,7 @@ export const getMangaByISBN = createAsyncThunk(
     const { data } = await axios.get<TManga>(
       `http://localhost:3000/manga/${isbn}`
     );
+
     return data;
   }
 );
@@ -54,6 +55,7 @@ const mangaReducer = createSlice({
         state.isLoading = false;
         state.error = null;
         state.ISBNInputValue = '';
+        state.ISBNFormIsVisible = false;
         state.manga = action.payload;
       });
   },

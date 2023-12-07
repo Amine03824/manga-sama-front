@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
@@ -32,15 +33,14 @@ function CreateArticle() {
     e.preventDefault();
   };
 
-  function handleClickModalFormButton() {
-    dispatch(changeISBNFormIsVisible());
-  }
+  function handleClickModalFormButton() {}
 
   function handleChangeInputValue(event: ChangeEvent<HTMLInputElement>) {
     dispatch(changeISBNInputValue(event.target.value));
   }
 
   function handleSubmitISBNForm(event: FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
     dispatch(getMangaByISBN(ISBNInputValue));
   }
 
@@ -49,7 +49,7 @@ function CreateArticle() {
       <h2 className="CreateArticle__title">Créer une nouvelle annonce</h2>
       <div className="CreateArticle__container">
         <div className="CreateArticle__container_left">
-          <img src={manga?.cover_url}></img>
+          <img src={manga?.cover_url} alt="manga" />
         </div>
         <div className="CreateArticle__container_right">
           <form onSubmit={handleSubmit} className="CreateArticle__form">
@@ -98,7 +98,7 @@ function CreateArticle() {
               value={manga?.description}
               onChange={(e) => setDescription(e.target.value)}
               required
-            ></textarea>
+            />
 
             <label htmlFor="condition" className="CreateArticle__form_label">
               État de l'article :
@@ -119,7 +119,7 @@ function CreateArticle() {
             </select>
 
             <button className="CreateArticle__form_btn" type="submit">
-              Publier mon annonce <img src="\assets\icons\add.png"></img>
+              Publier mon annonce <img src="\assets\icons\add.png" alt="logo" />
             </button>
           </form>
         </div>
@@ -139,7 +139,7 @@ function CreateArticle() {
               placeholder="Code ISBN de ton manga"
               onChange={handleChangeInputValue}
               value={ISBNInputValue}
-            ></input>
+            />
             <button
               type="submit"
               className="createArticle__modal_btn"
