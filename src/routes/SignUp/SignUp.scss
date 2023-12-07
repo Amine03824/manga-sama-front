@@ -48,6 +48,12 @@
       color: V.$pink-color;
       text-align: center;
     }
+    &-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
     &-lists {
       display: flex;
       flex-direction: column;
