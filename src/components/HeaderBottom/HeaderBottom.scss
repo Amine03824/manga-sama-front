@@ -50,6 +50,8 @@
   }
 
   &__bottom_button-link {
+    font-family: V.$main-font;
+    font-weight: bold;
     display: flex;
     gap: 10px;
     align-items: center;

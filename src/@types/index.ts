@@ -1,5 +1,6 @@
 export type Article = {
   id: number;
+  slug: string;
   title: string;
   description: string;
   price: number;
