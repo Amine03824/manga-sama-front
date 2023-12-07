@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Menu.scss';
 import clsx from 'clsx';
+
 import { Link } from 'react-router-dom';
+=======
+import { useAppSelector } from '../../hooks/redux';
+
 
 type MenuProps = {
   menuIsVisible: boolean;
@@ -10,6 +14,9 @@ type MenuProps = {
 
 function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
+  const categories = useAppSelector(
+    (state) => state.categories.list_categories
+  );
   function handleOnCategoryButton() {
     setCategoriesIsVisible(!categoriesIsVisible);
   }
@@ -60,6 +67,7 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
               'nav__categories-list--hidden': !categoriesIsVisible,
             })}
           >
+
             <Link to="category/shonen">
               <li className="nav__categories-item">Shonen</li>
             </Link>
@@ -72,6 +80,13 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
             <Link to="category/kodomo">
               <li className="nav__categories-item">Kodomo</li>
             </Link>
+
+            {categories.map((category) => (
+              <li key={category.category_name} className="nav__categories-item">
+                {category.category_name}
+              </li>
+            ))}
+
           </ul>
         </nav>
       </div>

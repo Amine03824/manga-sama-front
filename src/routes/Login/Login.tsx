@@ -1,9 +1,33 @@
 import { Link } from 'react-router-dom';
+import { ChangeEvent } from 'react';
 import './Login.scss';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { changeLoginFormInputsField } from '../../store/reducers/loginForm';
 
 function Login() {
+  const dispatch = useAppDispatch();
+  const emailInputValue = useAppSelector(
+    (state) => state.loginForm.credentials.email
+  );
+
+  const passwordInputValue = useAppSelector(
+    (state) => state.loginForm.credentials.password
+  );
+
+  const handleOnChangeInputField = (
+    event: ChangeEvent<HTMLInputElement>,
+    name: 'email' | 'password'
+  ) => {
+    dispatch(
+      changeLoginFormInputsField({
+        value: event.target.value,
+        fieldName: name,
+      })
+    );
+  };
+
   return (
     <Page>
       <div className="login">
@@ -13,10 +37,24 @@ function Login() {
             <form action="/" method="post" className="login__area-form">
               <ul className="login__area-lists">
                 <li className="login__area-item">
-                  <input type="text" placeholder="Nom d'utilisateur" />
+                  <input
+                    onChange={(event) =>
+                      handleOnChangeInputField(event, 'email')
+                    }
+                    value={emailInputValue}
+                    type="text"
+                    placeholder="Nom d'utilisateur"
+                  />
                 </li>
                 <li className="login__area-item">
-                  <input type="text" placeholder="Mot de passe" />
+                  <input
+                    onChange={(event) =>
+                      handleOnChangeInputField(event, 'password')
+                    }
+                    value={passwordInputValue}
+                    type="text"
+                    placeholder="Mot de passe"
+                  />
                 </li>
               </ul>
             </form>
@@ -36,7 +74,7 @@ function Login() {
           </div>
           <Link to="/signup" className="login__area-signup">
             Pas encore membre ?
-            <span className="login__area-signup-link">Créer un compte</span>{' '}
+            <span className="login__area-signup-link">Créer un compte</span>
           </Link>
         </div>
         <div className="login__logo-area">

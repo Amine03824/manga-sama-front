@@ -29,3 +29,10 @@ export type ArticleState = {
   error: null | string;
   isLoading: boolean;
 };
+
+export type TCategory = {
+  id: number;
+  category_name: string;
+  created_at: string;
+  updated_at: null | string;
+};
