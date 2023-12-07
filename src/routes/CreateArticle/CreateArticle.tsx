@@ -109,7 +109,21 @@ function CreateArticle() {
           </form>
         </div>
       </div>
-
+      <dialog className="createArticle__modal">
+        <h2>
+          Entrez le code ISBN de ton manga (il se trouve au dos de ton livre)
+        </h2>
+        <form className="createArticle__modal_form">
+          <input
+            type="text"
+            className="createArticle__modal_input"
+            placeholder="Code ISBN de ton manga"
+          ></input>
+          <button type="submit" className="createArticle__modal_btn">
+            Confirmer mon ISBN
+          </button>
+        </form>
+      </dialog>
       <Footer />
     </Page>
   );
