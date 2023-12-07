@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import './Login.scss';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { changeLoginFormInputsField } from '../../store/reducers/loginForm';
+import {
+  changeLoginFormInputsField,
+  loginUser,
+} from '../../store/reducers/loginForm';
 
 function Login() {
   const dispatch = useAppDispatch();
+
   const emailInputValue = useAppSelector(
     (state) => state.loginForm.credentials.email
   );
@@ -15,6 +19,8 @@ function Login() {
   const passwordInputValue = useAppSelector(
     (state) => state.loginForm.credentials.password
   );
+
+  const error = useAppSelector((state) => state.signUpForm.error);
 
   const handleOnChangeInputField = (
     event: ChangeEvent<HTMLInputElement>,
@@ -28,13 +34,24 @@ function Login() {
     );
   };
 
+  const handleSubmitLoginForm = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
+  dispatch(loginUser({ email: emailInputValue, password: passwordInputValue }));
+
   return (
     <Page>
       <div className="login">
         <div className="login__area">
           <h2 className="login__area-title">Connexion</h2>
           <div className="login__area-fields">
-            <form action="/" method="post" className="login__area-form">
+            <form
+              action="/"
+              method="post"
+              className="login__area-form"
+              onSubmit={handleSubmitLoginForm}
+            >
               <ul className="login__area-lists">
                 <li className="login__area-item">
                   <input
@@ -43,7 +60,7 @@ function Login() {
                     }
                     value={emailInputValue}
                     type="text"
-                    placeholder="Nom d'utilisateur"
+                    placeholder="Email"
                   />
                 </li>
                 <li className="login__area-item">
