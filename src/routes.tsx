@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
         element: <Category />,
       },
       {
-        path: 'article/create',
+        path: 'createarticle',
         element: <CreateArticle />,
       },
     ],
