@@ -13,7 +13,7 @@ function Category() {
       <div className="category__articles">
         <div className="category__articles-title-area">
           <h2 className="category__articles-title">
-            Les dernières annonces
+            {`Les dernières annonces de ${slug}`}
             <span>
               <img
                 src="/assets/icons/register-icon.png"
