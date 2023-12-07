@@ -11,16 +11,12 @@ export type Article = {
     email: string;
     city: string;
   };
-  manga: {
-    code_isbn: string;
-    title: string;
-    volume: number;
-    year_publication: number;
-    author: string;
-    description: string;
-    cover_url: string;
-    category: string;
-  };
+  code_isbn: string;
+  volume: number;
+  year_publication: number;
+  author: string;
+  cover_url: string;
+  category: string;
 };
 
 export type ArticleState = {

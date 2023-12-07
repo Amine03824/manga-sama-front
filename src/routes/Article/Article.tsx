@@ -45,7 +45,7 @@ function Article() {
                 {article.title}
               </h2>
               <h4 className="Article__container_top-right-title-booksubtitle">
-                Volume {article.manga.volume}
+                Volume {article.volume}
               </h4>
             </div>
 
@@ -75,7 +75,7 @@ function Article() {
                 Vendu par :
               </p>
               <p className="Article__container_top-right-soldby-sellername">
-                {article.user.pseudo}
+                Naruto-kun
               </p>
             </div>
             <button

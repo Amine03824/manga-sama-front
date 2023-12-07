@@ -93,7 +93,7 @@ function SignUp() {
                 <li className="signUp__area-item">
                   <input
                     value={passwordInputValue}
-                    type="text"
+                    type="password"
                     placeholder="Mot de passe"
                     onChange={(event) =>
                       handleChangeInputValue(event, 'password')
@@ -103,7 +103,7 @@ function SignUp() {
                 <li className="signUp__area-item">
                   <input
                     value={passwordBisInputValue}
-                    type="text"
+                    type="password"
                     placeholder="Confirmer le mot de passe"
                     onChange={(event) =>
                       handleChangeInputValue(event, 'password_bis')

@@ -16,7 +16,7 @@ const initialState: CategoriesState = {
 
 export const getCategories = createAsyncThunk('categories/fetch', async () => {
   const { data } = await axios.get<TCategory[]>(
-    'http://localhost:3001/category'
+    'http://localhost:3000/category'
   );
   return data;
 });

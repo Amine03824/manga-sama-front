@@ -5,13 +5,13 @@ import { Article, ArticleState } from '../../@types';
 import articles from '../../data/data';
 
 const initialState: ArticleState = {
-  list_articles: articles,
+  list_articles: [],
   error: null,
   isLoading: true,
 };
 
 export const getArticles = createAsyncThunk('articles/fetch', async () => {
-  const { data } = await axios.get<Article[]>('http://localhost:3001/article');
+  const { data } = await axios.get<Article[]>('http://localhost:3000/article');
 
   return data;
 });

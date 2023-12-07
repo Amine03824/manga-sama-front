@@ -33,7 +33,7 @@ export const createUser = createAsyncThunk(
   'user/signUp',
   async (credentials: SignUpCredentials) => {
     const { data } = await axios.post<{ pseudo: string }>(
-      'http://localhost:3001/user',
+      'http://localhost:3000/user',
       credentials
     );
     return data;

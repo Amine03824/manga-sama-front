@@ -15,6 +15,7 @@ function Root() {
   const [menuIsVisible, setMenuIsVisible] = useState(true);
 
   useEffect(() => {
+    dispatch(getArticles());
     dispatch(getCategories());
   }, [dispatch]);
 

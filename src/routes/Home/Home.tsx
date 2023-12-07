@@ -36,14 +36,15 @@ function Home() {
                       {article.title}
                     </h3>
                     <p className="home__articles-info-tome">
-                      Tome {article.manga.volume}
+                      Tome {article.volume}
                     </p>
                     <p className="home__articles-info-price">
                       {article.price} €
                     </p>
-                    <p className="home__articles-info-localisation">
+
+                    {/* <p className="home__articles-info-localisation">
                       {article.user.city}
-                    </p>
+                    </p> */}
                   </div>
                 </li>
               </Link>
