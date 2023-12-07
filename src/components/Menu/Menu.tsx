@@ -3,9 +3,8 @@ import './Menu.scss';
 import clsx from 'clsx';
 
 import { Link } from 'react-router-dom';
-=======
-import { useAppSelector } from '../../hooks/redux';
 
+import { useAppSelector } from '../../hooks/redux';
 
 type MenuProps = {
   menuIsVisible: boolean;
@@ -67,7 +66,6 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
               'nav__categories-list--hidden': !categoriesIsVisible,
             })}
           >
-
             <Link to="category/shonen">
               <li className="nav__categories-item">Shonen</li>
             </Link>
@@ -86,7 +84,6 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
                 {category.category_name}
               </li>
             ))}
-
           </ul>
         </nav>
       </div>
