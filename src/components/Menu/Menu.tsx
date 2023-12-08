@@ -4,7 +4,8 @@ import clsx from 'clsx';
 
 import { Link } from 'react-router-dom';
 
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { changeSearchInputValue } from '../../store/reducers/searchBarMenu';
 
 type MenuProps = {
   menuIsVisible: boolean;
@@ -12,11 +13,12 @@ type MenuProps = {
 };
 
 function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
+  const dispatch = useAppDispatch();
   const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );
-  const manga = useAppSelector((state) => state.searchBar.manga);
+  // const manga = useAppSelector((state) => state.searchBar.manga);
 
   const searchBarInputValue = useAppSelector(
     (state) => state.searchBar.searchBarInputValue
@@ -30,9 +32,18 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
     setMenuIsVisible(!menuIsVisible);
   }
 
-  const handleChangeSearchBarInputValue = (
+  function handleChangeSearchBarInputValue(
     event: ChangeEvent<HTMLInputElement>
-  ) => {};
+  ) {
+    dispatch(changeSearchInputValue(event.target.value));
+    console.log(event.target.value);
+  }
+
+  // const handleChangeSearchBarInputValue = (
+  //   event: ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   dispatch(changeSearchInputValue);
+  // };
 
   return (
     <div className={clsx('home-menu', { 'home-menu--hidden': !menuIsVisible })}>

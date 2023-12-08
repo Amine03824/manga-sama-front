@@ -33,5 +33,5 @@ const searchBarMenuReducer = createSlice({
     },
   },
 });
-
+export const { changeSearchInputValue } = searchBarMenuReducer.actions;
 export default searchBarMenuReducer.reducer;
