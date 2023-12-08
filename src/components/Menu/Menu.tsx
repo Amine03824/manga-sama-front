@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeSearchInputValue } from '../../store/reducers/searchBarMenu';
-import { changeFilteredArticle } from '../../store/reducers/article';
+import { changeListArticle } from '../../store/reducers/article';
 
 type MenuProps = {
   menuIsVisible: boolean;
@@ -38,11 +38,10 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
     event: ChangeEvent<HTMLInputElement>
   ) {
     dispatch(changeSearchInputValue(event.target.value));
-    const filteredArticle = articles.filter(
-      (article) => article.title === searchBarInputValue
+    const filteredArticle = articles.filter((article) =>
+      article.article.title.toLowerCase().includes(searchBarInputValue)
     );
-    dispatch(changeFilteredArticle(filteredArticle));
-    console.log(filteredArticle);
+    dispatch(changeListArticle(filteredArticle));
   }
 
   // const handleChangeSearchBarInputValue = (
@@ -72,6 +71,7 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
             placeholder="Rechercher..."
             className="home-menu__form--inputSearch"
             onChange={handleChangeSearchBarInputValue}
+            value={searchBarInputValue}
           />
         </form>
         <nav className="home-menu__nav">

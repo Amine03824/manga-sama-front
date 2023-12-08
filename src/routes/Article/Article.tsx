@@ -14,13 +14,16 @@ function Article() {
     throw new Error('id is missing');
   }
 
+  // const articles = useAppSelector((state) => state.article.list_articles);
+
   const parsedId = parseInt(id, 10);
 
   const article = useAppSelector((state) =>
     findArticle(state.article.list_articles, parsedId)
   );
+  console.log('Selected Article:', article);
   if (!article) {
-    throw new Error('Article not found');
+    throw new Error(`Article with id ${parsedId} not found`);
   }
 
   // const articles = useAppSelector((state) => state.article.list_articles);
@@ -35,22 +38,22 @@ function Article() {
           <div className="Article__container_top-left">
             <img
               className="Article__container_top-left-img"
-              src={article.image_url}
+              src={article.manga.cover_url}
               alt="couverture du manga"
             />
           </div>
           <div className="Article__container_top-right">
             <div className="Article__container_top-right-title">
               <h2 className="Article__container_top-right-title-booktitle">
-                {article.title}
+                {article.article.title}
               </h2>
               <h4 className="Article__container_top-right-title-booksubtitle">
-                Volume {article.volume}
+                Volume {article.manga.volume}
               </h4>
             </div>
 
             <p className="Article__container_top-right-price">
-              {article.price}€
+              {article.article.price}€
             </p>
 
             <div className="Article__container_top-right-description">
@@ -58,7 +61,7 @@ function Article() {
                 Description :
               </p>
               <p className="Article__container_top-right-description-content">
-                {article.description}
+                {article.article.description}
               </p>
             </div>
 
@@ -94,7 +97,7 @@ function Article() {
         <div className="Article__container_bottom">
           <p className="Article__container_bottom-title">Description :</p>
           <p className="Article__container_bottom-content">
-            {article.description}
+            {article.article.description}
           </p>
         </div>
         <button type="button" className="Article__purchase_btn">

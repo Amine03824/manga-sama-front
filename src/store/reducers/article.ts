@@ -21,8 +21,8 @@ const articleReducer = createSlice({
   name: 'article',
   initialState,
   reducers: {
-    changeFilteredArticle(state, action: PayloadAction<Article[]>) {
-      state.filteredArticles = action.payload;
+    changeListArticle(state, action: PayloadAction<Article[]>) {
+      state.list_articles = action.payload;
     },
   },
   extraReducers(builder) {
@@ -42,5 +42,5 @@ const articleReducer = createSlice({
   },
 });
 
-export const { changeFilteredArticle } = articleReducer.actions;
+export const { changeListArticle } = articleReducer.actions;
 export default articleReducer.reducer;
