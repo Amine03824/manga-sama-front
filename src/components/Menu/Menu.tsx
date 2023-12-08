@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import './Menu.scss';
 import clsx from 'clsx';
 
@@ -16,6 +16,12 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );
+  const manga = useAppSelector((state) => state.searchBar.manga);
+
+  const searchBarInputValue = useAppSelector(
+    (state) => state.searchBar.searchBarInputValue
+  );
+
   function handleOnCategoryButton() {
     setCategoriesIsVisible(!categoriesIsVisible);
   }
@@ -23,6 +29,10 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   function handleOnMenuButton() {
     setMenuIsVisible(!menuIsVisible);
   }
+
+  const handleChangeSearchBarInputValue = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {};
 
   return (
     <div className={clsx('home-menu', { 'home-menu--hidden': !menuIsVisible })}>
@@ -44,6 +54,7 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
             type="text"
             placeholder="Rechercher..."
             className="home-menu__form--inputSearch"
+            onChange={handleChangeSearchBarInputValue}
           />
         </form>
         <nav className="home-menu__nav">
