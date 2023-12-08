@@ -24,6 +24,7 @@ export type ArticleState = {
   list_articles: Article[];
   error: null | string;
   isLoading: boolean;
+  filteredArticles: Article[];
 };
 
 export type TCategory = {

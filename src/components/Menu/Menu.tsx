@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeSearchInputValue } from '../../store/reducers/searchBarMenu';
+import { changeFilteredArticle } from '../../store/reducers/article';
 
 type MenuProps = {
   menuIsVisible: boolean;
@@ -18,6 +19,7 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );
+  const articles = useAppSelector((state) => state.article.list_articles);
   // const manga = useAppSelector((state) => state.searchBar.manga);
 
   const searchBarInputValue = useAppSelector(
@@ -36,7 +38,11 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
     event: ChangeEvent<HTMLInputElement>
   ) {
     dispatch(changeSearchInputValue(event.target.value));
-    console.log(event.target.value);
+    const filteredArticle = articles.filter(
+      (article) => article.title === searchBarInputValue
+    );
+    dispatch(changeFilteredArticle(filteredArticle));
+    console.log(filteredArticle);
   }
 
   // const handleChangeSearchBarInputValue = (
