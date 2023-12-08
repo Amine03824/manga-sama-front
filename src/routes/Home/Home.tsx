@@ -6,8 +6,6 @@ import { useAppSelector } from '../../hooks/redux';
 
 function Home() {
   const articles = useAppSelector((state) => state.article.filteredArticles);
-  useEffect(() => {}, [articles]);
-  // Ce hook useEffect indique que le composant se réexécute a chaque modification de article
 
   return (
     <div className="home">
