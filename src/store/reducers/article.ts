@@ -21,8 +21,8 @@ const articleReducer = createSlice({
   name: 'article',
   initialState,
   reducers: {
-    changeListArticle(state, action: PayloadAction<Article[]>) {
-      state.list_articles = action.payload;
+    changeFilteredArticle(state, action: PayloadAction<Article[]>) {
+      state.filteredArticles = action.payload;
     },
   },
   extraReducers(builder) {
@@ -38,9 +38,10 @@ const articleReducer = createSlice({
       .addCase(getArticles.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list_articles = action.payload;
+        state.filteredArticles = action.payload;
       });
   },
 });
 
-export const { changeListArticle } = articleReducer.actions;
+export const { changeFilteredArticle } = articleReducer.actions;
 export default articleReducer.reducer;

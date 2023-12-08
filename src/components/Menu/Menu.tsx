@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeSearchInputValue } from '../../store/reducers/searchBarMenu';
-import { changeListArticle } from '../../store/reducers/article';
+import { changeFilteredArticle } from '../../store/reducers/article';
 
 type MenuProps = {
   menuIsVisible: boolean;
@@ -37,11 +37,13 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   function handleChangeSearchBarInputValue(
     event: ChangeEvent<HTMLInputElement>
   ) {
-    dispatch(changeSearchInputValue(event.target.value));
+    console.log(articles);
+
     const filteredArticle = articles.filter((article) =>
       article.article.title.toLowerCase().includes(searchBarInputValue)
     );
-    dispatch(changeListArticle(filteredArticle));
+    dispatch(changeFilteredArticle(filteredArticle));
+    dispatch(changeSearchInputValue(event.target.value));
   }
 
   // const handleChangeSearchBarInputValue = (
