@@ -1,10 +1,19 @@
 export type Article = {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  price: number;
-  image_url: string;
+  article: {
+    id: number;
+    slug: string;
+    title: string;
+    description: string;
+    price: number;
+    image_url: string;
+  };
+  manga: {
+    code_isbn: string;
+    cover_url: string;
+    author: string;
+    volume: number;
+    year_publication: number;
+  };
   user: {
     lastname: string;
     firstname: string;
@@ -12,18 +21,13 @@ export type Article = {
     email: string;
     city: string;
   };
-  code_isbn: string;
-  volume: number;
-  year_publication: number;
-  author: string;
-  cover_url: string;
-  category_id: number;
 };
 
 export type ArticleState = {
   list_articles: Article[];
   error: null | string;
   isLoading: boolean;
+  filteredArticles: Article[];
 };
 
 export type TCategory = {
