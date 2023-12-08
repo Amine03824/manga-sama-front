@@ -6,28 +6,15 @@ import './CreateArticle.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   changeISBNFormIsVisible,
-  changeISBNInputValue,
-  getMangaByISBN,
   resetMangaState,
 } from '../../store/reducers/manga';
+import ISBNFormModal from '../../components/ISBNFormModal/ISBNFormModal';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
 
   const ISBNModal = useAppSelector((state) => state.manga.ISBNFormIsVisible);
   const mangas = useAppSelector((state) => state.manga.manga);
-  const ISBNInputValue = useAppSelector((state) => state.manga.ISBNInputValue);
-
-  function handleClickModalFormButton() {}
-
-  function handleChangeInputValue(event: ChangeEvent<HTMLInputElement>) {
-    dispatch(changeISBNInputValue(event.target.value));
-  }
-
-  function handleSubmitISBNForm(event: FormEvent<HTMLFormElement>): void {
-    event.preventDefault();
-    dispatch(getMangaByISBN(ISBNInputValue));
-  }
 
   function handleClickAddMangaToArticle() {
     dispatch(changeISBNFormIsVisible());
@@ -129,32 +116,7 @@ function CreateArticle() {
         </div>
       </div>
 
-      {ISBNModal && (
-        <dialog className="createArticle__modal">
-          <h2>
-            Entrez le code ISBN de ton manga (il se trouve au dos de ton livre)
-          </h2>
-          <form
-            className="createArticle__modal_form"
-            onSubmit={handleSubmitISBNForm}
-          >
-            <input
-              type="text"
-              className="createArticle__modal_input"
-              placeholder="Code ISBN de ton manga"
-              onChange={handleChangeInputValue}
-              value={ISBNInputValue}
-            />
-            <button
-              type="submit"
-              className="createArticle__modal_btn"
-              onClick={handleClickModalFormButton}
-            >
-              Confirmer mon ISBN
-            </button>
-          </form>
-        </dialog>
-      )}
+      {ISBNModal && <ISBNFormModal />}
       <Footer />
     </Page>
   );

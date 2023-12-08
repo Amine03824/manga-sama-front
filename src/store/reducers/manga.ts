@@ -12,7 +12,7 @@ type MangaState = {
 
 const initialState: MangaState = {
   manga: [],
-  ISBNFormIsVisible: false,
+  ISBNFormIsVisible: true,
   ISBNInputValue: '',
   isLoading: false,
   error: null,

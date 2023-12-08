@@ -5,6 +5,7 @@ import { useAppSelector } from '../../hooks/redux';
 
 function Home() {
   const articles = useAppSelector((state) => state.article.list_articles);
+  console.log(articles);
 
   return (
     <div className="home">
@@ -24,22 +25,25 @@ function Home() {
         <div className="home__articles-area">
           <ul className="home__articles-list">
             {articles.map((article) => (
-              <Link to={`/article/${article.id}`} key={article.id}>
+              <Link
+                to={`/article/${article.article.id}`}
+                key={article.article.id}
+              >
                 <li className="home__articles-item">
                   <img
-                    src={article.image_url}
+                    src={article.article.image_url}
                     alt="/"
                     className="home__articles-item-image"
                   />
                   <div className="home__articles-info">
                     <h3 className="home__articles-info-title">
-                      {article.title}
+                      {article.article.title}
                     </h3>
                     <p className="home__articles-info-tome">
-                      Tome {article.volume}
+                      Tome {article.manga.volume}
                     </p>
                     <p className="home__articles-info-price">
-                      {article.price} €
+                      {article.article.price} €
                     </p>
 
                     {/* <p className="home__articles-info-localisation">
