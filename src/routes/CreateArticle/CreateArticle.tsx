@@ -40,8 +40,9 @@ function CreateArticle() {
     dispatch(changeISBNInputValue(event.target.value));
   }
 
-  function handleSubmitISBNForm(event: FormEvent<HTMLFormElement>): void {
+  function handleSubmitISBNForm() {
     dispatch(getMangaByISBN(ISBNInputValue));
+    dispatch(changeISBNFormIsVisible());
   }
 
   return (
@@ -140,11 +141,7 @@ function CreateArticle() {
               onChange={handleChangeInputValue}
               value={ISBNInputValue}
             ></input>
-            <button
-              type="submit"
-              className="createArticle__modal_btn"
-              onClick={handleClickModalFormButton}
-            >
+            <button type="submit" className="createArticle__modal_btn">
               Confirmer mon ISBN
             </button>
           </form>
