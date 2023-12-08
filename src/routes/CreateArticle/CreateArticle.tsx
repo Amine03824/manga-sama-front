@@ -9,19 +9,86 @@ import {
   resetMangaState,
 } from '../../store/reducers/manga';
 import ISBNFormModal from '../../components/ISBNFormModal/ISBNFormModal';
+import {
+  associateMangaToArticle,
+  changeCreateArticleConditionValue,
+  changeCreateArticleInputValue,
+  changeCreatedArticle,
+  createArticleFetch,
+} from '../../store/reducers/createArticle';
+import { TArticle } from '../../@types';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
 
   const ISBNModal = useAppSelector((state) => state.manga.ISBNFormIsVisible);
   const mangas = useAppSelector((state) => state.manga.manga);
+  const articleTitleInputValue = useAppSelector(
+    (state) => state.createArticle.credentials.article_title
+  );
+  const articlePriceInputValue = useAppSelector(
+    (state) => state.createArticle.credentials.article_price
+  );
+  const articleDescriptionInputValue = useAppSelector(
+    (state) => state.createArticle.credentials.article_description
+  );
+  const conditionsList = useAppSelector(
+    (state) => state.article.list_condition
+  );
+  const articleCondition = useAppSelector(
+    (state) => state.createArticle.article_condition
+  );
+  const createdArticle = useAppSelector(
+    (state) => state.createArticle.created_article
+  );
 
   function handleClickAddMangaToArticle() {
     dispatch(changeISBNFormIsVisible());
   }
+
+  const handleChangeInputField = (
+    event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
+    name: 'article_title' | 'article_price' | 'article_description'
+  ) => {
+    dispatch(
+      changeCreateArticleInputValue({
+        value: event.target.value,
+        fieldName: name,
+      })
+    );
+  };
   useEffect(() => {
     dispatch(resetMangaState());
   }, [dispatch]);
+
+  const handleChangeConditionArticle = (
+    event: ChangeEvent<HTMLSelectElement>
+  ): void => {
+    dispatch(changeCreateArticleConditionValue(event.target.value));
+  };
+
+  const handleSubmitCreateArticleForm = async (
+    event: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
+    const newArticle = {
+      title: articleTitleInputValue,
+      description: articleDescriptionInputValue,
+      price: parseInt(articlePriceInputValue, 10),
+      transaction_id: null,
+      date_transaction: null,
+      state_transaction: null,
+      image_url: mangas[0].cover_url,
+      condition_id: parseInt(articleCondition, 10),
+    };
+    await dispatch(createArticleFetch(newArticle));
+    await dispatch(
+      associateMangaToArticle({
+        article_id: createdArticle?.id,
+        isbn: mangas[0].code_isbn,
+      })
+    );
+  };
 
   return (
     <Page>
@@ -32,7 +99,10 @@ function CreateArticle() {
           <img src={mangas[0]?.cover_url} alt="manga" />
         </div>
         <div className="CreateArticle__container_right">
-          <form className="CreateArticle__form">
+          <form
+            className="CreateArticle__form"
+            onSubmit={handleSubmitCreateArticleForm}
+          >
             <label htmlFor="title" className="CreateArticle__form_label">
               Titre de l'annonce :
             </label>
@@ -40,6 +110,10 @@ function CreateArticle() {
               className="CreateArticle__form_input"
               type="text"
               id="title"
+              onChange={(event) => {
+                handleChangeInputField(event, 'article_title');
+              }}
+              value={articleTitleInputValue}
               required
             />
             <button
@@ -53,16 +127,23 @@ function CreateArticle() {
             <h3 className="CreateArticle__form_label">
               Mangas liés à l'annonce
             </h3>
-            <ul>
-              {mangas.map((manga) => (
-                <li
-                  className="CreateArticle__form-mangaListItem"
-                  key={manga.title}
-                >
-                  {manga.title}
-                </li>
-              ))}
-            </ul>
+            <table>
+              <tbody>
+                {mangas.map((manga) => (
+                  <tr key={manga.code_isbn}>
+                    <td
+                      className="CreateArticle__form-mangaListItem"
+                      key={manga.title}
+                    >
+                      {manga.title}
+                    </td>
+                    <td className="CreateArticle__form-mangaListItem">
+                      Volume : {manga.volume}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
             <label htmlFor="volume" className="CreateArticle__form_label">
               Volume :
@@ -82,6 +163,10 @@ function CreateArticle() {
               type="text"
               id="price"
               required
+              onChange={(event) => {
+                handleChangeInputField(event, 'article_price');
+              }}
+              value={articlePriceInputValue}
             />
 
             <label htmlFor="description" className="CreateArticle__form_label">
@@ -91,6 +176,10 @@ function CreateArticle() {
               className="CreateArticle__form_input"
               id="description"
               required
+              onChange={(event) => {
+                handleChangeInputField(event, 'article_description');
+              }}
+              value={articleDescriptionInputValue}
             />
 
             <label htmlFor="condition" className="CreateArticle__form_label">
@@ -100,11 +189,17 @@ function CreateArticle() {
               className="CreateArticle__form_input"
               id="condition"
               required
+              onChange={handleChangeConditionArticle}
             >
               <option value="" disabled>
                 Sélectionnez l'état
               </option>
-              <option value="acceptable">Acceptable</option>
+              {conditionsList.map((condition) => (
+                <option key={condition.id} value={condition.id}>
+                  {condition.condition_name}
+                </option>
+              ))}
+
               <option value="très bon">Très bon</option>
               <option value="neuf">Neuf</option>
             </select>

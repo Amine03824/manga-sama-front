@@ -1,12 +1,5 @@
 export type Article = {
-  article: {
-    id: number;
-    slug: string;
-    title: string;
-    description: string;
-    price: number;
-    image_url: string;
-  };
+  article: TArticle;
   manga: {
     code_isbn: string;
     cover_url: string;
@@ -25,6 +18,7 @@ export type Article = {
 
 export type ArticleState = {
   list_articles: Article[];
+  list_condition: TCondition[];
   error: null | string;
   isLoading: boolean;
 };
@@ -47,4 +41,46 @@ export type TManga = {
   category_id: number;
   create_at: string;
   updated_at: string;
+};
+
+export type TCondition = {
+  id: number;
+  condition_name: string;
+  created_at: string;
+  updated_at: null | string;
+};
+
+export type TArticle = {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+  transaction_id: number | null;
+  date_transaction: string | null;
+  state_completion: number | null;
+  created_at: string;
+  updated_at: string | null;
+};
+
+export type TCreatedArticle = {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  transaction_id: null | number;
+  date_transaction: null | string;
+  state_transaction: null | string;
+  image_url: string | undefined;
+  condition_id: number;
+};
+
+export type TCreateArticleForm = {
+  title: string;
+  description: string;
+  price: number;
+  transaction_id: null | number;
+  date_transaction: null | string;
+  state_transaction: null | string;
+  image_url: string | undefined;
+  condition_id: number;
 };

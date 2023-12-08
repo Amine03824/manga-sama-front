@@ -6,7 +6,7 @@ import './Root.scss';
 import MobileNav from '../../components/MobileNav/MobileNav';
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
 import { useAppDispatch } from '../../hooks/redux';
-import { getArticles } from '../../store/reducers/article';
+import { getArticles, getConditions } from '../../store/reducers/article';
 import { getCategories } from '../../store/reducers/categories';
 
 function Root() {
@@ -17,6 +17,7 @@ function Root() {
   useEffect(() => {
     dispatch(getArticles());
     dispatch(getCategories());
+    dispatch(getConditions());
   }, [dispatch]);
 
   return (
