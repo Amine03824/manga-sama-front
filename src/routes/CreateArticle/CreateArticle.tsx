@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './CreateArticle.scss';
@@ -8,30 +8,15 @@ import {
   changeISBNFormIsVisible,
   changeISBNInputValue,
   getMangaByISBN,
+  resetMangaState,
 } from '../../store/reducers/manga';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
-  // Utilisation des useState pour gérer les valeurs des inputs
-  const [title, setTitle] = useState('');
-  const [volume, setVolume] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
-  const [condition, setCondition] = useState('');
 
   const ISBNModal = useAppSelector((state) => state.manga.ISBNFormIsVisible);
-  const manga = useAppSelector((state) => state.manga.manga);
+  const mangas = useAppSelector((state) => state.manga.manga);
   const ISBNInputValue = useAppSelector((state) => state.manga.ISBNInputValue);
-
-  // Gestion de l'input de type select entre les différentes valeurs ("acceptable", "très bon", "neuf")
-  const handleConditionChange = (e) => {
-    setCondition(e.target.value);
-  };
-
-  // Gère la soumission du formulaire
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
 
   function handleClickModalFormButton() {}
 
@@ -44,15 +29,23 @@ function CreateArticle() {
     dispatch(getMangaByISBN(ISBNInputValue));
   }
 
+  function handleClickAddMangaToArticle() {
+    dispatch(changeISBNFormIsVisible());
+  }
+  useEffect(() => {
+    dispatch(resetMangaState());
+  }, [dispatch]);
+
   return (
     <Page>
       <h2 className="CreateArticle__title">Créer une nouvelle annonce</h2>
+
       <div className="CreateArticle__container">
         <div className="CreateArticle__container_left">
-          <img src={manga?.cover_url} alt="manga" />
+          <img src={mangas[0]?.cover_url} alt="manga" />
         </div>
         <div className="CreateArticle__container_right">
-          <form onSubmit={handleSubmit} className="CreateArticle__form">
+          <form className="CreateArticle__form">
             <label htmlFor="title" className="CreateArticle__form_label">
               Titre de l'annonce :
             </label>
@@ -60,10 +53,29 @@ function CreateArticle() {
               className="CreateArticle__form_input"
               type="text"
               id="title"
-              value={manga?.title}
-              onChange={(e) => setTitle(e.target.value)}
               required
             />
+            <button
+              className="CreateArticle__form-addMangaButton"
+              onClick={handleClickAddMangaToArticle}
+              type="button"
+            >
+              Ajouter un manga
+            </button>
+
+            <h3 className="CreateArticle__form_label">
+              Mangas liés à l'annonce
+            </h3>
+            <ul>
+              {mangas.map((manga) => (
+                <li
+                  className="CreateArticle__form-mangaListItem"
+                  key={manga.title}
+                >
+                  {manga.title}
+                </li>
+              ))}
+            </ul>
 
             <label htmlFor="volume" className="CreateArticle__form_label">
               Volume :
@@ -72,8 +84,6 @@ function CreateArticle() {
               className="CreateArticle__form_input"
               type="text"
               id="volume"
-              value={manga?.volume}
-              onChange={(e) => setVolume(e.target.value)}
               required
             />
 
@@ -84,8 +94,6 @@ function CreateArticle() {
               className="CreateArticle__form_input"
               type="text"
               id="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
               required
             />
 
@@ -95,8 +103,6 @@ function CreateArticle() {
             <textarea
               className="CreateArticle__form_input"
               id="description"
-              value={manga?.description}
-              onChange={(e) => setDescription(e.target.value)}
               required
             />
 
@@ -106,8 +112,6 @@ function CreateArticle() {
             <select
               className="CreateArticle__form_input"
               id="condition"
-              value={condition}
-              onChange={handleConditionChange}
               required
             >
               <option value="" disabled>
@@ -124,6 +128,7 @@ function CreateArticle() {
           </form>
         </div>
       </div>
+
       {ISBNModal && (
         <dialog className="createArticle__modal">
           <h2>

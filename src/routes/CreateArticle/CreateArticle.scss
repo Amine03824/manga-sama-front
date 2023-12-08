@@ -48,6 +48,13 @@ body {
   flex-direction: column;
   gap: 0.3rem;
 
+  &-addMangaButton {
+    background-color: V.$pink-color;
+    padding: 0.3rem;
+    margin: 0.5rem;
+    color: white;
+    border-radius: 1rem;
+  }
   &_label {
     font-family: V.$main-font;
     font-weight: bold;
