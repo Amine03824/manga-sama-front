@@ -1,5 +1,7 @@
 export type Article = {
+
   article: TArticle;
+
   manga: {
     code_isbn: string;
     cover_url: string;
@@ -21,6 +23,7 @@ export type ArticleState = {
   list_condition: TCondition[];
   error: null | string;
   isLoading: boolean;
+  filteredArticles: Article[];
 };
 
 export type TCategory = {

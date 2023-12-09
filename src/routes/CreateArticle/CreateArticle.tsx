@@ -70,6 +70,7 @@ function CreateArticle() {
     event: FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault();
+
     const newArticle = {
       title: articleTitleInputValue,
       description: articleDescriptionInputValue,
@@ -104,6 +105,7 @@ function CreateArticle() {
       throw new Error('Problleme lors de la fonction asynchrone');
     }
   };
+
 
   return (
     <Page>
@@ -213,7 +215,9 @@ function CreateArticle() {
         </div>
       </div>
 
+
       {ISBNModal && <ISBNFormModal />}
+
       <Footer />
     </Page>
   );

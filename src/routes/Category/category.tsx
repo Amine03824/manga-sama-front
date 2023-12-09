@@ -18,7 +18,7 @@ function Category() {
     (category) => category.id === parseInt(id, 10)
   );
   const filteredArticles = articles.filter(
-    (article) => article.category_id === parseInt(id, 10)
+    (article) => article.article.id === parseInt(id, 10)
   );
 
   return (
@@ -39,22 +39,25 @@ function Category() {
         <div className="category__articles-area">
           <ul className="category__articles-list">
             {filteredArticles.map((article) => (
-              <Link to={`/article/${article.id}`} key={article.id}>
+              <Link
+                to={`/article/${article.article.id}`}
+                key={article.article.id}
+              >
                 <li className="category__articles-item">
                   <img
-                    src={article.image_url}
+                    src={article.article.image_url}
                     alt="/"
                     className="category__articles-item-image"
                   />
                   <div className="category__articles-info">
                     <h3 className="category__articles-info-title">
-                      {article.title}
+                      {article.article.title}
                     </h3>
                     <p className="category__articles-info-tome">
-                      Tome {article.volume}
+                      Tome {article.manga.volume}
                     </p>
                     <p className="category__articles-info-price">
-                      {article.price} €
+                      {article.article.price} €
                     </p>
                     {/* <p className="category__articles-info-localisation">
                       {article.user.city}

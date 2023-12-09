@@ -1,13 +1,16 @@
 /* eslint-disable import/no-named-as-default */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 import { Article, ArticleState, TCondition } from '../../@types';
+
 
 const initialState: ArticleState = {
   list_condition: [],
   list_articles: [],
   error: null,
   isLoading: true,
+  filteredArticles: [],
 };
 
 export const getArticles = createAsyncThunk('articles/fetch', async () => {
@@ -26,7 +29,11 @@ export const getConditions = createAsyncThunk('condition/fetch', async () => {
 const articleReducer = createSlice({
   name: 'article',
   initialState,
-  reducers: {},
+  reducers: {
+    changeFilteredArticle(state, action: PayloadAction<Article[]>) {
+      state.filteredArticles = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getArticles.pending, (state) => {
@@ -40,6 +47,7 @@ const articleReducer = createSlice({
       .addCase(getArticles.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list_articles = action.payload;
+
       })
       .addCase(getConditions.pending, (state) => {
         state.isLoading = true;
@@ -53,8 +61,10 @@ const articleReducer = createSlice({
       .addCase(getConditions.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list_condition = action.payload;
+
       });
   },
 });
 
+export const { changeFilteredArticle } = articleReducer.actions;
 export default articleReducer.reducer;

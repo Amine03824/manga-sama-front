@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import './Menu.scss';
 import clsx from 'clsx';
 
 import { Link } from 'react-router-dom';
 
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { changeSearchInputValue } from '../../store/reducers/searchBarMenu';
+import { changeFilteredArticle } from '../../store/reducers/article';
 
 type MenuProps = {
   menuIsVisible: boolean;
@@ -12,10 +14,18 @@ type MenuProps = {
 };
 
 function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
+  const dispatch = useAppDispatch();
   const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );
+  const articles = useAppSelector((state) => state.article.list_articles);
+  // const manga = useAppSelector((state) => state.searchBar.manga);
+
+  const searchBarInputValue = useAppSelector(
+    (state) => state.searchBar.searchBarInputValue
+  );
+
   function handleOnCategoryButton() {
     setCategoriesIsVisible(!categoriesIsVisible);
   }
@@ -23,6 +33,24 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   function handleOnMenuButton() {
     setMenuIsVisible(!menuIsVisible);
   }
+
+  function handleChangeSearchBarInputValue(
+    event: ChangeEvent<HTMLInputElement>
+  ) {
+    console.log(articles);
+
+    const filteredArticle = articles.filter((article) =>
+      article.article.title.toLowerCase().includes(searchBarInputValue)
+    );
+    dispatch(changeFilteredArticle(filteredArticle));
+    dispatch(changeSearchInputValue(event.target.value));
+  }
+
+  // const handleChangeSearchBarInputValue = (
+  //   event: ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   dispatch(changeSearchInputValue);
+  // };
 
   return (
     <div className={clsx('home-menu', { 'home-menu--hidden': !menuIsVisible })}>
@@ -44,6 +72,8 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
             type="text"
             placeholder="Rechercher..."
             className="home-menu__form--inputSearch"
+            onChange={handleChangeSearchBarInputValue}
+            value={searchBarInputValue}
           />
         </form>
         <nav className="home-menu__nav">

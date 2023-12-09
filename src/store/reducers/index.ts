@@ -3,7 +3,11 @@ import categoriesReducer from './categories';
 import loginFormReducer from './loginForm';
 import signUpFormReducer from './signUpForm';
 import mangaReducer from './manga';
+
 import createArticleReducer from './createArticle';
+
+import searchBarMenuReducer from './searchBarMenu';
+
 
 const reducer = {
   article: articlesReducer,
@@ -11,7 +15,11 @@ const reducer = {
   signUpForm: signUpFormReducer,
   categories: categoriesReducer,
   manga: mangaReducer,
+
   createArticle: createArticleReducer,
+
+  searchBar: searchBarMenuReducer,
+
 };
 
 export default reducer;
