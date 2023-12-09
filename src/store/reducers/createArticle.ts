@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { TArticle, TCreateArticleForm, TCreatedArticle } from '../../@types';
+import { TCreateArticleForm, TCreatedArticle } from '../../@types';
 
 type CreateArticleState = {
   isLoading: boolean;
@@ -22,7 +22,7 @@ const initialState: CreateArticleState = {
     article_price: '',
     article_description: '',
   },
-  article_condition: '',
+  article_condition: '1',
   created_article: null,
 };
 
@@ -33,6 +33,8 @@ export const createArticleFetch = createAsyncThunk(
       'http://localhost:3000/article',
       credentials
     );
+    console.log(data);
+
     return data;
   }
 );
@@ -42,6 +44,16 @@ export const associateMangaToArticle = createAsyncThunk(
   async (credentials: { article_id: number | undefined; isbn: number }) => {
     const { data } = await axios.post(
       `http://localhost:3000/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
+    );
+    return data;
+  }
+);
+
+export const associateUserToArticle = createAsyncThunk(
+  'article/associateUser',
+  async (credentials: { user_id: number; article_id: number }) => {
+    const { data } = await axios.post(
+      `http://localhost:3000/associate/user/article/${credentials.user_id}/${credentials.article_id}`
     );
     return data;
   }
@@ -69,9 +81,38 @@ const createArticleReducer = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(createArticleFetch.fulfilled, (state, action) => {
-      state.created_article = action.payload;
-    });
+    builder
+      // Gestion du l'état de la requète associateManga
+      .addCase(associateMangaToArticle.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(associateMangaToArticle.rejected, (state) => {
+        state.isLoading = false;
+        state.error =
+          "L'association du manga à l'article à rencontré un problème , réessaye s'il te plait";
+      })
+      // Gestion du l'état de la requète associateUser
+      .addCase(associateUserToArticle.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(associateUserToArticle.rejected, (state) => {
+        state.isLoading = true;
+        state.error =
+          "Problème lors de l'association de l'article à ton compte user , réessaie s'il te plait";
+      })
+
+      // Gestion de l'état de la requête createArticleFetch
+      .addCase(createArticleFetch.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createArticleFetch.rejected, (state) => {
+        state.isLoading = false;
+        state.error =
+          "La création de l'article à rencontré un problème , réessaye s'il te plait";
+      })
+      .addCase(createArticleFetch.fulfilled, (state, action) => {
+        state.created_article = action.payload.article;
+      });
   },
 });
 

@@ -11,12 +11,11 @@ import {
 import ISBNFormModal from '../../components/ISBNFormModal/ISBNFormModal';
 import {
   associateMangaToArticle,
+  associateUserToArticle,
   changeCreateArticleConditionValue,
   changeCreateArticleInputValue,
-  changeCreatedArticle,
   createArticleFetch,
 } from '../../store/reducers/createArticle';
-import { TArticle } from '../../@types';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
@@ -38,7 +37,7 @@ function CreateArticle() {
   const articleCondition = useAppSelector(
     (state) => state.createArticle.article_condition
   );
-  const createdArticle = useAppSelector(
+  const createdArticleState = useAppSelector(
     (state) => state.createArticle.created_article
   );
 
@@ -81,13 +80,29 @@ function CreateArticle() {
       image_url: mangas[0].cover_url,
       condition_id: parseInt(articleCondition, 10),
     };
-    await dispatch(createArticleFetch(newArticle));
-    await dispatch(
-      associateMangaToArticle({
-        article_id: createdArticle?.id,
-        isbn: mangas[0].code_isbn,
-      })
-    );
+    console.log(newArticle);
+    try {
+      const createdArticle = await dispatch(createArticleFetch(newArticle));
+      console.log(createdArticle);
+      if (createdArticle) {
+        mangas.forEach(async (manga) => {
+          await dispatch(
+            associateMangaToArticle({
+              article_id: createdArticle.payload.article.id,
+              isbn: manga.code_isbn,
+            })
+          );
+        });
+        await dispatch(
+          associateUserToArticle({
+            user_id: 1,
+            article_id: createdArticle.payload.article.id,
+          })
+        );
+      }
+    } catch {
+      throw new Error('Problleme lors de la fonction asynchrone');
+    }
   };
 
   return (
@@ -145,16 +160,6 @@ function CreateArticle() {
               </tbody>
             </table>
 
-            <label htmlFor="volume" className="CreateArticle__form_label">
-              Volume :
-            </label>
-            <input
-              className="CreateArticle__form_input"
-              type="text"
-              id="volume"
-              required
-            />
-
             <label htmlFor="price" className="CreateArticle__form_label">
               Prix:
             </label>
@@ -191,7 +196,7 @@ function CreateArticle() {
               required
               onChange={handleChangeConditionArticle}
             >
-              <option value="" disabled>
+              <option disabled value="0">
                 Sélectionnez l'état
               </option>
               {conditionsList.map((condition) => (
@@ -199,9 +204,6 @@ function CreateArticle() {
                   {condition.condition_name}
                 </option>
               ))}
-
-              <option value="très bon">Très bon</option>
-              <option value="neuf">Neuf</option>
             </select>
 
             <button className="CreateArticle__form_btn" type="submit">

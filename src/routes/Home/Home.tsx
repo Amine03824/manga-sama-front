@@ -31,7 +31,7 @@ function Home() {
               >
                 <li className="home__articles-item">
                   <img
-                    src={article.article.image_url}
+                    src={article.manga.cover_url}
                     alt="/"
                     className="home__articles-item-image"
                   />
