@@ -4,7 +4,9 @@ import Footer from '../../components/Footer/Footer';
 import { useAppSelector } from '../../hooks/redux';
 
 function Home() {
+
   const articles = useAppSelector((state) => state.article.filteredArticles);
+
 
   return (
     <div className="home">

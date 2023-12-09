@@ -1,10 +1,12 @@
 /* eslint-disable import/no-named-as-default */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Article, ArticleState } from '../../@types';
-// import articles from '../../data/data';
+
+import { Article, ArticleState, TCondition } from '../../@types';
+
 
 const initialState: ArticleState = {
+  list_condition: [],
   list_articles: [],
   error: null,
   isLoading: true,
@@ -14,6 +16,13 @@ const initialState: ArticleState = {
 export const getArticles = createAsyncThunk('articles/fetch', async () => {
   const { data } = await axios.get<Article[]>('http://localhost:3000/article');
 
+  return data;
+});
+
+export const getConditions = createAsyncThunk('condition/fetch', async () => {
+  const { data } = await axios.get<TCondition[]>(
+    'http://localhost:3000/condition'
+  );
   return data;
 });
 
@@ -38,7 +47,21 @@ const articleReducer = createSlice({
       .addCase(getArticles.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list_articles = action.payload;
-        state.filteredArticles = action.payload;
+
+      })
+      .addCase(getConditions.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getConditions.rejected, (state) => {
+        state.error =
+          "Problème lors de la récupération des conditions d'article";
+        state.isLoading = false;
+      })
+      .addCase(getConditions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.list_condition = action.payload;
+
       });
   },
 });

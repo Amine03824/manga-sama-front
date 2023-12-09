@@ -3,7 +3,7 @@ import axios from 'axios';
 import { TManga } from '../../@types';
 
 type MangaState = {
-  manga: TManga | null;
+  manga: TManga[];
   ISBNFormIsVisible: boolean;
   ISBNInputValue: string;
   isLoading: boolean;
@@ -11,7 +11,7 @@ type MangaState = {
 };
 
 const initialState: MangaState = {
-  manga: null,
+  manga: [],
   ISBNFormIsVisible: true,
   ISBNInputValue: '',
   isLoading: false,
@@ -39,6 +39,9 @@ const mangaReducer = createSlice({
     changeISBNInputValue(state, action: PayloadAction<string>) {
       state.ISBNInputValue = action.payload;
     },
+    resetMangaState(state) {
+      state.manga = [];
+    },
   },
   extraReducers(builder) {
     builder
@@ -56,11 +59,14 @@ const mangaReducer = createSlice({
         state.error = null;
         state.ISBNInputValue = '';
         state.ISBNFormIsVisible = false;
-        state.manga = action.payload;
+        state.manga.push(action.payload);
       });
   },
 });
 
-export const { changeISBNFormIsVisible, changeISBNInputValue } =
-  mangaReducer.actions;
+export const {
+  changeISBNFormIsVisible,
+  changeISBNInputValue,
+  resetMangaState,
+} = mangaReducer.actions;
 export default mangaReducer.reducer;
