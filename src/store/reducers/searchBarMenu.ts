@@ -29,6 +29,8 @@ const searchBarMenuReducer = createSlice({
   initialState,
   reducers: {
     changeSearchInputValue(state, action: PayloadAction<string>) {
+      console.log('Reducer - changeSearchInputValue:', action.payload);
+
       state.searchBarInputValue = action.payload;
     },
   },

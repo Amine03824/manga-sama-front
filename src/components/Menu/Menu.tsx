@@ -19,12 +19,17 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );
+
   const articles = useAppSelector((state) => state.article.list_articles);
   // const manga = useAppSelector((state) => state.searchBar.manga);
 
   const searchBarInputValue = useAppSelector(
     (state) => state.searchBar.searchBarInputValue
   );
+  // useEffect(() => {
+  //   // Mettre à jour la liste d'articles à chaque changement de filteredArticles
+  //   dispatch(changeFilteredArticle(articles));
+  // }, [articles, dispatch]);
 
   function handleOnCategoryButton() {
     setCategoriesIsVisible(!categoriesIsVisible);
@@ -37,13 +42,19 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   function handleChangeSearchBarInputValue(
     event: ChangeEvent<HTMLInputElement>
   ) {
-    console.log(articles);
+    const newSearchValue = event.target.value.toLowerCase();
+    // console.log('Current Search Value:', searchBarInputValue);
+    // console.log('Dispatching changeSearchInputValue:', newSearchValue);
+
+    dispatch(changeSearchInputValue(newSearchValue));
 
     const filteredArticle = articles.filter((article) =>
-      article.article.title.toLowerCase().includes(searchBarInputValue)
+      article.article.title.toLowerCase().includes(newSearchValue)
     );
+    // console.log('Filtered Articles:', filteredArticle);
+    // console.log('Dispatching changeFilteredArticle:', filteredArticle);
+
     dispatch(changeFilteredArticle(filteredArticle));
-    dispatch(changeSearchInputValue(event.target.value));
   }
 
   // const handleChangeSearchBarInputValue = (

@@ -9,11 +9,18 @@ import {
 } from '../../store/reducers/article';
 
 function Home() {
+
+  const articlesFiltered = useAppSelector(
+    (state) => state.article.filteredArticles
+  );
+  // console.log('Filtered Articles in Home:', articlesFiltered);
+
   const dispatch = useAppDispatch();
   const articles = useAppSelector((state) => state.article.list_articles);
   const articlesfiltered = useAppSelector(
     (state) => state.article.filteredArticles
   );
+
 
   useEffect(() => {
     dispatch(getArticles());
@@ -36,7 +43,11 @@ function Home() {
         </div>
         <div className="home__articles-area">
           <ul className="home__articles-list">
+
+            {articlesFiltered.map((article) => (
+
             {articlesfiltered.map((article) => (
+
               <Link
                 to={`/article/${article.article.id}`}
                 key={article.article.id}
