@@ -16,7 +16,7 @@ const initialState: CategoriesState = {
 
 export const getCategories = createAsyncThunk('categories/fetch', async () => {
   const { data } = await axios.get<TCategory[]>(
-    'http://localhost:3000/category'
+    'http://amine03824-server.eddi.cloud:3000/category'
   );
   return data;
 });

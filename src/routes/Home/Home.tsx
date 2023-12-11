@@ -9,7 +9,6 @@ import {
 } from '../../store/reducers/article';
 
 function Home() {
-
   const articlesFiltered = useAppSelector(
     (state) => state.article.filteredArticles
   );
@@ -17,10 +16,6 @@ function Home() {
 
   const dispatch = useAppDispatch();
   const articles = useAppSelector((state) => state.article.list_articles);
-  const articlesfiltered = useAppSelector(
-    (state) => state.article.filteredArticles
-  );
-
 
   useEffect(() => {
     dispatch(getArticles());
@@ -43,18 +38,14 @@ function Home() {
         </div>
         <div className="home__articles-area">
           <ul className="home__articles-list">
-
             {articlesFiltered.map((article) => (
-
-            {articlesfiltered.map((article) => (
-
               <Link
                 to={`/article/${article.article.id}`}
                 key={article.article.id}
               >
                 <li className="home__articles-item">
                   <img
-                    src={article.manga.cover_url}
+                    src={article.mangas[0].cover_url}
                     alt="/"
                     className="home__articles-item-image"
                   />
@@ -62,16 +53,16 @@ function Home() {
                     <h3 className="home__articles-info-title">
                       {article.article.title}
                     </h3>
-                    <p className="home__articles-info-tome">
+                    {/* <p className="home__articles-info-tome">
                       Tome {article.manga.volume}
-                    </p>
+                    </p> */}
                     <p className="home__articles-info-price">
                       {article.article.price} €
                     </p>
 
-                    {/* <p className="home__articles-info-localisation">
+                    <p className="home__articles-info-localisation">
                       {article.user.city}
-                    </p> */}
+                    </p>
                   </div>
                 </li>
               </Link>

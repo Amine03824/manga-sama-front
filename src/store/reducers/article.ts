@@ -13,14 +13,16 @@ const initialState: ArticleState = {
 };
 
 export const getArticles = createAsyncThunk('articles/fetch', async () => {
-  const { data } = await axios.get<Article[]>('http://localhost:3000/article');
+  const { data } = await axios.get<Article[]>(
+    'http://amine03824-server.eddi.cloud:3000/article'
+  );
 
   return data;
 });
 
 export const getConditions = createAsyncThunk('condition/fetch', async () => {
   const { data } = await axios.get<TCondition[]>(
-    'http://localhost:3000/condition'
+    'http://amine03824-server.eddi.cloud:3000/condition'
   );
   return data;
 });

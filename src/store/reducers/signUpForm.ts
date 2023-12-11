@@ -33,7 +33,7 @@ export const createUser = createAsyncThunk(
   'user/signUp',
   async (credentials: SignUpCredentials) => {
     const { data } = await axios.post(
-      'http://localhost:3000/user',
+      'http://amine03824-server.eddi.cloud:3000/user',
       credentials
     );
     return data;

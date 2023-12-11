@@ -40,7 +40,7 @@ export const createArticleFetch = createAsyncThunk(
   'article/create',
   async (credentials: TCreateArticleForm) => {
     const { data } = await axios.post(
-      'http://localhost:3000/article',
+      'http://amine03824-server.eddi.cloud:3000/article',
       credentials
     );
 
@@ -54,7 +54,7 @@ export const associateMangaToArticle = createAsyncThunk(
   'article/associateManga',
   async (credentials: { article_id: number | undefined; isbn: number }) => {
     const { data } = await axios.post(
-      `http://localhost:3000/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
+      `http://amine03824-server.eddi.cloud:3000/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
     );
     return data;
   }
@@ -66,7 +66,7 @@ export const associateUserToArticle = createAsyncThunk(
   'article/associateUser',
   async (credentials: { user_id: number; article_id: number }) => {
     const { data } = await axios.post(
-      `http://localhost:3000/associate/user/article/${credentials.user_id}/${credentials.article_id}`
+      `http://amine03824-server.eddi.cloud:3000/associate/user/article/${credentials.user_id}/${credentials.article_id}`
     );
     return data;
   }

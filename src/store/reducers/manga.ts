@@ -22,7 +22,7 @@ export const getMangaByISBN = createAsyncThunk(
   'manga/fetch',
   async (isbn: string) => {
     const { data } = await axios.get<TManga>(
-      `http://localhost:3000/manga/${isbn}`
+      `http://amine03824-server.eddi.cloud:3000/manga/${isbn}`
     );
 
     return data;

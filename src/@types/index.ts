@@ -1,20 +1,7 @@
 export type Article = {
   article: TArticle;
-
-  manga: {
-    code_isbn: string;
-    cover_url: string;
-    author: string;
-    volume: number;
-    year_publication: number;
-  };
-  user: {
-    lastname: string;
-    firstname: string;
-    pseudo: string;
-    email: string;
-    city: string;
-  };
+  mangas: TManga[];
+  user: TUser;
 };
 
 export type ArticleState = {
@@ -40,6 +27,7 @@ export type TManga = {
   author: string;
   description: string | undefined;
   cover_url: string | undefined;
+  category_id: number;
   create_at: string;
   updated_at: string;
 };
@@ -83,4 +71,14 @@ export type TCreateArticleForm = {
   state_transaction: null | string;
   image_url: string | undefined;
   condition_id: number;
+};
+
+export type TUser = {
+  lastname: string;
+  firstname: string;
+  pseudo: string;
+  email: string;
+  city: string;
+  create_at: string;
+  updated_at: string;
 };

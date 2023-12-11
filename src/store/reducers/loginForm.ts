@@ -28,7 +28,7 @@ export const loginUser = createAsyncThunk(
   'user/login',
   async (credentials: LoginCredentials) => {
     const { data } = await axios.post(
-      'http://localhost:3000/login',
+      'http://amine03824-server.eddi.cloud:3000/login',
       credentials
     );
     return data;
