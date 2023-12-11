@@ -4,7 +4,10 @@ import Footer from '../../components/Footer/Footer';
 import { useAppSelector } from '../../hooks/redux';
 
 function Home() {
-  const articles = useAppSelector((state) => state.article.filteredArticles);
+  const articlesFiltered = useAppSelector(
+    (state) => state.article.filteredArticles
+  );
+  // console.log('Filtered Articles in Home:', articlesFiltered);
 
   return (
     <div className="home">
@@ -23,7 +26,7 @@ function Home() {
         </div>
         <div className="home__articles-area">
           <ul className="home__articles-list">
-            {articles.map((article) => (
+            {articlesFiltered.map((article) => (
               <Link
                 to={`/article/${article.article.id}`}
                 key={article.article.id}
