@@ -1,7 +1,7 @@
 export type Article = {
   article: TArticle;
   mangas: TManga[];
-  user: TUser;
+  user: TUserArticle;
 };
 
 export type ArticleState = {
@@ -73,11 +73,8 @@ export type TCreateArticleForm = {
   condition_id: number;
 };
 
-export type TUser = {
-  lastname: string;
-  firstname: string;
+export type TUserArticle = {
   pseudo: string;
-  email: string;
   city: string;
   create_at: string;
   updated_at: string;

@@ -6,7 +6,7 @@ type LoginFormState = {
     email: string;
     password: string;
   };
-  error: null | string;
+  error: string;
   isLoading: boolean;
 };
 
@@ -15,7 +15,7 @@ export const initialState: LoginFormState = {
     email: 'hado78',
     password: 'test',
   },
-  error: null,
+  error: '',
   isLoading: false,
 };
 
@@ -54,7 +54,7 @@ const loginFormReducer = createSlice({
     builder
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.error = '';
       })
       .addCase(loginUser.rejected, (state) => {
         state.isLoading = false;

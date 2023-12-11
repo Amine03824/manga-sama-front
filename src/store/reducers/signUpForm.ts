@@ -9,7 +9,7 @@ type SignUpFormState = {
     password_bis: string;
   };
   isLoading: boolean;
-  error: string | null;
+  signUpError: string;
 };
 
 export const initialState: SignUpFormState = {
@@ -20,7 +20,7 @@ export const initialState: SignUpFormState = {
     password_bis: 'coucou',
   },
   isLoading: false,
-  error: null,
+  signUpError: '',
 };
 
 type SignUpCredentials = {
@@ -59,11 +59,12 @@ const signUpFormReducer = createSlice({
     builder
       .addCase(createUser.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.signUpError = '';
       })
       .addCase(createUser.rejected, (state) => {
         state.isLoading = false;
-        state.error = ' Un problème est survenu lors de la création du compte';
+        state.signUpError =
+          ' Un problème est survenu lors de la création du compte';
       })
       .addCase(createUser.fulfilled, (state) => {
         state.isLoading = false;

@@ -10,6 +10,7 @@ import {
   createUser,
 } from '../../store/reducers/signUpForm';
 import './SignUp.scss';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 function SignUp() {
   const dispatch = useAppDispatch();
@@ -26,7 +27,7 @@ function SignUp() {
   const passwordBisInputValue = useAppSelector(
     (state) => state.signUpForm.credentials.password_bis
   );
-  const error = useAppSelector((state) => state.signUpForm.error);
+  const error = useAppSelector((state) => state.signUpForm.signUpError);
 
   function handleChangeInputValue(
     event: ChangeEvent<HTMLInputElement>,
@@ -54,6 +55,7 @@ function SignUp() {
 
   return (
     <Page>
+      <ErrorMessage errorContent={error} />
       <div className="signUp">
         <div className="signUp__logo-container">
           <img
