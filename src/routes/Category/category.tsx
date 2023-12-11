@@ -18,7 +18,7 @@ function Category() {
     (category) => category.id === parseInt(id, 10)
   );
   const filteredArticles = articles.filter(
-    (article) => article.article.id === parseInt(id, 10)
+    (article) => article.manga.category_id === parseInt(id, 10)
   );
 
   return (
@@ -45,7 +45,7 @@ function Category() {
               >
                 <li className="category__articles-item">
                   <img
-                    src={article.article.image_url}
+                    src={article.manga.cover_url}
                     alt="/"
                     className="category__articles-item-image"
                   />

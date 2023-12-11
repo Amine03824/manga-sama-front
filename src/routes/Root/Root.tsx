@@ -6,17 +6,20 @@ import './Root.scss';
 import MobileNav from '../../components/MobileNav/MobileNav';
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
 import { useAppDispatch } from '../../hooks/redux';
-import { getArticles } from '../../store/reducers/article';
+import { getArticles, getConditions } from '../../store/reducers/article';
 import { getCategories } from '../../store/reducers/categories';
 
 function Root() {
   const dispatch = useAppDispatch();
 
+  // Utilisation d'un useState pour faire passer l'etat de la barre de menu directement en props dans le composant menu
   const [menuIsVisible, setMenuIsVisible] = useState(true);
 
+  // Au premier chargement de Root , on fait des demande a l'API pour qu'elle nous donnes les donées nécéssaire :  tous les articles , toutes les catégories , toutes les conditions d'article
   useEffect(() => {
     dispatch(getArticles());
     dispatch(getCategories());
+    dispatch(getConditions());
   }, [dispatch]);
 
   return (

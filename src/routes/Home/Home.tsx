@@ -1,14 +1,31 @@
 import './Home.scss';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import {
+  changeFilteredArticle,
+  getArticles,
+} from '../../store/reducers/article';
 
 function Home() {
+
   const articlesFiltered = useAppSelector(
     (state) => state.article.filteredArticles
   );
   // console.log('Filtered Articles in Home:', articlesFiltered);
 
+  const dispatch = useAppDispatch();
+  const articles = useAppSelector((state) => state.article.list_articles);
+  const articlesfiltered = useAppSelector(
+    (state) => state.article.filteredArticles
+  );
+
+
+  useEffect(() => {
+    dispatch(getArticles());
+    dispatch(changeFilteredArticle(articles));
+  }, [dispatch, articles]);
   return (
     <div className="home">
       <div className="home__articles">
@@ -26,7 +43,11 @@ function Home() {
         </div>
         <div className="home__articles-area">
           <ul className="home__articles-list">
+
             {articlesFiltered.map((article) => (
+
+            {articlesfiltered.map((article) => (
+
               <Link
                 to={`/article/${article.article.id}`}
                 key={article.article.id}
