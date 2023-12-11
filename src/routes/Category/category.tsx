@@ -18,7 +18,7 @@ function Category() {
     (category) => category.id === parseInt(id, 10)
   );
   const filteredArticles = articles.filter(
-    (article) => article.manga.category_id === parseInt(id, 10)
+    (article) => article.mangas[0].category_id === parseInt(id, 10)
   );
 
   return (
@@ -45,7 +45,7 @@ function Category() {
               >
                 <li className="category__articles-item">
                   <img
-                    src={article.manga.cover_url}
+                    src={article.mangas[0].cover_url}
                     alt="/"
                     className="category__articles-item-image"
                   />
@@ -54,14 +54,14 @@ function Category() {
                       {article.article.title}
                     </h3>
                     <p className="category__articles-info-tome">
-                      Tome {article.manga.volume}
+                      Tome {article.mangas[0].volume}
                     </p>
                     <p className="category__articles-info-price">
                       {article.article.price} €
                     </p>
-                    {/* <p className="category__articles-info-localisation">
+                    <p className="category__articles-info-localisation">
                       {article.user.city}
-                    </p> */}
+                    </p>
                   </div>
                 </li>
               </Link>

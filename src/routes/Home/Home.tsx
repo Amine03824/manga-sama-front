@@ -18,7 +18,6 @@ function Home() {
   const articles = useAppSelector((state) => state.article.list_articles);
 
   useEffect(() => {
-    dispatch(getArticles());
     dispatch(changeFilteredArticle(articles));
   }, [dispatch, articles]);
   return (
