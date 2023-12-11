@@ -14,9 +14,11 @@ import {
   associateUserToArticle,
   changeCreateArticleConditionValue,
   changeCreateArticleInputValue,
-  changeCreatedArticle,
+  changeCreateArticleMessage,
   createArticleFetch,
 } from '../../store/reducers/createArticle';
+import Message from '../../components/Message/Message';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
@@ -39,6 +41,8 @@ function CreateArticle() {
   const articleCondition = useAppSelector(
     (state) => state.createArticle.article_condition
   );
+  const messageContent = useAppSelector((state) => state.createArticle.message);
+  const errorContent = useAppSelector((state) => state.createArticle.error);
 
   // Fonction qui permet de changer l'état de la modale pour ajouter un manga a l'article
   function handleClickAddMangaToArticle() {
@@ -104,10 +108,10 @@ function CreateArticle() {
       image_url: mangas[0].cover_url,
       condition_id: parseInt(articleCondition, 10),
     };
-    console.log(newArticle);
+
     try {
       const createdArticle = await dispatch(createArticleFetch(newArticle));
-      console.log(createdArticle);
+
       if (createdArticle) {
         mangas.forEach(async (manga) => {
           await dispatch(
@@ -123,6 +127,9 @@ function CreateArticle() {
             article_id: createdArticle.payload.article.id,
           })
         );
+        dispatch(
+          changeCreateArticleMessage("L'article à été crée avec succès")
+        );
       }
     } catch {
       throw new Error('Problleme lors de la fonction asynchrone');
@@ -131,6 +138,8 @@ function CreateArticle() {
 
   return (
     <Page>
+      {messageContent && <Message message_content={messageContent} />}
+      {errorContent && <ErrorMessage errorContent={errorContent} />}
       <h2 className="CreateArticle__title">Créer une nouvelle annonce</h2>
 
       <div className="CreateArticle__container">

@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import { Article, ArticleState, TCondition } from '../../@types';
 
-
 const initialState: ArticleState = {
   list_condition: [],
   list_articles: [],
@@ -47,7 +46,6 @@ const articleReducer = createSlice({
       .addCase(getArticles.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list_articles = action.payload;
-
       })
       .addCase(getConditions.pending, (state) => {
         state.isLoading = true;
@@ -61,7 +59,6 @@ const articleReducer = createSlice({
       .addCase(getConditions.fulfilled, (state, action) => {
         state.isLoading = false;
         state.list_condition = action.payload;
-
       });
   },
 });

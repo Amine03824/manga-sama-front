@@ -5,7 +5,8 @@ import { TCreateArticleForm, TCreatedArticle } from '../../@types';
 // CreateArticleSlice est le typage du rayon "createArticle", on prends les même champs que le initialState et on type chaque champs
 type CreateArticleState = {
   isLoading: boolean;
-  error: null | string;
+  error: string;
+  message: string;
   credentials: {
     article_title: string;
     article_price: string;
@@ -19,7 +20,8 @@ type CreateArticleState = {
 
 const initialState: CreateArticleState = {
   isLoading: false,
-  error: null,
+  error: '',
+  message: '',
   // credentials sont les champs inputs controlés du formulaire de creation d'aricle
   credentials: {
     article_title: '',
@@ -95,6 +97,12 @@ const createArticleReducer = createSlice({
     changeCreatedArticle(state, action: PayloadAction<TCreatedArticle>) {
       state.created_article = action.payload;
     },
+    changeCreateArticleMessage(state, action: PayloadAction<string>) {
+      state.message = action.payload;
+    },
+    changeCreateArticleErrorMessage(state, action: PayloadAction<string>) {
+      state.error = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -137,6 +145,8 @@ export const {
   changeCreateArticleInputValue,
   changeCreateArticleConditionValue,
   changeCreatedArticle,
+  changeCreateArticleMessage,
+  changeCreateArticleErrorMessage,
 } = createArticleReducer.actions;
 
 // export du reducer
