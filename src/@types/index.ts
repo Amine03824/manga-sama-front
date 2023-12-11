@@ -40,11 +40,9 @@ export type TManga = {
   author: string;
   description: string | undefined;
   cover_url: string | undefined;
-  category_id: number;
   create_at: string;
   updated_at: string;
 };
-
 export type TCondition = {
   id: number;
   condition_name: string;
