@@ -1,5 +1,4 @@
 export type Article = {
-
   article: TArticle;
 
   manga: {

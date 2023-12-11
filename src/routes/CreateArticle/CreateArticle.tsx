@@ -14,12 +14,14 @@ import {
   associateUserToArticle,
   changeCreateArticleConditionValue,
   changeCreateArticleInputValue,
+  changeCreatedArticle,
   createArticleFetch,
 } from '../../store/reducers/createArticle';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
 
+  // Au début de notre composant on récupère toutes les donées du store qui vont être utlisé dans notre composant.
   const ISBNModal = useAppSelector((state) => state.manga.ISBNFormIsVisible);
   const mangas = useAppSelector((state) => state.manga.manga);
   const articleTitleInputValue = useAppSelector(
@@ -37,14 +39,13 @@ function CreateArticle() {
   const articleCondition = useAppSelector(
     (state) => state.createArticle.article_condition
   );
-  const createdArticleState = useAppSelector(
-    (state) => state.createArticle.created_article
-  );
 
+  // Fonction qui permet de changer l'état de la modale pour ajouter un manga a l'article
   function handleClickAddMangaToArticle() {
     dispatch(changeISBNFormIsVisible());
   }
 
+  // Fonction qui permet de changer les valeurs des inputs controlés dans le store sur l'évènement onChange
   const handleChangeInputField = (
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
     name: 'article_title' | 'article_price' | 'article_description'
@@ -56,16 +57,38 @@ function CreateArticle() {
       })
     );
   };
+
+  // Au premier chargement du composant createArticle , on reset la valeur des mangas stockés dans le store, celui des inputs des formulaires
   useEffect(() => {
     dispatch(resetMangaState());
+    dispatch(
+      changeCreateArticleInputValue({
+        fieldName: 'article_description',
+        value: '',
+      })
+    );
+    dispatch(
+      changeCreateArticleInputValue({
+        fieldName: 'article_price',
+        value: '',
+      })
+    );
+    dispatch(
+      changeCreateArticleInputValue({
+        fieldName: 'article_title',
+        value: '',
+      })
+    );
   }, [dispatch]);
 
+  // Fonction qui permet de changer la valeur dans le store de article_condition
   const handleChangeConditionArticle = (
     event: ChangeEvent<HTMLSelectElement>
   ): void => {
     dispatch(changeCreateArticleConditionValue(event.target.value));
   };
 
+  // Fonction qui gère la soumission du formulaire de creation d'article
   const handleSubmitCreateArticleForm = async (
     event: FormEvent<HTMLFormElement>
   ): Promise<void> => {
@@ -105,7 +128,6 @@ function CreateArticle() {
       throw new Error('Problleme lors de la fonction asynchrone');
     }
   };
-
 
   return (
     <Page>
@@ -214,7 +236,6 @@ function CreateArticle() {
           </form>
         </div>
       </div>
-
 
       {ISBNModal && <ISBNFormModal />}
 
