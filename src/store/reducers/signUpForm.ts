@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { redirect } from 'react-router-dom';
 
 type SignUpFormState = {
   credentials: {
@@ -33,7 +34,7 @@ export const createUser = createAsyncThunk(
   'user/signUp',
   async (credentials: SignUpCredentials) => {
     const { data } = await axios.post(
-      'http://amine03824-server.eddi.cloud:3000/user',
+      'http://localhost:3000/user',
       credentials
     );
     return data;
@@ -68,6 +69,7 @@ const signUpFormReducer = createSlice({
       })
       .addCase(createUser.fulfilled, (state) => {
         state.isLoading = false;
+        redirect('/');
       });
   },
 });

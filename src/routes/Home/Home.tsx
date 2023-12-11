@@ -3,10 +3,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import {
-  changeFilteredArticle,
-  getArticles,
-} from '../../store/reducers/article';
+import { changeFilteredArticle } from '../../store/reducers/article';
 
 function Home() {
   const articlesFiltered = useAppSelector(

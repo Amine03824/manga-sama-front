@@ -1,5 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { redirect } from 'react-router-dom';
+import { TUserArticle } from '../../@types';
 
 type LoginFormState = {
   credentials: {
@@ -27,8 +29,8 @@ type LoginCredentials = {
 export const loginUser = createAsyncThunk(
   'user/login',
   async (credentials: LoginCredentials) => {
-    const { data } = await axios.post(
-      'http://amine03824-server.eddi.cloud:3000/login',
+    const { data } = await axios.post<{ user: TUserArticle; token: string }>(
+      'http://localhost:3000/login',
       credentials
     );
     return data;
@@ -60,8 +62,9 @@ const loginFormReducer = createSlice({
         state.isLoading = false;
         state.error = 'Un problème est survenue lors de la connexion';
       })
-      .addCase(loginUser.fulfilled, (state) => {
+      .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        redirect('/user');
       });
   },
 });
