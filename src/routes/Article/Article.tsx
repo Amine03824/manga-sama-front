@@ -1,14 +1,17 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/no-unescaped-entities */
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './Article.scss';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { findArticle } from '../../store/selectors/articles';
+import { useEffect } from 'react';
+import { changeUserInfo } from '../../store/reducers/userPage';
 
 function Article() {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
 
   if (!id) {
     throw new Error('id is missing');
@@ -30,7 +33,9 @@ function Article() {
   // const article = articles.find((testedArticle) => {
   //   return testedArticle.id === parsedId;
   // });
-
+  useEffect(() => {
+    dispatch(changeUserInfo(article.user));
+  });
   return (
     <Page>
       <div className="Article">
@@ -77,9 +82,11 @@ function Article() {
               <p className="Article__container_top-right-soldby-title">
                 Vendu par :
               </p>
-              <p className="Article__container_top-right-soldby-sellername">
-                Naruto-kun
-              </p>
+              <Link to={`/article/user/${article.user.id}`}>
+                <p className="Article__container_top-right-soldby-sellername">
+                  {article.user.pseudo}
+                </p>
+              </Link>
             </div>
             <button
               type="button"
