@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { redirect } from 'react-router-dom';
 import { TCreateArticleForm, TCreatedArticle } from '../../@types';
 
 // CreateArticleSlice est le typage du rayon "createArticle", on prends les même champs que le initialState et on type chaque champs
@@ -20,7 +21,7 @@ type CreateArticleState = {
 
 const initialState: CreateArticleState = {
   isLoading: false,
-  error: '',
+  error: 'test message erreur',
   message: '',
   // credentials sont les champs inputs controlés du formulaire de creation d'aricle
   credentials: {
@@ -40,7 +41,7 @@ export const createArticleFetch = createAsyncThunk(
   'article/create',
   async (credentials: TCreateArticleForm) => {
     const { data } = await axios.post(
-      'http://amine03824-server.eddi.cloud:3000/article',
+      'http://localhost:3000/article',
       credentials
     );
 
@@ -54,7 +55,7 @@ export const associateMangaToArticle = createAsyncThunk(
   'article/associateManga',
   async (credentials: { article_id: number | undefined; isbn: number }) => {
     const { data } = await axios.post(
-      `http://amine03824-server.eddi.cloud:3000/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
+      `http://localhost:3000/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
     );
     return data;
   }
@@ -66,7 +67,7 @@ export const associateUserToArticle = createAsyncThunk(
   'article/associateUser',
   async (credentials: { user_id: number; article_id: number }) => {
     const { data } = await axios.post(
-      `http://amine03824-server.eddi.cloud:3000/associate/user/article/${credentials.user_id}/${credentials.article_id}`
+      `http://localhost:3000/associate/user/article/${credentials.user_id}/${credentials.article_id}`
     );
     return data;
   }
@@ -123,6 +124,11 @@ const createArticleReducer = createSlice({
         state.isLoading = true;
         state.error =
           "Problème lors de l'association de l'article à ton compte user , réessaie s'il te plait";
+      })
+      .addCase(associateUserToArticle.fulfilled, (state) => {
+        state.isLoading = false;
+        state.error = '';
+        redirect('/');
       })
 
       // Gestion de l'état de la requête createArticleFetch

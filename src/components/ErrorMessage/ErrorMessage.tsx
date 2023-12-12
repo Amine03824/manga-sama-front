@@ -1,5 +1,6 @@
 import { useAppDispatch } from '../../hooks/redux';
 import { changeCreateArticleErrorMessage } from '../../store/reducers/createArticle';
+import './ErrorMessage.scss';
 
 type ErrorMessageState = {
   errorContent: string;

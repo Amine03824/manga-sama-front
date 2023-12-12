@@ -21,7 +21,7 @@ function Article() {
   const article = useAppSelector((state) =>
     findArticle(state.article.list_articles, parsedId)
   );
-  console.log('Selected Article:', article);
+
   if (!article) {
     throw new Error(`Article with id ${parsedId} not found`);
   }
@@ -38,7 +38,7 @@ function Article() {
           <div className="Article__container_top-left">
             <img
               className="Article__container_top-left-img"
-              src={article.manga.cover_url}
+              src={article.mangas[0].cover_url}
               alt="couverture du manga"
             />
           </div>
@@ -48,7 +48,7 @@ function Article() {
                 {article.article.title}
               </h2>
               <h4 className="Article__container_top-right-title-booksubtitle">
-                Volume {article.manga.volume}
+                Volume {article.mangas[0].volume}
               </h4>
             </div>
 
@@ -88,7 +88,7 @@ function Article() {
               Acheter
               <img
                 className="Article__container_top-right-img"
-                src="public\assets\icons\cart-icon-32px.png"
+                src="\assets\icons\cart-icon-32px.png"
                 alt="icône de caddy"
               />
             </button>

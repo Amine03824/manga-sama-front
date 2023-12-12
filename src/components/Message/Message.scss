@@ -1,9 +1,9 @@
 .dialogMessage {
   position: fixed;
   height: fit-content;
-  width: 20rem;
+  width: 15rem;
   top: 5rem;
-  left: 50%;
+  left: 5rem;
   background-color: rgb(181, 221, 181);
   color: black;
 
@@ -11,6 +11,11 @@
   border-radius: 1rem;
   padding: 1rem;
 
+  @media screen and (min-width: 768px) {
+    width: 20rem;
+    top: 5rem;
+    left: 50%;
+  }
   &__close-btn {
     position: absolute;
     transform: rotateZ(45deg);

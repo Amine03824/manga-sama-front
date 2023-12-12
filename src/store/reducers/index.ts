@@ -8,7 +8,6 @@ import createArticleReducer from './createArticle';
 
 import searchBarMenuReducer from './searchBarMenu';
 
-
 const reducer = {
   article: articlesReducer,
   loginForm: loginFormReducer,
@@ -19,7 +18,6 @@ const reducer = {
   createArticle: createArticleReducer,
 
   searchBar: searchBarMenuReducer,
-
 };
 
 export default reducer;

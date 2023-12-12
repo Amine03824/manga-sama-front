@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { redirect } from 'react-router-dom';
 
 type SignUpFormState = {
   credentials: {
@@ -9,7 +10,7 @@ type SignUpFormState = {
     password_bis: string;
   };
   isLoading: boolean;
-  error: string | null;
+  signUpError: string;
 };
 
 export const initialState: SignUpFormState = {
@@ -20,7 +21,7 @@ export const initialState: SignUpFormState = {
     password_bis: 'coucou',
   },
   isLoading: false,
-  error: null,
+  signUpError: '',
 };
 
 type SignUpCredentials = {
@@ -33,7 +34,7 @@ export const createUser = createAsyncThunk(
   'user/signUp',
   async (credentials: SignUpCredentials) => {
     const { data } = await axios.post(
-      'http://amine03824-server.eddi.cloud:3000/user',
+      'http://localhost:3000/user',
       credentials
     );
     return data;
@@ -59,14 +60,16 @@ const signUpFormReducer = createSlice({
     builder
       .addCase(createUser.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.signUpError = '';
       })
       .addCase(createUser.rejected, (state) => {
         state.isLoading = false;
-        state.error = ' Un problème est survenu lors de la création du compte';
+        state.signUpError =
+          ' Un problème est survenu lors de la création du compte';
       })
       .addCase(createUser.fulfilled, (state) => {
         state.isLoading = false;
+        redirect('/');
       });
   },
 });
