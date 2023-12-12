@@ -21,7 +21,7 @@ type CreateArticleState = {
 
 const initialState: CreateArticleState = {
   isLoading: false,
-  error: '',
+  error: 'test message erreur',
   message: '',
   // credentials sont les champs inputs controlés du formulaire de creation d'aricle
   credentials: {

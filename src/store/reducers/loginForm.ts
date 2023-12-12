@@ -62,7 +62,7 @@ const loginFormReducer = createSlice({
         state.isLoading = false;
         state.error = 'Un problème est survenue lors de la connexion';
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(loginUser.fulfilled, (state) => {
         state.isLoading = false;
         redirect('/user');
       });
