@@ -49,6 +49,7 @@ function SignUp() {
         pseudo: pseudoInputValue,
         email: emailInputValue,
         password: passwordInputValue,
+        passwordConfirmation: passwordBisInputValue,
       })
     );
   }
