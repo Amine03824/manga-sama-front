@@ -29,6 +29,7 @@ type SignUpCredentials = {
   pseudo: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
 };
 
 export const createUser = createAsyncThunk(

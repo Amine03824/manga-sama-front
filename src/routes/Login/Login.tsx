@@ -40,6 +40,9 @@ function Login() {
     dispatch(
       loginUser({ email: emailInputValue, password: passwordInputValue })
     );
+    dispatch(
+      loginUser({ email: emailInputValue, password: passwordInputValue })
+    );
   };
 
   return (
@@ -77,17 +80,17 @@ function Login() {
                   />
                 </li>
               </ul>
+              <button type="submit" className="login__area-button">
+                Se connecter
+                <img
+                  src="public/assets/icons/CheckMarkIcon.png"
+                  alt="login-icon"
+                  className="login__area-button-icon"
+                />
+              </button>
             </form>
           </div>
           <div className="login__area-valid-login">
-            <button type="submit" className="login__area-button">
-              Se connecter
-              <img
-                src="public/assets/icons/CheckMarkIcon.png"
-                alt="login-icon"
-                className="login__area-button-icon"
-              />
-            </button>
             <Link to="/" className="login__area-password">
               Mot de passe oublié ?
             </Link>
