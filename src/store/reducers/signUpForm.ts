@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { redirect } from 'react-router-dom';
+
+import { axiosInstance } from '../../utils/axios';
 
 type SignUpFormState = {
   credentials: {
@@ -28,15 +29,13 @@ type SignUpCredentials = {
   pseudo: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
 };
 
 export const createUser = createAsyncThunk(
   'user/signUp',
   async (credentials: SignUpCredentials) => {
-    const { data } = await axios.post(
-      'http://localhost:3000/user',
-      credentials
-    );
+    const { data } = await axiosInstance.post('/user', credentials);
     return data;
   }
 );
@@ -69,7 +68,6 @@ const signUpFormReducer = createSlice({
       })
       .addCase(createUser.fulfilled, (state) => {
         state.isLoading = false;
-        redirect('/');
       });
   },
 });

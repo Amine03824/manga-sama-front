@@ -15,6 +15,7 @@ type MenuProps = {
 
 function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   const dispatch = useAppDispatch();
+
   const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
   const categories = useAppSelector(
     (state) => state.categories.list_categories

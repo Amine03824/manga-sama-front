@@ -37,13 +37,17 @@ function Login() {
 
   const handleSubmitLoginForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    dispatch(
+      loginUser({ email: emailInputValue, password: passwordInputValue })
+    );
+    dispatch(
+      loginUser({ email: emailInputValue, password: passwordInputValue })
+    );
   };
-
-  dispatch(loginUser({ email: emailInputValue, password: passwordInputValue }));
 
   return (
     <Page>
-      <ErrorMessage errorContent={error} />
+      {error && <ErrorMessage errorContent={error} />}
       <div className="login">
         <div className="login__area">
           <h2 className="login__area-title">Connexion</h2>
@@ -76,17 +80,17 @@ function Login() {
                   />
                 </li>
               </ul>
+              <button type="submit" className="login__area-button">
+                Se connecter
+                <img
+                  src="public/assets/icons/CheckMarkIcon.png"
+                  alt="login-icon"
+                  className="login__area-button-icon"
+                />
+              </button>
             </form>
           </div>
           <div className="login__area-valid-login">
-            <button type="button" className="login__area-button">
-              Se connecter
-              <img
-                src="public/assets/icons/CheckMarkIcon.png"
-                alt="login-icon"
-                className="login__area-button-icon"
-              />
-            </button>
             <Link to="/" className="login__area-password">
               Mot de passe oublié ?
             </Link>

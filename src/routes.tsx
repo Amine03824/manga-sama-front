@@ -72,12 +72,15 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/user/:id',
+    path: '/user/dashboard',
     element: <RootUser />,
-    children: [],
-  },
-  {
-    path: '/user/:id/connected',
-    element: <UserProfilPage />,
+
+    children: [
+      {
+        path: '/user/dashboard',
+        element: <UserProfilPage />,
+      },
+    ],
+
   },
 ]);

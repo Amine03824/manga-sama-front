@@ -82,11 +82,13 @@ function Article() {
               <p className="Article__container_top-right-soldby-title">
                 Vendu par :
               </p>
+
               <Link to={`/article/user/${article.user.id}`}>
                 <p className="Article__container_top-right-soldby-sellername">
                   {article.user.pseudo}
                 </p>
               </Link>
+
             </div>
             <button
               type="button"

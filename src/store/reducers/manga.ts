@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TManga } from '../../@types';
+import { axiosInstance } from '../../utils/axios';
 
 type MangaState = {
   manga: TManga[];
@@ -21,9 +22,7 @@ const initialState: MangaState = {
 export const getMangaByISBN = createAsyncThunk(
   'manga/fetch',
   async (isbn: string) => {
-    const { data } = await axios.get<TManga>(
-      `http://localhost:3000/manga/${isbn}`
-    );
+    const { data } = await axiosInstance.get<TManga>(`/manga/${isbn}`);
 
     return data;
   }

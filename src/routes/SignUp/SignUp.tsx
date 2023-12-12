@@ -49,13 +49,14 @@ function SignUp() {
         pseudo: pseudoInputValue,
         email: emailInputValue,
         password: passwordInputValue,
+        passwordConfirmation: passwordBisInputValue,
       })
     );
   }
 
   return (
     <Page>
-      <ErrorMessage errorContent={error} />
+      {error && <ErrorMessage errorContent={error} />}
       <div className="signUp">
         <div className="signUp__logo-container">
           <img

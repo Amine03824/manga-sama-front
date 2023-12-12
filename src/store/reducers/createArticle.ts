@@ -2,6 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { redirect } from 'react-router-dom';
 import { TCreateArticleForm, TCreatedArticle } from '../../@types';
+import { axiosInstance } from '../../utils/axios';
 
 // CreateArticleSlice est le typage du rayon "createArticle", on prends les même champs que le initialState et on type chaque champs
 type CreateArticleState = {
@@ -40,10 +41,7 @@ const initialState: CreateArticleState = {
 export const createArticleFetch = createAsyncThunk(
   'article/create',
   async (credentials: TCreateArticleForm) => {
-    const { data } = await axios.post(
-      'http://localhost:3000/article',
-      credentials
-    );
+    const { data } = await axiosInstance.post('/article', credentials);
 
     return data;
   }
@@ -54,8 +52,8 @@ export const createArticleFetch = createAsyncThunk(
 export const associateMangaToArticle = createAsyncThunk(
   'article/associateManga',
   async (credentials: { article_id: number | undefined; isbn: number }) => {
-    const { data } = await axios.post(
-      `http://localhost:3000/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
+    const { data } = await axiosInstance.post(
+      `/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
     );
     return data;
   }
@@ -66,8 +64,8 @@ export const associateMangaToArticle = createAsyncThunk(
 export const associateUserToArticle = createAsyncThunk(
   'article/associateUser',
   async (credentials: { user_id: number; article_id: number }) => {
-    const { data } = await axios.post(
-      `http://localhost:3000/associate/user/article/${credentials.user_id}/${credentials.article_id}`
+    const { data } = await axiosInstance.post(
+      `/associate/user/article/${credentials.user_id}/${credentials.article_id}`
     );
     return data;
   }
