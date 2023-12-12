@@ -67,11 +67,11 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/user/:id/connected',
+    path: '/user/dashboard',
     element: <RootUser />,
     children: [
       {
-        path: 'info',
+        path: '/user/dashboard',
         element: <UserProfilPage />,
       },
     ],

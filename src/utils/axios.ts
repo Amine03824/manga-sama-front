@@ -16,7 +16,7 @@ axiosInstance.interceptors.request.use((config) => {
   if (user) {
     // Je rajoute son token dans le header Authorization de ma requête
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `Bearer ${user.token}`;
+    config.headers.Authorization = `${user.token}`;
   }
   return config;
 });

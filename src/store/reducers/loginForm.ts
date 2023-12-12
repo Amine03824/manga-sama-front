@@ -60,6 +60,9 @@ const loginFormReducer = createSlice({
       const { fieldName, value } = action.payload;
       state.credentials[fieldName] = value;
     },
+    changeUserisConnectedToTrue(state, action: PayloadAction<boolean>) {
+      state.userIsConnected = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -81,6 +84,7 @@ const loginFormReducer = createSlice({
       });
   },
 });
-export const { changeLoginFormInputsField } = loginFormReducer.actions;
+export const { changeLoginFormInputsField, changeUserisConnectedToTrue } =
+  loginFormReducer.actions;
 
 export default loginFormReducer.reducer;
