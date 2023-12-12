@@ -3,6 +3,7 @@ import categoriesReducer from './categories';
 import loginFormReducer from './loginForm';
 import signUpFormReducer from './signUpForm';
 import mangaReducer from './manga';
+import userPageReducer from './userPage';
 
 import createArticleReducer from './createArticle';
 
@@ -14,6 +15,7 @@ const reducer = {
   signUpForm: signUpFormReducer,
   categories: categoriesReducer,
   manga: mangaReducer,
+  userPage: userPageReducer,
 
   createArticle: createArticleReducer,
 
