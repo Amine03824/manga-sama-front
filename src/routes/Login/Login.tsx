@@ -37,9 +37,10 @@ function Login() {
 
   const handleSubmitLoginForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    dispatch(
+      loginUser({ email: emailInputValue, password: passwordInputValue })
+    );
   };
-
-  dispatch(loginUser({ email: emailInputValue, password: passwordInputValue }));
 
   return (
     <Page>
@@ -79,7 +80,7 @@ function Login() {
             </form>
           </div>
           <div className="login__area-valid-login">
-            <button type="button" className="login__area-button">
+            <button type="submit" className="login__area-button">
               Se connecter
               <img
                 src="public/assets/icons/CheckMarkIcon.png"
