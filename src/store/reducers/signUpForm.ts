@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { redirect } from 'react-router-dom';
+
 import { axiosInstance } from '../../utils/axios';
 
 type SignUpFormState = {
@@ -67,7 +67,6 @@ const signUpFormReducer = createSlice({
       })
       .addCase(createUser.fulfilled, (state) => {
         state.isLoading = false;
-        redirect('/');
       });
   },
 });

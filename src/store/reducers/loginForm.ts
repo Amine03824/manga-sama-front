@@ -76,6 +76,7 @@ const loginFormReducer = createSlice({
         state.userIsConnected = true;
         state.token = action.payload.token;
         state.user = action.payload.user;
+
         redirect('/user');
       });
   },

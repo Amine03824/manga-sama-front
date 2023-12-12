@@ -43,7 +43,7 @@ function Login() {
 
   return (
     <Page>
-      <ErrorMessage errorContent={error} />
+      {error && <ErrorMessage errorContent={error} />}
       <div className="login">
         <div className="login__area">
           <h2 className="login__area-title">Connexion</h2>
