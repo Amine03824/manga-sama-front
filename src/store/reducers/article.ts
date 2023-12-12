@@ -3,6 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { Article, ArticleState, TCondition } from '../../@types';
+import { axiosInstance } from '../../utils/axios';
 
 const initialState: ArticleState = {
   list_condition: [],
@@ -13,15 +14,13 @@ const initialState: ArticleState = {
 };
 
 export const getArticles = createAsyncThunk('articles/fetch', async () => {
-  const { data } = await axios.get<Article[]>('http://localhost:3000/article');
+  const { data } = await axiosInstance.get<Article[]>('/article');
 
   return data;
 });
 
 export const getConditions = createAsyncThunk('condition/fetch', async () => {
-  const { data } = await axios.get<TCondition[]>(
-    'http://localhost:3000/condition'
-  );
+  const { data } = await axiosInstance.get<TCondition[]>('/condition');
   return data;
 });
 

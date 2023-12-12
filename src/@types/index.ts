@@ -74,8 +74,22 @@ export type TCreateArticleForm = {
 };
 
 export type TUserArticle = {
+  id: number;
   pseudo: string;
   city: string;
-  create_at: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export type TUserConnected = {
+  id: number;
+  firstName: string;
+  lastname: string;
+  pseudo: string;
+  adress: string;
+  zipCode: number;
+  city: string;
+  email: string;
+  created_at: string;
   updated_at: string;
 };

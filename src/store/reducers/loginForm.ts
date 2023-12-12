@@ -1,7 +1,9 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { redirect } from 'react-router-dom';
-import { TUserArticle } from '../../@types';
+import { TUserConnected } from '../../@types';
+import { axiosInstance } from '../../utils/axios';
+import { LocalStorage } from '../../utils/LocalStorage';
 
 type LoginFormState = {
   credentials: {
@@ -10,6 +12,9 @@ type LoginFormState = {
   };
   error: string;
   isLoading: boolean;
+  token: string;
+  userIsConnected: boolean;
+  user: TUserConnected | null;
 };
 
 export const initialState: LoginFormState = {
@@ -19,6 +24,9 @@ export const initialState: LoginFormState = {
   },
   error: '',
   isLoading: false,
+  token: '',
+  userIsConnected: false,
+  user: null,
 };
 
 type LoginCredentials = {
@@ -29,10 +37,11 @@ type LoginCredentials = {
 export const loginUser = createAsyncThunk(
   'user/login',
   async (credentials: LoginCredentials) => {
-    const { data } = await axios.post<{ user: TUserArticle; token: string }>(
-      'http://localhost:3000/login',
-      credentials
-    );
+    const { data } = await axiosInstance.post<{
+      user: TUserConnected;
+      token: string;
+    }>('/login', credentials);
+    LocalStorage.setItem('user', data);
     return data;
   }
 );
@@ -62,8 +71,11 @@ const loginFormReducer = createSlice({
         state.isLoading = false;
         state.error = 'Un problème est survenue lors de la connexion';
       })
-      .addCase(loginUser.fulfilled, (state) => {
+      .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.userIsConnected = true;
+        state.token = action.payload.token;
+        state.user = action.payload.user;
         redirect('/user');
       });
   },

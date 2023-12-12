@@ -55,7 +55,7 @@ function SignUp() {
 
   return (
     <Page>
-      <ErrorMessage errorContent={error} />
+      {error && <ErrorMessage errorContent={error} />}
       <div className="signUp">
         <div className="signUp__logo-container">
           <img

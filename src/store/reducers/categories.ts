@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TCategory } from '../../@types';
+import { axiosInstance } from '../../utils/axios';
 
 type CategoriesState = {
   list_categories: TCategory[];
@@ -15,9 +16,7 @@ const initialState: CategoriesState = {
 };
 
 export const getCategories = createAsyncThunk('categories/fetch', async () => {
-  const { data } = await axios.get<TCategory[]>(
-    'http://localhost:3000/category'
-  );
+  const { data } = await axiosInstance.get<TCategory[]>('/category');
   return data;
 });
 
