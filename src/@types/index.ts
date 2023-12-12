@@ -46,6 +46,8 @@ export type TArticle = {
   transaction_id: number | null;
   date_transaction: string | null;
   state_completion: number | null;
+  image_url: string;
+  condition_id: number;
   created_at: string;
   updated_at: string | null;
 };
@@ -74,8 +76,9 @@ export type TCreateArticleForm = {
 };
 
 export type TUserArticle = {
+  id: number;
   pseudo: string;
   city: string;
-  create_at: string;
+  created_at: string;
   updated_at: string;
 };
