@@ -25,7 +25,7 @@ export const initialState: LoginFormState = {
   error: '',
   isLoading: false,
   token: '',
-  userIsConnected: false,
+  userIsConnected: true,
   user: null,
 };
 

@@ -78,7 +78,7 @@ function Article() {
                 Vendu par :
               </p>
               <p className="Article__container_top-right-soldby-sellername">
-                Naruto-kun
+                {article.user.pseudo}
               </p>
             </div>
             <button

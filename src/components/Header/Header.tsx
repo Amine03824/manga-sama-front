@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Header.scss';
+import { useAppSelector } from '../../hooks/redux';
 
 type HeaderProps = {
   menuIsVisible: boolean;
@@ -7,6 +8,10 @@ type HeaderProps = {
 };
 
 function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
+  const userIsConnected = useAppSelector(
+    (state) => state.loginForm.userIsConnected
+  );
+  const user = useAppSelector((state) => state.loginForm.user);
   function handleOnClickMenuButton() {
     setMenuIsVisible(!menuIsVisible);
   }
@@ -30,20 +35,39 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
             className="header__logo"
           />
         </Link>
-        <div className="header__top_container-links">
-          <div className="header__top_container-links-login">
-            <Link to="login" className="header__top_container-login">
-              Connexion
-              <img src="/assets/icons/user-icon.png" alt="login-logo" />
-            </Link>
+        {!userIsConnected && (
+          <div className="header__top_container-links">
+            <div className="header__top_container-links-signup">
+              <Link to="signup" className="header__top_container-signup">
+                Inscription
+                <img src="/assets/icons/register-icon.png" alt="signup-logo" />
+              </Link>
+            </div>
+            <div className="header__top_container-links-login">
+              <Link to="login" className="header__top_container-login">
+                Connexion
+                <img src="/assets/icons/user-icon.png" alt="login-logo" />
+              </Link>
+            </div>
           </div>
-          <div className="header__top_container-links-signup">
-            <Link to="signup" className="header__top_container-signup">
-              Inscription
-              <img src="/assets/icons/register-icon.png" alt="signup-logo" />
-            </Link>
+        )}
+        {userIsConnected && (
+          <div className="header__top_container-links">
+            Bienvenue {user?.pseudo}-sama
+            <div className="header__top_container-links-signup">
+              <button type="button" className="header__top_container-signup">
+                Se déconnecter
+                <img src="/assets/icons/register-icon.png" alt="signup-logo" />
+              </button>
+            </div>
+            <div className="header__top_container-links-login">
+              <Link to="login" className="header__top_container-login">
+                Page de Profil
+                <img src="/assets/icons/user-icon.png" alt="login-logo" />
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
