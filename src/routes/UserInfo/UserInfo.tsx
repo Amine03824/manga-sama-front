@@ -1,16 +1,17 @@
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Page from '../../components/Page/Page';
 import './userInfo.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { useEffect } from 'react';
+
 import {
   changeUserInfo,
   getArticleByUser,
 } from '../../store/reducers/userPage';
 import { findArticleByUserId } from '../../store/selectors/articles';
 
-const UserInfo = () => {
+function UserInfo() {
   const dispatch = useAppDispatch();
 
   const { id } = useParams();
@@ -31,7 +32,7 @@ const UserInfo = () => {
 
   useEffect(() => {
     dispatch(getArticleByUser(parsedId));
-  });
+  }, [dispatch, parsedId]);
   return (
     <Page>
       <div className="user-info__main_container">
@@ -51,7 +52,10 @@ const UserInfo = () => {
           </h2>
           <ul className="user-info__bottom_container-articles-list">
             {articles.map((article) => (
-              <li className="user-info__bottom_container-articles-item">
+              <li
+                key={article.id}
+                className="user-info__bottom_container-articles-item"
+              >
                 <img
                   src={article.image_url}
                   alt="/"
@@ -73,6 +77,6 @@ const UserInfo = () => {
       </div>
     </Page>
   );
-};
+}
 
 export default UserInfo;

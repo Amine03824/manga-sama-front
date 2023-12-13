@@ -25,7 +25,7 @@ function Home() {
             Les dernières annonces
             <span>
               <img
-                src="public/assets/icons/register-icon.png"
+                src="assets/icons/register-icon.png"
                 alt="icon"
                 className="home__articles-title-icon"
               />

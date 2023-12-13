@@ -32,7 +32,7 @@ export const getArticleByUser = createAsyncThunk(
   'userArticle/fetch',
   async (userId: number) => {
     const { data } = await axiosInstance.get<TArticle[]>(
-      `/article/user/${userId}`
+      `/associate/user/${userId}/article`
     );
     return data;
   }
