@@ -24,6 +24,7 @@ import {
   changeErrorLoginPage,
   changeMessageLoginPage,
 } from '../../store/reducers/loginForm';
+import { LocalStorage } from '../../utils/LocalStorage';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
@@ -114,6 +115,7 @@ function CreateArticle() {
   ): Promise<void> => {
     event.preventDefault();
 
+    // A la soumission du formulaire , je crée un objet qui contiens les différentes information que l'API back a besoin pour ajouter un article dans la base de donnée
     const newArticle = {
       title: articleTitleInputValue,
       description: articleDescriptionInputValue,
@@ -126,8 +128,10 @@ function CreateArticle() {
     };
 
     try {
+      // ensuite , je fais un appel a API en post pour donner l'objet afin que l'API crée l'article.
       const createdArticle = await dispatch(createArticleFetch(newArticle));
 
+      // si l'API crée l'article , elle me renvoie l'article qui vient d'etre crée dans le base de donnée
       if (createdArticle) {
         mangas.forEach(async (manga) => {
           await dispatch(
@@ -139,7 +143,7 @@ function CreateArticle() {
         });
         await dispatch(
           associateUserToArticle({
-            user_id: 1,
+            user_id: LocalStorage.getItem('user').id,
             article_id: createdArticle.payload.article.id,
           })
         );
