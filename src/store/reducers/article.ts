@@ -2,8 +2,16 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { Article, ArticleState, TCondition } from '../../@types';
+import { Article, TCondition } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
+
+type ArticleState = {
+  list_articles: Article[];
+  list_condition: TCondition[];
+  error: null | string;
+  isLoading: boolean;
+  filteredArticles: Article[];
+};
 
 const initialState: ArticleState = {
   list_condition: [],

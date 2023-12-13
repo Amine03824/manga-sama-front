@@ -81,6 +81,5 @@ export const router = createBrowserRouter([
         element: <UserProfilPage />,
       },
     ],
-
   },
 ]);

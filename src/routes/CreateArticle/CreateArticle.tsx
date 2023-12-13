@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { ChangeEvent, FormEvent, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './CreateArticle.scss';
@@ -19,6 +20,10 @@ import {
 } from '../../store/reducers/createArticle';
 import Message from '../../components/Message/Message';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import {
+  changeErrorLoginPage,
+  changeMessageLoginPage,
+} from '../../store/reducers/loginForm';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
@@ -43,6 +48,9 @@ function CreateArticle() {
   );
   const messageContent = useAppSelector((state) => state.createArticle.message);
   const errorContent = useAppSelector((state) => state.createArticle.error);
+  const userIsConnected = useAppSelector(
+    (state) => state.loginForm.userIsConnected
+  );
 
   // Fonction qui permet de changer l'état de la modale pour ajouter un manga a l'article
   function handleClickAddMangaToArticle() {
@@ -84,6 +92,14 @@ function CreateArticle() {
       })
     );
   }, [dispatch]);
+  if (!userIsConnected) {
+    dispatch(
+      changeErrorLoginPage(
+        "La création d'un article nécéssite la connexion à un compte Utilisateur !!"
+      )
+    );
+    return <Navigate to="/login" />;
+  }
 
   // Fonction qui permet de changer la valeur dans le store de article_condition
   const handleChangeConditionArticle = (

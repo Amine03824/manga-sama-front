@@ -4,14 +4,6 @@ export type Article = {
   user: TUserArticle;
 };
 
-export type ArticleState = {
-  list_articles: Article[];
-  list_condition: TCondition[];
-  error: null | string;
-  isLoading: boolean;
-  filteredArticles: Article[];
-};
-
 export type TCategory = {
   id: number;
   category_name: string;

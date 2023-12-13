@@ -1,6 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { redirect } from 'react-router-dom';
+
 import { TUserConnected } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
 import { LocalStorage } from '../../utils/LocalStorage';
@@ -13,6 +12,7 @@ type LoginFormState = {
   error: string;
   isLoading: boolean;
   token: string;
+  messageLoginPage: string;
   userIsConnected: boolean;
   user: TUserConnected | null;
 };
@@ -23,6 +23,7 @@ export const initialState: LoginFormState = {
     password: 'test',
   },
   error: '',
+  messageLoginPage: '',
   isLoading: false,
   token: '',
   userIsConnected: false,
@@ -63,6 +64,12 @@ const loginFormReducer = createSlice({
     changeUserisConnectedToTrue(state, action: PayloadAction<boolean>) {
       state.userIsConnected = action.payload;
     },
+    changeMessageLoginPage(state, action: PayloadAction<string>) {
+      state.messageLoginPage = action.payload;
+    },
+    changeErrorLoginPage(state, action: PayloadAction<string>) {
+      state.error = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -72,19 +79,21 @@ const loginFormReducer = createSlice({
       })
       .addCase(loginUser.rejected, (state) => {
         state.isLoading = false;
-        state.error = 'Un problème est survenue lors de la connexion';
+        state.error = 'Email ou mot de passe incorrects';
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.userIsConnected = true;
         state.token = action.payload.token;
         state.user = action.payload.user;
-
-        redirect('/user');
       });
   },
 });
-export const { changeLoginFormInputsField, changeUserisConnectedToTrue } =
-  loginFormReducer.actions;
+export const {
+  changeLoginFormInputsField,
+  changeUserisConnectedToTrue,
+  changeMessageLoginPage,
+  changeErrorLoginPage,
+} = loginFormReducer.actions;
 
 export default loginFormReducer.reducer;

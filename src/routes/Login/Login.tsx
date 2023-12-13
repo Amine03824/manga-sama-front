@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import './Login.scss';
 import Footer from '../../components/Footer/Footer';
@@ -35,14 +35,12 @@ function Login() {
     );
   };
 
-  const handleSubmitLoginForm = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmitLoginForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(
+    await dispatch(
       loginUser({ email: emailInputValue, password: passwordInputValue })
     );
-    dispatch(
-      loginUser({ email: emailInputValue, password: passwordInputValue })
-    );
+    <Navigate to="/user/dashboard" />;
   };
 
   return (

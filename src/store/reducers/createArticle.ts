@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+
 import { redirect } from 'react-router-dom';
+
 import { TCreateArticleForm, TCreatedArticle } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
 
