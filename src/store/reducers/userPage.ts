@@ -2,11 +2,12 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TArticle, TUserArticle } from '../../@types';
+import { axiosInstance } from '../../utils/axios';
 
 type UserPageState = {
   userPageArticle: TArticle[];
   userPageInfo: TUserArticle;
-  userId: number | null;
+  userId: string | null;
   isLoading: boolean;
   messageUserPage: string;
   errorUserPage: string | null;
@@ -30,8 +31,8 @@ const initialState: UserPageState = {
 export const getArticleByUser = createAsyncThunk(
   'userArticle/fetch',
   async (userId: number) => {
-    const { data } = await axios.get<TArticle[]>(
-      `http://localhost:3000/article/user/${userId}`
+    const { data } = await axiosInstance.get<TArticle[]>(
+      `/article/user/${userId}`
     );
     return data;
   }

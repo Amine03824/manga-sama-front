@@ -11,6 +11,7 @@ type ArticleState = {
   error: null | string;
   isLoading: boolean;
   filteredArticles: Article[];
+  viewedArticle: Article | null;
 };
 
 const initialState: ArticleState = {
@@ -19,6 +20,7 @@ const initialState: ArticleState = {
   error: null,
   isLoading: true,
   filteredArticles: [],
+  viewedArticle: null,
 };
 
 export const getArticles = createAsyncThunk('articles/fetch', async () => {
@@ -38,6 +40,9 @@ const articleReducer = createSlice({
   reducers: {
     changeFilteredArticle(state, action: PayloadAction<Article[]>) {
       state.filteredArticles = action.payload;
+    },
+    changeViewedArticle(state, action: PayloadAction<Article>) {
+      state.viewedArticle = action.payload;
     },
   },
   extraReducers(builder) {
@@ -70,5 +75,6 @@ const articleReducer = createSlice({
   },
 });
 
-export const { changeFilteredArticle } = articleReducer.actions;
+export const { changeFilteredArticle, changeViewedArticle } =
+  articleReducer.actions;
 export default articleReducer.reducer;

@@ -10,6 +10,7 @@ function ISBNFormModal() {
   const dispatch = useAppDispatch();
 
   const ISBNInputValue = useAppSelector((state) => state.manga.ISBNInputValue);
+
   function handleChangeInputValue(event: ChangeEvent<HTMLInputElement>) {
     dispatch(changeISBNInputValue(event.target.value));
   }

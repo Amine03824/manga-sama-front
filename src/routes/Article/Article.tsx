@@ -1,13 +1,15 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/no-unescaped-entities */
 import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './Article.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { findArticle } from '../../store/selectors/articles';
-import { useEffect } from 'react';
+
 import { changeUserInfo } from '../../store/reducers/userPage';
+import { changeViewedArticle } from '../../store/reducers/article';
 
 function Article() {
   const { id } = useParams();
@@ -35,6 +37,7 @@ function Article() {
   // });
   useEffect(() => {
     dispatch(changeUserInfo(article.user));
+    dispatch(changeViewedArticle(article));
   });
   return (
     <Page>
@@ -88,19 +91,20 @@ function Article() {
                   {article.user.pseudo}
                 </p>
               </Link>
-
             </div>
-            <button
-              type="button"
-              className="Article__container_top-right-purchase-btn"
-            >
-              Acheter
-              <img
-                className="Article__container_top-right-img"
-                src="\assets\icons\cart-icon-32px.png"
-                alt="icône de caddy"
-              />
-            </button>
+            <Link to={`/article/${article.user.id}/transaction`}>
+              <button
+                type="button"
+                className="Article__container_top-right-purchase-btn"
+              >
+                Acheter
+                <img
+                  className="Article__container_top-right-img"
+                  src="\assets\icons\cart-icon-32px.png"
+                  alt="icône de caddy"
+                />
+              </button>
+            </Link>
           </div>
         </div>
         <div className="Article__container_bottom">

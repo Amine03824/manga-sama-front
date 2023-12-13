@@ -55,7 +55,7 @@ const mangaReducer = createSlice({
       })
       .addCase(getMangaByISBN.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
+        state.error = '';
         state.ISBNInputValue = '';
         state.ISBNFormIsVisible = false;
         state.manga.push(action.payload);

@@ -19,8 +19,8 @@ type LoginFormState = {
 
 export const initialState: LoginFormState = {
   credentials: {
-    email: 'hado78',
-    password: 'test',
+    email: '',
+    password: '',
   },
   error: '',
   messageLoginPage: '',
@@ -79,7 +79,6 @@ const loginFormReducer = createSlice({
       })
       .addCase(loginUser.rejected, (state) => {
         state.isLoading = false;
-        state.error = 'Email ou mot de passe incorrects';
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;

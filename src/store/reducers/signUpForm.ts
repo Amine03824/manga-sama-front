@@ -16,10 +16,10 @@ type SignUpFormState = {
 
 export const initialState: SignUpFormState = {
   credentials: {
-    pseudo: 'YsT',
-    email: 'tanguy.huart@oclock.school',
-    password: 'coucou',
-    password_bis: 'coucou',
+    pseudo: '',
+    email: '',
+    password: '',
+    password_bis: '',
   },
   isLoading: false,
   signUpError: '',

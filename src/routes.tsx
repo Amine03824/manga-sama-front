@@ -19,6 +19,7 @@ import Error from './routes/Error/Error';
 import Category from './routes/Category/category';
 import CreateArticle from './routes/CreateArticle/CreateArticle';
 import UserInfo from './routes/UserInfo/UserInfo';
+import Transaction from './routes/Transaction/Transaction';
 
 // import mangaData from './data/data';
 
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
       {
         path: '/article/user/:id',
         element: <UserInfo />,
+      },
+      {
+        path: '/article/:id/transaction',
+        element: <Transaction />,
       },
     ],
   },

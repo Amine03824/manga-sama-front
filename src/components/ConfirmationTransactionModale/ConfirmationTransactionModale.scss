@@ -1,0 +1,34 @@
+@use 'src/styles/_variables.scss' as v;
+
+.transaction__modale {
+  position: fixed;
+  top: 5rem;
+  left: 40%;
+  z-index: 2;
+  background-color: v.$grey-menu;
+  width: 30rem;
+  height: fit-content;
+  color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  &-warning {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &-content {
+    margin-top: 1rem;
+  }
+  &-btn {
+    margin-top: 0.5rem;
+    background-color: v.$pink-color;
+    padding: 0.3rem 0.8rem 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+  }
+}

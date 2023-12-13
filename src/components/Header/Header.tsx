@@ -3,8 +3,6 @@ import './Header.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
-import Message from '../Message/Message';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 type HeaderProps = {
   menuIsVisible: boolean;
@@ -17,7 +15,6 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
     (state) => state.loginForm.userIsConnected
   );
 
-  const user = useAppSelector((state) => state.loginForm.user);
   function handleOnClickMenuButton() {
     setMenuIsVisible(!menuIsVisible);
   }
@@ -64,7 +61,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
         )}
         {userIsConnected && (
           <div className="header__top_container-links">
-            Bienvenue {user?.pseudo}-sama
+            Bienvenue {LocalStorage.getItem('user').user.pseudo}-sama
             <div className="header__top_container-links-signup">
               <button
                 type="button"

@@ -61,7 +61,7 @@ function SignUp() {
         <div className="signUp__logo-container">
           <img
             className="signUp__logo"
-            src="public/assets/logo/logo.png"
+            src="assets/logo/poulpesignup.png"
             alt="logo-Manga-Sama"
           />
         </div>
