@@ -1,9 +1,14 @@
 import ConfirmationTransactionModale from '../../components/ConfirmationTransactionModale/ConfirmationTransactionModale';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
+import { useAppSelector } from '../../hooks/redux';
 import './Transaction.scss';
 
 function Transaction() {
+  const transactionArticle = useAppSelector(
+    (state) => state.article.viewedArticle
+  );
+
   return (
     <Page>
       <div className="transaction">
@@ -20,10 +25,10 @@ function Transaction() {
                 alt="logo"
               />
               <h3 className="transaction__area-top-profile-name">
-                Anthony Trujillo
+                {transactionArticle?.user.pseudo}
               </h3>
               <p className="transaction__area-top-profile-location">
-                La Rochelle
+                {transactionArticle?.user.city}
               </p>
             </div>
             <img
@@ -33,14 +38,37 @@ function Transaction() {
             />
             <div className="transaction__area-top-article">
               <img
-                src="/assets/icons/naruto01.jpg"
+                src={transactionArticle?.mangas[0].cover_url}
                 alt="article"
                 className="transaction__area-top-article-image"
               />
-              <p className="transaction__area-top-article-title">Naruto</p>
-              <p className="transaction__area-top-article-volume">Tome 12</p>
+              <table>
+                <tbody>
+                  {transactionArticle?.mangas.map((manga) => (
+                    <tr key={manga.code_isbn}>
+                      <td
+                        className="transaction__area-top-article-title"
+                        key={manga.title}
+                      >
+                        {manga.title}
+                      </td>
+                      <td className="transaction__area-top-article-volume">
+                        Volume : {manga.volume}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {/* <p className="transaction__area-top-article-title">
+                {transactionArticle?.mangas[0].title}
+              </p>
+              <p className="transaction__area-top-article-volume">
+                Tome {transactionArticle?.mangas[0].volume}
+              </p> */}
 
-              <p className="transaction__area-top-article-price">30 €</p>
+              <p className="transaction__area-top-article-price">
+                {transactionArticle?.article.price} €
+              </p>
             </div>
             <img
               src="/assets/icons/arrow-point-to-right.png"
@@ -70,7 +98,7 @@ function Transaction() {
         </div>
       </div>
       {/* Modale de confirmation de transaction coucou */}
-      <ConfirmationTransactionModale />
+      {/* <ConfirmationTransactionModale /> */}
       <Footer />
     </Page>
   );

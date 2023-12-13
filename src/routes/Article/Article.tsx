@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { findArticle } from '../../store/selectors/articles';
 
 import { changeUserInfo } from '../../store/reducers/userPage';
+import { changeViewedArticle } from '../../store/reducers/article';
 
 function Article() {
   const { id } = useParams();
@@ -36,6 +37,7 @@ function Article() {
   // });
   useEffect(() => {
     dispatch(changeUserInfo(article.user));
+    dispatch(changeViewedArticle(article));
   });
   return (
     <Page>
