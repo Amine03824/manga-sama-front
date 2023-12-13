@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ConfirmationTransactionModale from '../../components/ConfirmationTransactionModale/ConfirmationTransactionModale';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
@@ -9,6 +10,12 @@ function Transaction() {
   const transactionArticle = useAppSelector(
     (state) => state.article.viewedArticle
   );
+
+  const [modaleIsVisible, setModaleIsVisible] = useState(false);
+
+  function handleClickTransactionBtn() {
+    setModaleIsVisible(true);
+  }
 
   return (
     <Page>
@@ -92,14 +99,18 @@ function Transaction() {
             </div>
           </div>
           <div className="transaction__area-bottom-button">
-            <button type="button" className="transaction__button">
+            <button
+              onClick={handleClickTransactionBtn}
+              type="button"
+              className="transaction__button"
+            >
               Proceder au paiement
             </button>
           </div>
         </div>
       </div>
-      {/* Modale de confirmation de transaction coucou */}
-      {/* <ConfirmationTransactionModale /> */}
+
+      {modaleIsVisible && <ConfirmationTransactionModale />}
       <Footer />
     </Page>
   );
