@@ -2,6 +2,7 @@ import ConfirmationTransactionModale from '../../components/ConfirmationTransact
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import { useAppSelector } from '../../hooks/redux';
+import { LocalStorage } from '../../utils/LocalStorage';
 import './Transaction.scss';
 
 function Transaction() {
@@ -83,10 +84,10 @@ function Transaction() {
                 className="transaction__area-top-profile-img"
               />
               <h3 className="transaction__area-top-profile-name">
-                Houdini du 78
+                {LocalStorage.getItem('user').user.pseudo}
               </h3>
               <p className="transaction__area-top-profile-location">
-                Montigny-le-Bretonneux
+                {LocalStorage.getItem('user').user.city}
               </p>
             </div>
           </div>
