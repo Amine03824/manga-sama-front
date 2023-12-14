@@ -1,0 +1,30 @@
+@use '../../styles/variables' as v;
+
+.loader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  font-size: 2em;
+
+  z-index: 12;
+  background-color: v.$grey-menu;
+  animation: fade 0.75s ease;
+  opacity: 0.9;
+
+  &__container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    left: 25%;
+    top: 25%;
+  }
+
+  &__gif {
+    width: 40%;
+  }
+
+  &__text {
+    color: v.$pink-color;
+  }
+}

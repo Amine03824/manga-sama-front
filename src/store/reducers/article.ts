@@ -44,6 +44,9 @@ const articleReducer = createSlice({
     changeViewedArticle(state, action: PayloadAction<Article>) {
       state.viewedArticle = action.payload;
     },
+    changeIsLoadingState(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
