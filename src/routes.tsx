@@ -91,7 +91,7 @@ export const router = createBrowserRouter([
         element: <UserProfilPage />,
       },
       {
-        path: '/user/dashboard/transactions',
+        path: 'transactions',
         element: <UserTransactions />,
       },
     ],
