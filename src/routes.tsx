@@ -75,10 +75,10 @@ export const router = createBrowserRouter([
         path: '/article/:id/transaction',
         element: <Transaction />,
       },
-      {
-        path: '/usertransactions',
-        element: <UserTransactions />,
-      },
+      // {
+      //   path: '/usertransactions',
+      //   element: <UserTransactions />,
+      // },
     ],
   },
   {
@@ -90,10 +90,10 @@ export const router = createBrowserRouter([
         path: '/user/dashboard',
         element: <UserProfilPage />,
       },
-      // {
-      //   path: 'user/dashboard/transactions',
-      //   element: <UserTransactions />,
-      // },
+      {
+        path: '/user/dashboard/transactions',
+        element: <UserTransactions />,
+      },
     ],
   },
 ]);

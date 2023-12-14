@@ -1,11 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import MobileNav from '../../components/MobileNav/MobileNav';
+import { useParams } from 'react-router-dom';
 import Page from '../../components/Page/Page';
 import Footer from '../../components/Footer/Footer';
 import './UserTransactions.scss';
 
 function UserTransactions() {
+  const { id } = useParams();
+
+  if (!id) {
+    throw new Error('id is missing');
+  }
+  const parsedId = parseInt(id, 10);
+
+  const userTransactions = JSON.parse(
+    localStorage.getItem(`user_${parsedId}_transactions`) || '[]'
+  );
+
   return (
     <Page>
       <div className="user-transactions">
