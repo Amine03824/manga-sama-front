@@ -151,7 +151,7 @@ function CreateArticle() {
         dispatch(
           changeCreateArticleMessage("L'article à été crée avec succès")
         );
-        return navigate('/');
+        navigate('/');
       }
     } catch {
       throw new Error('Problleme lors de la fonction asynchrone');
