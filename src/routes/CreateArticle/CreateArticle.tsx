@@ -144,7 +144,7 @@ function CreateArticle() {
         });
         await dispatch(
           associateUserToArticle({
-            user_id: LocalStorage.getItem('user').id,
+            user_id: LocalStorage.getItem('user').user.id,
             article_id: createdArticle.payload.article.id,
           })
         );
@@ -262,7 +262,7 @@ function CreateArticle() {
             </select>
 
             <button className="CreateArticle__form_btn" type="submit">
-              Publier mon annonce <img src="\assets\icons\add.png" alt="logo" />
+              Publier mon annonce <img src="assets\icons\add.png" alt="logo" />
             </button>
           </form>
         </div>
