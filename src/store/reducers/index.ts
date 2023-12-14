@@ -8,6 +8,7 @@ import userPageReducer from './userPage';
 import createArticleReducer from './createArticle';
 
 import searchBarMenuReducer from './searchBarMenu';
+import transactionReducer from './transaction';
 
 const reducer = {
   article: articlesReducer,
@@ -20,6 +21,7 @@ const reducer = {
   createArticle: createArticleReducer,
 
   searchBar: searchBarMenuReducer,
+  transaction: transactionReducer,
 };
 
 export default reducer;
