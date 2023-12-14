@@ -85,6 +85,7 @@ export type TUserConnected = {
   zipCode: number;
   city: string;
   email: string;
+  phoneNumber: number;
   created_at: string;
   updated_at: string;
 };
