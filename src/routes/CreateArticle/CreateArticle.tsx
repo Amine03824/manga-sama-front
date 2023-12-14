@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { ChangeEvent, FormEvent, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './CreateArticle.scss';
@@ -28,6 +28,7 @@ import { LocalStorage } from '../../utils/LocalStorage';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   // Au début de notre composant on récupère toutes les donées du store qui vont être utlisé dans notre composant.
   const ISBNModal = useAppSelector((state) => state.manga.ISBNFormIsVisible);
@@ -150,6 +151,7 @@ function CreateArticle() {
         dispatch(
           changeCreateArticleMessage("L'article à été crée avec succès")
         );
+        return navigate('/');
       }
     } catch {
       throw new Error('Problleme lors de la fonction asynchrone');
