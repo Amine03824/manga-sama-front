@@ -64,6 +64,7 @@ function UserTransactions() {
           </ul>
         </div>
       </div>
+      <Footer />
     </Page>
   );
 }

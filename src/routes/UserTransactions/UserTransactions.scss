@@ -6,6 +6,10 @@
   margin: 1rem;
   display: flex;
   flex-direction: column;
+  @media screen and (min-width: 768px) {
+    width: 70%;
+    margin: 2rem auto;
+  }
 
   justify-content: center;
   &__top {
@@ -25,7 +29,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-
+    padding: 1rem 0;
     align-items: center;
 
     &_item {
@@ -38,6 +42,9 @@
       padding: 0.5rem;
       font-family: v.$main-font;
       font-weight: bold;
+      @media screen and (min-width: 768px) {
+        width: 75%;
+      }
 
       &-img {
         width: 4rem;
