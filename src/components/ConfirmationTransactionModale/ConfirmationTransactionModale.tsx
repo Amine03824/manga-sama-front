@@ -6,26 +6,28 @@ import './ConfirmationTransactionModale.scss';
 
 function ConfirmationTransactionModale() {
   const dispatch = useAppDispatch();
-  const seller_id = useAppSelector(
+  const sellerID = useAppSelector(
     (state) => state.article.viewedArticle?.user.id
   );
-  const article_id = useAppSelector(
+  const articleID = useAppSelector(
     (state) => state.article.viewedArticle?.article.id
   );
-  const buyer_id = LocalStorage.getItem('user').user.id;
+  const buyerID = LocalStorage.getItem('user').user.id;
 
   const handleClickAcceptTransaction = async () => {
     const data = await dispatch(
       acceptTransaction({
-        sellerID: seller_id,
-        articleID: article_id,
-        buyerID: buyer_id,
+        sellerID,
+        articleID,
+        buyerID,
       })
     );
 
-    if ((data.meta.requestStatus = 'fulfilled')) {
-      <Navigate to="/" />;
+    if (data.payload.status === 200) {
+      return <Navigate to="/" replace />;
     }
+
+    throw new Error('Transaction échouéeS');
   };
 
   return (
@@ -33,10 +35,10 @@ function ConfirmationTransactionModale() {
       <h2 className="transaction__modale-warning">Attention !</h2>
       <p className="transaction__modale-content">
         Manga-Sama se charge uniquement de mettre en relation les utilisateurs
-        entre eux. Un mail de confirmation avec les coordonnées de l'autre
-        partie va vous être envoyé afin que vous puissiez procéder à la vente.
-        Nous travaillons actuellement afin de mettre en place un moyen de
-        paiement sécurisé sur le site
+        entre eux. Un mail de confirmation avec les coordonnées de lautre partie
+        va vous être envoyé afin que vous puissiez procéder à la vente. Nous
+        travaillons actuellement afin de mettre en place un moyen de paiement
+        sécurisé sur le site
       </p>
       <button
         onClick={handleClickAcceptTransaction}
