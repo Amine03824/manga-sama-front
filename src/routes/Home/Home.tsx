@@ -3,7 +3,10 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { changeFilteredArticle } from '../../store/reducers/article';
+import {
+  changeFilteredArticle,
+  getArticles,
+} from '../../store/reducers/article';
 import Message from '../../components/Message/Message';
 
 function Home() {

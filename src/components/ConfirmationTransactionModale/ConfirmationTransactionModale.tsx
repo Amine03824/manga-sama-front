@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { acceptTransaction } from '../../store/reducers/transaction';
 import { LocalStorage } from '../../utils/LocalStorage';
@@ -6,6 +6,7 @@ import './ConfirmationTransactionModale.scss';
 
 function ConfirmationTransactionModale() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const sellerID = useAppSelector(
     (state) => state.article.viewedArticle?.user.id
   );
@@ -24,7 +25,9 @@ function ConfirmationTransactionModale() {
     );
 
     if (data.payload.status === 200) {
-      return <Navigate to="/" replace />;
+      console.log('COUCOU');
+
+      return navigate('/');
     }
 
     throw new Error('Transaction échouéeS');
