@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { axiosInstance } from '../../utils/axios';
+import { changeIsLoading } from './loading';
 
 type SignUpFormState = {
   credentials: {
@@ -34,8 +34,10 @@ type SignUpCredentials = {
 
 export const createUser = createAsyncThunk(
   'user/signUp',
-  async (credentials: SignUpCredentials) => {
+  async (credentials: SignUpCredentials, thunkAPI) => {
+    thunkAPI.dispatch(changeIsLoading(true));
     const { data } = await axiosInstance.post('/user', credentials);
+    thunkAPI.dispatch(changeIsLoading(false));
     return data;
   }
 );

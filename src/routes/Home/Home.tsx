@@ -3,10 +3,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import {
-  changeFilteredArticle,
-  getArticles,
-} from '../../store/reducers/article';
+import { getArticles } from '../../store/reducers/article';
 import Message from '../../components/Message/Message';
 
 function Home() {
@@ -16,13 +13,13 @@ function Home() {
   // console.log('Filtered Articles in Home:', articlesFiltered);
 
   const dispatch = useAppDispatch();
-  const articles = useAppSelector((state) => state.article.list_articles);
+
   const messageTransaction = useAppSelector(
     (state) => state.transaction.messageTransaction
   );
   useEffect(() => {
-    dispatch(changeFilteredArticle(articles));
-  }, [dispatch, articles]);
+    dispatch(getArticles());
+  }, [dispatch]);
   return (
     <div className="home">
       {messageTransaction && <Message message_content={messageTransaction} />}

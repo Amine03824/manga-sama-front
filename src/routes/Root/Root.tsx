@@ -5,16 +5,15 @@ import Menu from '../../components/Menu/Menu';
 import './Root.scss';
 import MobileNav from '../../components/MobileNav/MobileNav';
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import { getArticles, getConditions } from '../../store/reducers/article';
 import { getCategories } from '../../store/reducers/categories';
 import { LocalStorage } from '../../utils/LocalStorage';
 import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
-import Loader from '../../components/Loader/Loader';
 
 function Root() {
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector((state) => state.article.isLoading);
+
   // Utilisation d'un useState pour faire passer l'etat de la barre de menu directement en props dans le composant menu
   const [menuIsVisible, setMenuIsVisible] = useState(true);
   const user = LocalStorage.getItem('user');
@@ -30,7 +29,6 @@ function Root() {
 
   return (
     <div className="root">
-      {isLoading && <Loader />}
       <Menu setMenuIsVisible={setMenuIsVisible} menuIsVisible={menuIsVisible} />
       <div className="right__section">
         <Header

@@ -1,5 +1,3 @@
-import { useAppDispatch } from '../../hooks/redux';
-import { changeCreateArticleMessage } from '../../store/reducers/createArticle';
 import './Message.scss';
 
 type MessageProps = {
@@ -7,10 +5,7 @@ type MessageProps = {
 };
 
 function Message({ message_content }: MessageProps) {
-  const dispatch = useAppDispatch();
-  function handleCloseMessageModal() {
-    dispatch(changeCreateArticleMessage(''));
-  }
+  function handleCloseMessageModal() {}
 
   return (
     <div className="dialogMessage">

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { axiosInstance } from '../../utils/axios';
+import { changeIsLoading } from './loading';
 
 type TransactionState = {
   isLoading: boolean;
@@ -21,8 +22,10 @@ type TransactionCredentials = {
 
 export const acceptTransaction = createAsyncThunk(
   'transaction/accepted',
-  async (credentials: TransactionCredentials) => {
+  async (credentials: TransactionCredentials, thunkAPI) => {
+    thunkAPI.dispatch(changeIsLoading(true));
     const { data } = await axiosInstance.post('/transaction', credentials);
+    thunkAPI.dispatch(changeIsLoading(false));
     return data;
   }
 );
