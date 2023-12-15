@@ -1,12 +1,49 @@
 import Page from '../../components/Page/Page';
 import Footer from '../../components/Footer/Footer';
 import './UserTransactions.scss';
-
-// function getUserFromLocalStorage() {
-//   const userID = localStorage.getItem('user');
-// }
+import { axiosInstance } from '../../utils/axios';
+import { LocalStorage } from '../../utils/LocalStorage';
+import { useEffect, useState } from 'react';
+import { getArticleByUser } from '../../store/reducers/userPage';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { TArticle } from '../../@types';
 
 function UserTransactions() {
+  const dispatch = useAppDispatch();
+  function getUserFromLocalStorage() {
+    const userID = LocalStorage.getItem('user').user.id;
+    return userID;
+  }
+
+  const user = getUserFromLocalStorage();
+
+  const [userArticle, setUserArticle] = useState<TArticle[]>([]);
+
+  const getArticles = useAppSelector((state) => state.userPage.userPageArticle);
+
+  // function filterArticles() {
+  //   setUserArticle(
+  //     getArticles.filter((article) => article.transaction_id != null)
+  //   );
+  // }
+
+  useEffect(() => {
+    console.log(user);
+    console.log(getArticles);
+
+    const fetch = async () => {
+      debugger;
+      await dispatch(getArticleByUser(user));
+      console.log(getArticles);
+
+      const filteredArticles = getArticles.filter(
+        (article) => article.transaction_id != null
+      );
+      setUserArticle(filteredArticles);
+    };
+    fetch();
+  }, [dispatch, user]);
+
   return (
     <Page>
       <div className="user-transactions">
@@ -17,51 +54,25 @@ function UserTransactions() {
         </div>
         <div className="user-transactions__main_container">
           <ul className="user-transactions__cards">
-            <li className="user-transactions__cards_item">
-              <img
-                className="user-transactions__cards_item-img"
-                src="\assets\icons\naruto01.jpg"
-              ></img>
-              <div className="user-transactions__cards_item-content">
-                <h4 className="user-transactions__cards_item-content-title">
-                  Nom du manga
-                </h4>
-                <p className="user-transactions__cards_item-content-price">
-                  10 €
+            {userArticle.map((article) => (
+              <li key={article.id} className="user-transactions__cards_item">
+                <img
+                  className="user-transactions__cards_item-img"
+                  src={article.image_url}
+                ></img>
+                <div className="user-transactions__cards_item-content">
+                  <h4 className="user-transactions__cards_item-content-title">
+                    {article.title}
+                  </h4>
+                  <p className="user-transactions__cards_item-content-price">
+                    {article.price}
+                  </p>
+                </div>
+                <p className="user-transactions__cards_item-state">
+                  {article.state_completion}
                 </p>
-              </div>
-              <p className="user-transactions__cards_item-state">Vendu</p>
-            </li>
-            <li className="user-transactions__cards_item">
-              <img
-                className="user-transactions__cards_item-img"
-                src="\assets\icons\naruto01.jpg"
-              ></img>
-              <div className="user-transactions__cards_item-content">
-                <h4 className="user-transactions__cards_item-content-title">
-                  Nom du manga
-                </h4>
-                <p className="user-transactions__cards_item-content-price">
-                  10 €
-                </p>
-              </div>
-              <p className="user-transactions__cards_item-state">Vendu</p>
-            </li>
-            <li className="user-transactions__cards_item">
-              <img
-                className="user-transactions__cards_item-img"
-                src="\assets\icons\naruto01.jpg"
-              ></img>
-              <div className="user-transactions__cards_item-content">
-                <h4 className="user-transactions__cards_item-content-title">
-                  Nom du manga
-                </h4>
-                <p className="user-transactions__cards_item-content-price">
-                  10 €
-                </p>
-              </div>
-              <p className="user-transactions__cards_item-state">Vendu</p>
-            </li>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

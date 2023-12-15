@@ -42,12 +42,12 @@ const transactionReducer = createSlice({
       .addCase(acceptTransaction.rejected, (state) => {
         state.isLoading = false;
         state.error =
-          'La transaction à échouée... Veuillez réessayer ou contacter le support';
+          'La transaction a échoué... Veuillez réessayer ou contacter le support';
       })
       .addCase(acceptTransaction.fulfilled, (state) => {
         state.isLoading = false;
         state.messageTransaction =
-          "Félicitation ! Vous serez bientôt proproiétéaire d'un ou plusieurs nouveaux Mangas!";
+          "Félicitations ! Vous serez bientôt propriétaire d'un ou plusieurs nouveaux mangas !";
       });
   },
 });
