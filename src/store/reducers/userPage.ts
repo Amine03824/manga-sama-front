@@ -69,6 +69,7 @@ const userPageReducer = createSlice({
       .addCase(getArticleByUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.userPageArticle = action.payload;
+        console.log(state.userPageArticle);
       });
     // // gestion du fetch afin de recuperer un user par son id
     // .addCase(getUserById.pending, (state) => {

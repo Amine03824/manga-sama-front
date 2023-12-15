@@ -21,18 +21,27 @@ function UserTransactions() {
 
   const getArticles = useAppSelector((state) => state.userPage.userPageArticle);
 
-  function filterArticles() {
-    setUserArticle(
-      getArticles.filter((article) => article.transaction_id != null)
-    );
-  }
+  // function filterArticles() {
+  //   setUserArticle(
+  //     getArticles.filter((article) => article.transaction_id != null)
+  //   );
+  // }
 
   useEffect(() => {
+    console.log(user);
+    console.log(getArticles);
+
     const fetch = async () => {
+      debugger;
       await dispatch(getArticleByUser(user));
+      console.log(getArticles);
+
+      const filteredArticles = getArticles.filter(
+        (article) => article.transaction_id != null
+      );
+      setUserArticle(filteredArticles);
     };
     fetch();
-    filterArticles();
   }, [dispatch, user]);
 
   return (
