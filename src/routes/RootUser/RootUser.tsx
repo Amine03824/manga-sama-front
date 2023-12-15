@@ -1,4 +1,6 @@
-import { Navigate, Outlet } from 'react-router-dom';
+
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+
 import { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import './RootUser.scss';
@@ -10,24 +12,29 @@ import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
 
 function RootUser() {
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
   const [menuIsVisible, setMenuIsVisible] = useState(true);
   const userIsConnected = useAppSelector(
     (state) => state.loginForm.userIsConnected
   );
   const { user } = LocalStorage.getItem('user');
 
+
   useEffect(() => {
     if (!user) {
       dispatch(changeUserisConnectedToTrue(false));
+      navigate('/login');
+      console.log(userIsConnected);
     }
     if (user) {
       dispatch(changeUserisConnectedToTrue(true));
+      console.log(userIsConnected);
     }
   }, [dispatch, user]);
 
-  if (!userIsConnected) {
-    return <Navigate to="/login" replace />;
-  }
+
   return (
     <div className="root__user">
       <UserMenu

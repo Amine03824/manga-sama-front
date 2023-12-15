@@ -44,7 +44,7 @@ function UserMenu({ menuIsVisible, setMenuIsVisible }: UserMenuProps) {
             <Link to="/">Mes annonces</Link>
           </li>
           <li className="home-menu__user-item">
-            <Link to="/">Mes transactions</Link>
+            <Link to="/user/dashboard/transactions">Mes transactions</Link>
           </li>
         </ul>
       </div>

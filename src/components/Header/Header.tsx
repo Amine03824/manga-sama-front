@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
@@ -12,6 +12,7 @@ type HeaderProps = {
 
 function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const userIsConnected = useAppSelector(
     (state) => state.loginForm.userIsConnected
   );
@@ -24,6 +25,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   function handleDisconnect() {
     dispatch(changeUserisConnectedToTrue(false));
     LocalStorage.removeItem();
+    navigate('/');
   }
 
   return (
