@@ -2,6 +2,10 @@ import Page from '../../components/Page/Page';
 import Footer from '../../components/Footer/Footer';
 import './UserTransactions.scss';
 
+// function getUserFromLocalStorage() {
+//   const userID = localStorage.getItem('user');
+// }
+
 function UserTransactions() {
   return (
     <Page>
