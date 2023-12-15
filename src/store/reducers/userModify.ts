@@ -38,9 +38,9 @@ const initialState: UserModifyState = {
     lastName: '',
     pseudo: '',
     adress: '',
-    zipCode: 0,
+    zipCode: '',
     city: '',
-    phoneNumber: 0,
+    phoneNumber: '',
   },
 };
 
@@ -49,9 +49,9 @@ type UserCredentials = {
   lastName: string;
   pseudo: string;
   adress: string;
-  zipCode: number;
+  zipCode: string;
   city: string;
-  phoneNumber: number;
+  phoneNumber: string;
 };
 
 export const modifyUser = createAsyncThunk(
@@ -91,13 +91,13 @@ const userModifyReducer = createSlice({
           state.credentials.adress = value as string;
           break;
         case 'zipCode':
-          state.credentials.zipCode = value as number;
+          state.credentials.zipCode = value as string;
           break;
         case 'city':
           state.credentials.city = value as string;
           break;
         case 'phoneNumber':
-          state.credentials.phoneNumber = value as number;
+          state.credentials.phoneNumber = value as string;
           break;
         default:
           break;
