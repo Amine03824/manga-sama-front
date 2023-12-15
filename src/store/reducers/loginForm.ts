@@ -3,6 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TUserConnected } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
 import { LocalStorage } from '../../utils/LocalStorage';
+import { changeIsLoading } from './loading';
 
 type LoginFormState = {
   credentials: {
@@ -37,12 +38,14 @@ type LoginCredentials = {
 
 export const loginUser = createAsyncThunk(
   'user/login',
-  async (credentials: LoginCredentials) => {
+  async (credentials: LoginCredentials, thunkAPI) => {
+    thunkAPI.dispatch(changeIsLoading(true));
     const { data } = await axiosInstance.post<{
       user: TUserConnected;
       token: string;
     }>('/auth/login', credentials);
     LocalStorage.setItem('user', data);
+    thunkAPI.dispatch(changeIsLoading(false));
     return data;
   }
 );
@@ -74,14 +77,12 @@ const loginFormReducer = createSlice({
   extraReducers(builder) {
     builder
       .addCase(loginUser.pending, (state) => {
-        state.isLoading = true;
         state.error = '';
       })
       .addCase(loginUser.rejected, (state) => {
-        state.isLoading = false;
+        state.error = 'Mot de passe ou email incorrect';
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.userIsConnected = true;
         state.token = action.payload.token;
         state.user = action.payload.user;

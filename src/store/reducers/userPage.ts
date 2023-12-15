@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+
 import { TArticle, TUserArticle } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
 

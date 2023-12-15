@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import './Menu.scss';
 import clsx from 'clsx';
 
@@ -54,6 +54,10 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
   // ) => {
   //   dispatch(changeSearchInputValue);
   // };
+
+  useEffect(() => {
+    dispatch(changeFilteredArticle(articles));
+  }, [dispatch, articles]);
 
   return (
     <div className={clsx('home-menu', { 'home-menu--hidden': !menuIsVisible })}>

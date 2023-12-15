@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+
 import { TCategory } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
 

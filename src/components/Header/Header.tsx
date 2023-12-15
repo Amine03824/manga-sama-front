@@ -3,6 +3,7 @@ import './Header.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
+import Loader from '../Loader/Loader';
 
 type HeaderProps = {
   menuIsVisible: boolean;
@@ -15,6 +16,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   const userIsConnected = useAppSelector(
     (state) => state.loginForm.userIsConnected
   );
+  const isLoading = useAppSelector((state) => state.loading.isLoading);
 
   function handleOnClickMenuButton() {
     setMenuIsVisible(!menuIsVisible);
@@ -28,6 +30,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
 
   return (
     <div className="header">
+      {isLoading && <Loader />}
       <div className="header__top_container">
         <div className="header__top_container-button">
           <button

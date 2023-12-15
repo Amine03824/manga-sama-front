@@ -15,15 +15,11 @@ import {
   associateUserToArticle,
   changeCreateArticleConditionValue,
   changeCreateArticleInputValue,
-  changeCreateArticleMessage,
   createArticleFetch,
 } from '../../store/reducers/createArticle';
 import Message from '../../components/Message/Message';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import {
-  changeErrorLoginPage,
-  changeMessageLoginPage,
-} from '../../store/reducers/loginForm';
+import { changeErrorLoginPage } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
 
 function CreateArticle() {
@@ -148,9 +144,7 @@ function CreateArticle() {
             article_id: createdArticle.payload.article.id,
           })
         );
-        dispatch(
-          changeCreateArticleMessage("L'article à été crée avec succès")
-        );
+
         navigate('/');
       }
     } catch {
