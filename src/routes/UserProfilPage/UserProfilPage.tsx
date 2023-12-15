@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { ChangeEvent, FormEvent, useEffect } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import MobileNav from '../../components/MobileNav/MobileNav';
 import Page from '../../components/Page/Page';
 import './UserProfilPage.scss';
@@ -8,7 +8,6 @@ import Footer from '../../components/Footer/Footer';
 import { LocalStorage } from '../../utils/LocalStorage';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
-  modifyInputIsVisible,
   modifyInputUserInfo,
   modifyUser,
 } from '../../store/reducers/userModify';
@@ -16,27 +15,36 @@ import {
 function UserProfilPage() {
   const dispatch = useAppDispatch();
 
-  const firstNameInputIsVisible = useAppSelector(
-    (state) => state.userModify.inputsIsVisible.firstName
-  );
-  const lastNameInputIsVisible = useAppSelector(
-    (state) => state.userModify.inputsIsVisible.lastName
-  );
-  const pseudoInputIsVisible = useAppSelector(
-    (state) => state.userModify.inputsIsVisible.pseudo
-  );
-  const adressInputIsVisible = useAppSelector(
-    (state) => state.userModify.inputsIsVisible.adress
-  );
-  const cityInputIsValue = useAppSelector(
-    (state) => state.userModify.inputsIsVisible.city
-  );
-  const zipcodeInputisVisible = useAppSelector(
-    (state) => state.userModify.inputsIsVisible.zipCode
-  );
-  const phoneNumberIsVisible = useAppSelector(
-    (state) => state.userModify.inputsIsVisible.phoneNumber
-  );
+  const [pseudoInputIsVisible, setPseudoInputIsVisible] = useState(false);
+  const [firstNameInputIsVisible, setFirstNameInputIsVisible] = useState(false);
+  const [lastNameInputIsVisible, setLastNameInputIsVisible] = useState(false);
+  const [adressInputIsVisible, setAdressInputIsVisible] = useState(false);
+  const [cityInputIsVisible, setCityInputIsVisible] = useState(false);
+  const [zipCodeInputIsVisible, setZipCodeInputIsVisible] = useState(false);
+  const [phoneNumberInputIsVisible, setPhoneNumberInputIsVisible] =
+    useState(false);
+
+  // const firstNameInputIsVisible = useAppSelector(
+  //   (state) => state.userModify.inputsIsVisible.firstName
+  // );
+  // const lastNameInputIsVisible = useAppSelector(
+  //   (state) => state.userModify.inputsIsVisible.lastName
+  // );
+  // const pseudoInputIsVisible = useAppSelector(
+  //   (state) => state.userModify.inputsIsVisible.pseudo
+  // );
+  // const adressInputIsVisible = useAppSelector(
+  //   (state) => state.userModify.inputsIsVisible.adress
+  // );
+  // const cityInputIsValue = useAppSelector(
+  //   (state) => state.userModify.inputsIsVisible.city
+  // );
+  // const zipcodeInputisVisible = useAppSelector(
+  //   (state) => state.userModify.inputsIsVisible.zipCode
+  // );
+  // const phoneNumberIsVisible = useAppSelector(
+  //   (state) => state.userModify.inputsIsVisible.phoneNumber
+  // );
 
   const error = useAppSelector((state) => state.userModify.error);
 
@@ -62,19 +70,6 @@ function UserProfilPage() {
   const handleValidateUserInfo = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
-
-  function ShowInput(
-    name:
-      | 'firstName'
-      | 'lastName'
-      | 'pseudo'
-      | 'adress'
-      | 'city'
-      | 'zipCode'
-      | 'phoneNumber'
-  ): void {
-    dispatch(modifyInputIsVisible({ fieldName: name }));
-  }
 
   return (
     <Page>
@@ -106,10 +101,10 @@ function UserProfilPage() {
                       'userpage__infos-content--hidden': pseudoInputIsVisible,
                     })}
                     onDoubleClick={() => {
-                      ShowInput('pseudo');
+                      setPseudoInputIsVisible(true);
                     }}
                   >
-                    {LocalStorage.getItem('user').user.pseudo}
+                    Pseudo : {LocalStorage.getItem('user').user.pseudo}
                   </p>
                   <input
                     type="text"
@@ -125,10 +120,10 @@ function UserProfilPage() {
                         firstNameInputIsVisible,
                     })}
                     onDoubleClick={() => {
-                      ShowInput('firstName');
+                      setFirstNameInputIsVisible(true);
                     }}
                   >
-                    Prénom
+                    Prénom : {LocalStorage.getItem('user').user.firstName}
                   </p>
                   <input
                     type="text"
@@ -143,10 +138,11 @@ function UserProfilPage() {
                       'userpage__infos-content--hidden': lastNameInputIsVisible,
                     })}
                     onDoubleClick={() => {
-                      ShowInput('lastName');
+                      setLastNameInputIsVisible(true);
                     }}
                   >
-                    Nom de famille
+                    Nom de famille :{' '}
+                    {LocalStorage.getItem('user').user.lastName}
                   </p>
                   <input
                     type="text"
@@ -161,10 +157,10 @@ function UserProfilPage() {
                       'userpage__infos-content--hidden': adressInputIsVisible,
                     })}
                     onDoubleClick={() => {
-                      ShowInput('adress');
+                      setAdressInputIsVisible(true);
                     }}
                   >
-                    Adresse
+                    Adresse : {LocalStorage.getItem('user').user.adress}
                   </p>
                   <input
                     type="text"
@@ -176,54 +172,57 @@ function UserProfilPage() {
                 <li className="userpage__infos-item">
                   <p
                     className={clsx('userpage__infos-content', {
-                      'userpage__infos-content--hidden': cityInputIsValue,
+                      'userpage__infos-content--hidden': cityInputIsVisible,
                     })}
                     onDoubleClick={() => {
-                      ShowInput('city');
+                      setCityInputIsVisible(true);
                     }}
                   >
-                    Ville
+                    Ville : {LocalStorage.getItem('user').user.city}
                   </p>
                   <input
                     type="text"
                     className={clsx('userpage__infos-input', {
-                      'userpage__infos-input--hidden': !cityInputIsValue,
+                      'userpage__infos-input--hidden': !cityInputIsVisible,
                     })}
                   />
                 </li>
                 <li className="userpage__infos-item">
                   <p
                     className={clsx('userpage__infos-content', {
-                      'userpage__infos-content--hidden': zipcodeInputisVisible,
+                      'userpage__infos-content--hidden': zipCodeInputIsVisible,
                     })}
                     onDoubleClick={() => {
-                      ShowInput('zipCode');
+                      setZipCodeInputIsVisible(true);
                     }}
                   >
-                    Code Postal
+                    Code Postal : {LocalStorage.getItem('user').user.zipCode}
                   </p>
                   <input
                     type="text"
                     className={clsx('userpage__infos-input', {
-                      'userpage__infos-input--hidden': !zipcodeInputisVisible,
+                      'userpage__infos-input--hidden': !zipCodeInputIsVisible,
                     })}
                   />
                 </li>
                 <li className="userpage__infos-item">
                   <p
                     className={clsx('userpage__infos-content', {
-                      'userpage__infos-content--hidden': phoneNumberIsVisible,
+                      'userpage__infos-content--hidden':
+                        phoneNumberInputIsVisible,
                     })}
                     onDoubleClick={() => {
-                      ShowInput('phoneNumber');
+                      setPhoneNumberInputIsVisible(true);
                     }}
                   >
-                    Numéro de téléphone
+                    Numéro de téléphone :
+                    {LocalStorage.getItem('user').user.phoneNumber}
                   </p>
                   <input
                     type="text"
                     className={clsx('userpage__infos-input', {
-                      'userpage__infos-input--hidden': !phoneNumberIsVisible,
+                      'userpage__infos-input--hidden':
+                        !phoneNumberInputIsVisible,
                     })}
                   />
                 </li>

@@ -18,15 +18,6 @@ type UserModifyState = {
   error: string;
   userInfo: TUserFormModified;
   credentials: UserCredentials;
-  inputsIsVisible: {
-    firstName: boolean;
-    lastName: boolean;
-    pseudo: boolean;
-    adress: boolean;
-    zipCode: boolean;
-    city: boolean;
-    phoneNumber: boolean;
-  };
 };
 
 const initialState: UserModifyState = {
@@ -50,15 +41,6 @@ const initialState: UserModifyState = {
     zipCode: 0,
     city: '',
     phoneNumber: 0,
-  },
-  inputsIsVisible: {
-    firstName: false,
-    lastName: false,
-    pseudo: false,
-    adress: false,
-    zipCode: false,
-    city: false,
-    phoneNumber: false,
   },
 };
 
@@ -121,15 +103,6 @@ const userModifyReducer = createSlice({
           break;
       }
     },
-    modifyInputIsVisible(
-      state,
-      action: PayloadAction<{
-        fieldName: keyof UserCredentials;
-      }>
-    ) {
-      const { fieldName } = action.payload;
-      state.inputsIsVisible[fieldName] = true;
-    },
   },
   extraReducers(builder) {
     builder
@@ -148,6 +121,5 @@ const userModifyReducer = createSlice({
   },
 });
 
-export const { modifyInputUserInfo, modifyInputIsVisible } =
-  userModifyReducer.actions;
+export const { modifyInputUserInfo } = userModifyReducer.actions;
 export default userModifyReducer.reducer;

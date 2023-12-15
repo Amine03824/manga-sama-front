@@ -5,7 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   changeFilteredArticle,
-  getArticles,
+  // getArticles,
 } from '../../store/reducers/article';
 import Message from '../../components/Message/Message';
 

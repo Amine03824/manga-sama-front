@@ -69,12 +69,11 @@
     &-item {
       font-size: 1rem;
       padding: 5px;
-      background-color: white;
       border-radius: 20px;
       width: 300px;
       font-family: v.$secondary-font;
       font-weight: bold;
-      color: rgba(128, 128, 128, 0.829);
+      color: black;
       padding-left: 10px;
     }
     &-footer {
@@ -92,9 +91,8 @@
       background-color: v.$pink-color;
     }
     &-input {
-      background-color: v.$pink-bg;
       width: 100%;
-
+      background-color: white;
       border-radius: 20px;
     }
     &-input--hidden {
