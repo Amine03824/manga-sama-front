@@ -19,8 +19,6 @@ function UserTransactions() {
 
   const [userArticle, setUserArticle] = useState<TArticle[]>([]);
 
-  const getArticles = useAppSelector((state) => state.userPage.userPageArticle);
-
   // function filterArticles() {
   //   setUserArticle(
   //     getArticles.filter((article) => article.transaction_id != null)
@@ -29,13 +27,11 @@ function UserTransactions() {
 
   useEffect(() => {
     console.log(user);
-    console.log(getArticles);
 
     const fetch = async () => {
-      debugger;
       await dispatch(getArticleByUser(user));
-      console.log(getArticles);
 
+      const getArticles = LocalStorage.getItem('userArticle');
       const filteredArticles = getArticles.filter(
         (article) => article.transaction_id != null
       );
