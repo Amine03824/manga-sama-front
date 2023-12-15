@@ -3,6 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TArticle, TUserArticle } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
+import { LocalStorage } from '../../utils/LocalStorage';
 
 type UserPageState = {
   userPageArticle: TArticle[];
@@ -70,6 +71,7 @@ const userPageReducer = createSlice({
         state.isLoading = false;
         state.userPageArticle = action.payload;
         console.log(state.userPageArticle);
+        LocalStorage.setItem('userArticle', action.payload);
       });
     // // gestion du fetch afin de recuperer un user par son id
     // .addCase(getUserById.pending, (state) => {
