@@ -17,10 +17,9 @@ import {
   changeCreateArticleInputValue,
   createArticleFetch,
 } from '../../store/reducers/createArticle';
-import Message from '../../components/Message/Message';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import { changeErrorLoginPage } from '../../store/reducers/loginForm';
+
 import { LocalStorage } from '../../utils/LocalStorage';
+import { setError } from '../../store/reducers/loading';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
@@ -44,8 +43,7 @@ function CreateArticle() {
   const articleCondition = useAppSelector(
     (state) => state.createArticle.article_condition
   );
-  const messageContent = useAppSelector((state) => state.createArticle.message);
-  const errorContent = useAppSelector((state) => state.createArticle.error);
+
   const userIsConnected = useAppSelector(
     (state) => state.loginForm.userIsConnected
   );
@@ -92,7 +90,7 @@ function CreateArticle() {
   }, [dispatch]);
   if (!userIsConnected) {
     dispatch(
-      changeErrorLoginPage(
+      setError(
         "La création d'un article nécéssite la connexion à un compte Utilisateur !!"
       )
     );
@@ -154,8 +152,6 @@ function CreateArticle() {
 
   return (
     <Page>
-      {messageContent && <Message message_content={messageContent} />}
-      {errorContent && <ErrorMessage errorContent={errorContent} />}
       <h2 className="CreateArticle__title">Créer une nouvelle annonce</h2>
 
       <div className="CreateArticle__container">

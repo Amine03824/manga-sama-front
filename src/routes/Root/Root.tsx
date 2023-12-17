@@ -20,14 +20,14 @@ function Root() {
   // Utilisation d'un useState pour faire passer l'etat de la barre de menu directement en props dans le composant menu
   const [menuIsVisible, setMenuIsVisible] = useState(true);
   const user = LocalStorage.getItem('user');
-  const isLoading = useAppSelector((state) => state.loading.isLoading);
+
   const errorMessage = useAppSelector((state) => state.loading.errorMessage);
   const infoMessage = useAppSelector((state) => state.loading.infoMessage);
   // Au premier chargement de Root , on fait des demande a l'API pour qu'elle nous donnes les donées nécéssaire :  tous les articles , toutes les catégories , toutes les conditions d'article
   useEffect(() => {
     dispatch(getArticles());
-    // dispatch(getCategories());
-    // dispatch(getConditions());
+    dispatch(getCategories());
+    dispatch(getConditions());
     if (user) {
       dispatch(changeUserisConnectedToTrue(true));
     }
@@ -35,9 +35,8 @@ function Root() {
 
   return (
     <div className="root">
-      {isLoading && <Loader />}
-      {/* {errorMessage && <ErrorMessage errorContent={errorMessage} />}
-      {infoMessage && <Message messageContent={infoMessage} />} */}
+      {errorMessage && <ErrorMessage errorContent={errorMessage} />}
+      {infoMessage && <Message messageContent={infoMessage} />}
       <Menu setMenuIsVisible={setMenuIsVisible} menuIsVisible={menuIsVisible} />
       <div className="right__section">
         <Header

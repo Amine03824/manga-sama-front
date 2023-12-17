@@ -47,6 +47,7 @@ export const createArticleFetch = createAsyncThunk(
 
       return data;
     } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
       thunkAPI.dispatch(setError("L'annonce n'a pas pu être crée"));
       throw error;
     }
@@ -67,6 +68,7 @@ export const associateMangaToArticle = createAsyncThunk(
       );
       return data;
     } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
       thunkAPI.dispatch(
         setError(
           "Un problème est survenu lors de l'associassion de l'annonce et du manga"
@@ -90,6 +92,7 @@ export const associateUserToArticle = createAsyncThunk(
       thunkAPI.dispatch(setInfo("L'annonce a été crée avec succès!"));
       return data;
     } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
       thunkAPI.dispatch(
         setError(
           "L'association de ton annonce avec ton compte n'a pas pu être faite, la création de l'article est donc annulée "

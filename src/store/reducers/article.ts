@@ -31,7 +31,9 @@ export const getArticles = createAsyncThunk(
       return data;
     } catch (error) {
       thunkAPI.dispatch(changeIsLoading(false));
-      setError('Un problème est survenu lors de la récupération des données');
+      thunkAPI.dispatch(
+        setError('Un problème est survenu lors de la récupération des données')
+      );
       throw error;
     }
   }
@@ -40,18 +42,17 @@ export const getArticles = createAsyncThunk(
 export const getConditions = createAsyncThunk(
   'condition/fetch',
   async (_, thunkAPI) => {
-    // try {
-    thunkAPI.dispatch(changeIsLoading(true));
-    const { data } = await axiosInstance.get<TCondition[]>('/condition');
-    thunkAPI.dispatch(changeIsLoading(false));
-    return data;
-    // } catch (error) {
-    //   thunkAPI.dispatch(changeIsLoading(false));
-    //   thunkAPI.dispatch(
-    //     setError('Un problème est survenu lors de la récupération des données')
-    //   );
-    //   return error;
-    // }
+    try {
+      thunkAPI.dispatch(changeIsLoading(true));
+      const { data } = await axiosInstance.get<TCondition[]>('/condition');
+      thunkAPI.dispatch(changeIsLoading(false));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(
+        setError('Un problème est survenu lors de la récupération des données')
+      );
+      throw error;
+    }
   }
 );
 

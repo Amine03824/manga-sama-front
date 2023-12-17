@@ -14,9 +14,9 @@ function Home() {
 
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getArticles());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getArticles());
+  }, [dispatch]);
   return (
     <div className="home">
       <div className="home__articles">

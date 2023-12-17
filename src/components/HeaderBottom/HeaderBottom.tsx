@@ -15,9 +15,7 @@ function HeaderBottom() {
         </div>
       </div>
       <div className="header__bottom_button">
-
         <Link to="createArticle" className="header__bottom_button-link">
-
           Publier une annonce
           <img
             src="/assets/icons/add.png"

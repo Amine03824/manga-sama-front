@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { axiosInstance } from '../../utils/axios';
-import { changeIsLoading } from './loading';
+import { changeIsLoading, setError } from './loading';
 
 type TransactionState = {
   isLoading: boolean;
@@ -23,10 +23,16 @@ type TransactionCredentials = {
 export const acceptTransaction = createAsyncThunk(
   'transaction/accepted',
   async (credentials: TransactionCredentials, thunkAPI) => {
-    thunkAPI.dispatch(changeIsLoading(true));
-    const { data } = await axiosInstance.post('/transaction', credentials);
-    thunkAPI.dispatch(changeIsLoading(false));
-    return data;
+    try {
+      thunkAPI.dispatch(changeIsLoading(true));
+      const { data } = await axiosInstance.post('/transaction', credentials);
+      thunkAPI.dispatch(changeIsLoading(false));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(setError('La transaction a échouée'));
+      throw error;
+    }
   }
 );
 

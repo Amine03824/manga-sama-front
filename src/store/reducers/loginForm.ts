@@ -50,6 +50,7 @@ export const loginUser = createAsyncThunk(
       thunkAPI.dispatch(setInfo('Tu es maintenant connecté ! '));
       return data;
     } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
       thunkAPI.dispatch(setError('Mot de passe ou email incorrect'));
       throw error;
     }

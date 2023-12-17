@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { TManga } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
-import { changeIsLoading } from './loading';
+import { changeIsLoading, setError } from './loading';
 
 type MangaState = {
   manga: TManga[];
@@ -22,10 +22,16 @@ const initialState: MangaState = {
 export const getMangaByISBN = createAsyncThunk(
   'manga/fetch',
   async (isbn: string, thunkAPI) => {
-    thunkAPI.dispatch(changeIsLoading(true));
-    const { data } = await axiosInstance.get<TManga>(`/manga/${isbn}`);
-    thunkAPI.dispatch(changeIsLoading(false));
-    return data;
+    try {
+      thunkAPI.dispatch(changeIsLoading(true));
+      const { data } = await axiosInstance.get<TManga>(`/manga/${isbn}`);
+      thunkAPI.dispatch(changeIsLoading(false));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(setError('Impossible de retrouver ce manga'));
+      throw error;
+    }
   }
 );
 

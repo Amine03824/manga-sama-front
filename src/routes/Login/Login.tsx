@@ -45,7 +45,6 @@ function Login() {
 
   return (
     <Page>
-      {error && <ErrorMessage errorContent={error} />}
       <div className="login">
         <div className="login__area">
           <h2 className="login__area-title">Connexion</h2>

@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { acceptTransaction } from '../../store/reducers/transaction';
 import { LocalStorage } from '../../utils/LocalStorage';
 import './ConfirmationTransactionModale.scss';
+import { setInfo } from '../../store/reducers/loading';
 
 function ConfirmationTransactionModale() {
   const dispatch = useAppDispatch();
@@ -25,8 +26,11 @@ function ConfirmationTransactionModale() {
     );
 
     if (data.payload.status === 200) {
-      console.log('COUCOU');
-
+      dispatch(
+        setInfo(
+          " Félicitations ! Vous serez bientôt propriétaire d'un ou plusieurs nouveaux mangas !"
+        )
+      );
       return navigate('/');
     }
 
