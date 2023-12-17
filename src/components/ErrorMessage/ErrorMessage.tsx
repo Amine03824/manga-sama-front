@@ -1,5 +1,7 @@
+import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeCreateArticleErrorMessage } from '../../store/reducers/createArticle';
+
+import { clearMessages } from '../../store/reducers/loading';
 import './ErrorMessage.scss';
 
 type ErrorMessageState = {
@@ -10,9 +12,15 @@ function ErrorMessage({ errorContent }: ErrorMessageState) {
   const dispatch = useAppDispatch();
 
   function handleCloseErrorMessageModal() {
-    dispatch(changeCreateArticleErrorMessage(''));
+    dispatch(clearMessages());
   }
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(clearMessages());
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [dispatch]);
   return (
     <div className="dialogError">
       <button

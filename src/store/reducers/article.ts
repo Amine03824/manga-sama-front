@@ -3,12 +3,11 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { Article, TCondition } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
-import { changeIsLoading } from './loading';
+import { changeIsLoading, setError } from './loading';
 
 type ArticleState = {
   list_articles: Article[];
   list_condition: TCondition[];
-  error: null | string;
 
   filteredArticles: Article[];
   viewedArticle: Article | null;
@@ -17,7 +16,6 @@ type ArticleState = {
 const initialState: ArticleState = {
   list_condition: [],
   list_articles: [],
-  error: null,
 
   filteredArticles: [],
   viewedArticle: null,
@@ -33,6 +31,7 @@ export const getArticles = createAsyncThunk(
       return data;
     } catch (error) {
       thunkAPI.dispatch(changeIsLoading(false));
+      setError('Un problème est survenu lors de la récupération des données');
       throw error;
     }
   }
@@ -41,15 +40,18 @@ export const getArticles = createAsyncThunk(
 export const getConditions = createAsyncThunk(
   'condition/fetch',
   async (_, thunkAPI) => {
-    try {
-      thunkAPI.dispatch(changeIsLoading(true));
-      const { data } = await axiosInstance.get<TCondition[]>('/condition');
-      thunkAPI.dispatch(changeIsLoading(false));
-      return data;
-    } catch (error) {
-      thunkAPI.dispatch(changeIsLoading(false));
-      throw error;
-    }
+    // try {
+    thunkAPI.dispatch(changeIsLoading(true));
+    const { data } = await axiosInstance.get<TCondition[]>('/condition');
+    thunkAPI.dispatch(changeIsLoading(false));
+    return data;
+    // } catch (error) {
+    //   thunkAPI.dispatch(changeIsLoading(false));
+    //   thunkAPI.dispatch(
+    //     setError('Un problème est survenu lors de la récupération des données')
+    //   );
+    //   return error;
+    // }
   }
 );
 
@@ -66,22 +68,11 @@ const articleReducer = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getArticles.pending, (state) => {
-        state.error = null;
-      })
-      .addCase(getArticles.rejected, (state) => {
-        state.error = 'Problème lors de la récupération des articles';
-      })
+
       .addCase(getArticles.fulfilled, (state, action) => {
         state.list_articles = action.payload;
       })
-      .addCase(getConditions.pending, (state) => {
-        state.error = null;
-      })
-      .addCase(getConditions.rejected, (state) => {
-        state.error =
-          "Problème lors de la récupération des conditions d'article";
-      })
+
       .addCase(getConditions.fulfilled, (state, action) => {
         state.list_condition = action.payload;
       });

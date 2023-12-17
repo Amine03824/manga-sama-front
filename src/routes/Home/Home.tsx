@@ -14,15 +14,11 @@ function Home() {
 
   const dispatch = useAppDispatch();
 
-  const messageTransaction = useAppSelector(
-    (state) => state.transaction.messageTransaction
-  );
-  useEffect(() => {
-    dispatch(getArticles());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getArticles());
+  // }, [dispatch]);
   return (
     <div className="home">
-      {messageTransaction && <Message message_content={messageTransaction} />}
       <div className="home__articles">
         <div className="home__articles-title-area">
           <h2 className="home__articles-title">

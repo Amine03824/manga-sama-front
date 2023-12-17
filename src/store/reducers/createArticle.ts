@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { TCreateArticleForm, TCreatedArticle } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
-import { changeIsLoading } from './loading';
+import { changeIsLoading, setError, setInfo } from './loading';
 
 // CreateArticleSlice est le typage du rayon "createArticle", on prends les même champs que le initialState et on type chaque champs
 type CreateArticleState = {
@@ -41,10 +41,15 @@ const initialState: CreateArticleState = {
 export const createArticleFetch = createAsyncThunk(
   'article/create',
   async (credentials: TCreateArticleForm, thunkAPI) => {
-    thunkAPI.dispatch(changeIsLoading(true));
-    const { data } = await axiosInstance.post('/article', credentials);
+    try {
+      thunkAPI.dispatch(changeIsLoading(true));
+      const { data } = await axiosInstance.post('/article', credentials);
 
-    return data;
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(setError("L'annonce n'a pas pu être crée"));
+      throw error;
+    }
   }
 );
 
@@ -52,11 +57,23 @@ export const createArticleFetch = createAsyncThunk(
 // il prend en argument un credentials , qui est un objet contenant l'id de l'article qui vient d'etre crée, ainsi que l'isbn du manga que l'on veut associer
 export const associateMangaToArticle = createAsyncThunk(
   'article/associateManga',
-  async (credentials: { article_id: number | undefined; isbn: number }) => {
-    const { data } = await axiosInstance.post(
-      `/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
-    );
-    return data;
+  async (
+    credentials: { article_id: number | undefined; isbn: number },
+    thunkAPI
+  ) => {
+    try {
+      const { data } = await axiosInstance.post(
+        `/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
+      );
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(
+        setError(
+          "Un problème est survenu lors de l'associassion de l'annonce et du manga"
+        )
+      );
+      throw error;
+    }
   }
 );
 
@@ -70,9 +87,15 @@ export const associateUserToArticle = createAsyncThunk(
         `/associate/user/article/${credentials.user_id}/${credentials.article_id}`
       );
       thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(setInfo("L'annonce a été crée avec succès!"));
       return data;
     } catch (error) {
-      throw new Error('');
+      thunkAPI.dispatch(
+        setError(
+          "L'association de ton annonce avec ton compte n'a pas pu être faite, la création de l'article est donc annulée "
+        )
+      );
+      throw error;
     }
   }
 );

@@ -70,7 +70,7 @@ const userPageReducer = createSlice({
       .addCase(getArticleByUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.userPageArticle = action.payload;
-        console.log(state.userPageArticle);
+
         LocalStorage.setItem('userArticle', action.payload);
       });
     // // gestion du fetch afin de recuperer un user par son id

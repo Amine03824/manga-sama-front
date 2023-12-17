@@ -81,7 +81,7 @@ function Login() {
               <button type="submit" className="login__area-button">
                 Se connecter
                 <img
-                  src="public/assets/icons/CheckMarkIcon.png"
+                  src="assets/icons/CheckMarkIcon.png"
                   alt="login-icon"
                   className="login__area-button-icon"
                 />
@@ -100,7 +100,7 @@ function Login() {
         </div>
         <div className="login__logo-area">
           <img
-            src="public/assets/logo/logo.png"
+            src="assets/logo/logo.png"
             alt="logo-manga-sama"
             className="login__logo"
           />

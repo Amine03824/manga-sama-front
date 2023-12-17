@@ -10,7 +10,6 @@ import {
   createUser,
 } from '../../store/reducers/signUpForm';
 import './SignUp.scss';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 function SignUp() {
   const dispatch = useAppDispatch();
@@ -27,7 +26,6 @@ function SignUp() {
   const passwordBisInputValue = useAppSelector(
     (state) => state.signUpForm.credentials.password_bis
   );
-  const error = useAppSelector((state) => state.signUpForm.signUpError);
 
   function handleChangeInputValue(
     event: ChangeEvent<HTMLInputElement>,
@@ -56,7 +54,6 @@ function SignUp() {
 
   return (
     <Page>
-      {error && <ErrorMessage errorContent={error} />}
       <div className="signUp">
         <div className="signUp__logo-container">
           <img
@@ -117,7 +114,7 @@ function SignUp() {
               <button type="submit" className="signUp__area-button">
                 Valider
                 <img
-                  src="public/assets/icons/CheckMarkIcon.png"
+                  src="assets/icons/CheckMarkIcon.png"
                   alt="check-button-icon"
                   className="signUp__area-button-icon"
                 />
