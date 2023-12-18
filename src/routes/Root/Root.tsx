@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import { getArticles, getConditions } from '../../store/reducers/article';
 import { getCategories } from '../../store/reducers/categories';
 import { LocalStorage } from '../../utils/LocalStorage';
-import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
+import { changeUserisConnected } from '../../store/reducers/loginForm';
 
 function Root() {
   const dispatch = useAppDispatch();
@@ -24,7 +24,7 @@ function Root() {
     dispatch(getCategories());
     dispatch(getConditions());
     if (user) {
-      dispatch(changeUserisConnectedToTrue(true));
+      dispatch(changeUserisConnected(true));
     }
   }, [dispatch, user]);
 
