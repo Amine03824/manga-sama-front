@@ -1,0 +1,19 @@
+.carousel {
+  &__img {
+    max-width: 100%;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    &-btn {
+      width: 25px;
+
+      &--left {
+        transform: rotateZ(180deg);
+      }
+    }
+  }
+}
