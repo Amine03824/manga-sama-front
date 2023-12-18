@@ -10,14 +10,16 @@ function Error() {
           <h1 className="error__container-top-title">Vous vous êtes perdu ?</h1>
         </div>
         <Link to="/">
-          <button className="error__container-btn">Retour à l'accueil</button>
+          <button type="button" className="error__container-btn">
+            Retour à l`&apos`accueil
+          </button>
         </Link>
         <div className="error__container-main">
           <img
             className="error__container-main-img"
             src="\assets\icons\Octopus_error01.png"
-            alt="image de poulpe erreur 404"
-          ></img>
+            alt=" poulpe erreur 404"
+          />
         </div>
       </div>
     </Page>

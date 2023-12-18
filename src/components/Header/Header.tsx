@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeUserisConnected } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
+import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Message from '../Message/Message';
 
 type HeaderProps = {
   menuIsVisible: boolean;
@@ -11,10 +14,13 @@ type HeaderProps = {
 
 function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const userIsConnected = useAppSelector(
     (state) => state.loginForm.userIsConnected
   );
-
+  const isLoading = useAppSelector((state) => state.loading.isLoading);
+  const errorMessage = useAppSelector((state) => state.loading.errorMessage);
+  const infoMessage = useAppSelector((state) => state.loading.infoMessage);
   function handleOnClickMenuButton() {
     setMenuIsVisible(!menuIsVisible);
   }
@@ -22,10 +28,14 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   function handleDisconnect() {
     dispatch(changeUserisConnected(false));
     LocalStorage.removeItem();
+    navigate('/');
   }
 
   return (
     <div className="header">
+      {isLoading && <Loader />}
+      {errorMessage && <ErrorMessage errorContent={errorMessage} />}
+      {infoMessage && <Message messageContent={infoMessage} />}
       <div className="header__top_container">
         <div className="header__top_container-button">
           <button

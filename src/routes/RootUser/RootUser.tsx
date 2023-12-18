@@ -1,10 +1,16 @@
+
 /* eslint-disable prefer-destructuring */
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+
+
+
+
 import { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import './RootUser.scss';
 import MobileNav from '../../components/MobileNav/MobileNav';
 import UserMenu from '../../components/UserMenu/UserMenu';
+
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeUserisConnected } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
@@ -34,6 +40,7 @@ function RootUser() {
   if (!user) {
     return <Navigate to="/login" />;
   }
+
 
   return (
     <div className="root__user">

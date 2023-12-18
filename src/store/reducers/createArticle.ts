@@ -1,9 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { redirect } from 'react-router-dom';
-
 import { TCreateArticleForm, TCreatedArticle } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
+import { changeIsLoading, setError, setInfo } from './loading';
 
 // CreateArticleSlice est le typage du rayon "createArticle", on prends les même champs que le initialState et on type chaque champs
 type CreateArticleState = {
@@ -41,10 +40,17 @@ const initialState: CreateArticleState = {
 // il prend en argument un credential qui est un objet contenant les champs du formulaire de creation
 export const createArticleFetch = createAsyncThunk(
   'article/create',
-  async (credentials: TCreateArticleForm) => {
-    const { data } = await axiosInstance.post('/article', credentials);
+  async (credentials: TCreateArticleForm, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(changeIsLoading(true));
+      const { data } = await axiosInstance.post('/article', credentials);
 
-    return data;
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(setError("L'annonce n'a pas pu être crée"));
+      throw error;
+    }
   }
 );
 
@@ -52,11 +58,24 @@ export const createArticleFetch = createAsyncThunk(
 // il prend en argument un credentials , qui est un objet contenant l'id de l'article qui vient d'etre crée, ainsi que l'isbn du manga que l'on veut associer
 export const associateMangaToArticle = createAsyncThunk(
   'article/associateManga',
-  async (credentials: { article_id: number | undefined; isbn: number }) => {
-    const { data } = await axiosInstance.post(
-      `/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
-    );
-    return data;
+  async (
+    credentials: { article_id: number | undefined; isbn: number },
+    thunkAPI
+  ) => {
+    try {
+      const { data } = await axiosInstance.post(
+        `/associate/article/manga/${credentials.article_id}/${credentials.isbn}`
+      );
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(
+        setError(
+          "Un problème est survenu lors de l'associassion de l'annonce et du manga"
+        )
+      );
+      throw error;
+    }
   }
 );
 
@@ -64,11 +83,23 @@ export const associateMangaToArticle = createAsyncThunk(
 // il prend en argument un credential qui est un objet contenant l'id du user et l'id de l'article crée
 export const associateUserToArticle = createAsyncThunk(
   'article/associateUser',
-  async (credentials: { user_id: number; article_id: number }) => {
-    const { data } = await axiosInstance.post(
-      `/associate/user/article/${credentials.user_id}/${credentials.article_id}`
-    );
-    return data;
+  async (credentials: { user_id: number; article_id: number }, thunkAPI) => {
+    try {
+      const { data } = await axiosInstance.post(
+        `/associate/user/article/${credentials.user_id}/${credentials.article_id}`
+      );
+      thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(setInfo("L'annonce a été crée avec succès!"));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(
+        setError(
+          "L'association de ton annonce avec ton compte n'a pas pu être faite, la création de l'article est donc annulée "
+        )
+      );
+      throw error;
+    }
   }
 );
 
@@ -97,9 +128,7 @@ const createArticleReducer = createSlice({
     changeCreatedArticle(state, action: PayloadAction<TCreatedArticle>) {
       state.created_article = action.payload;
     },
-    changeCreateArticleMessage(state, action: PayloadAction<string>) {
-      state.message = action.payload;
-    },
+
     changeCreateArticleErrorMessage(state, action: PayloadAction<string>) {
       state.error = action.payload;
     },
@@ -107,35 +136,24 @@ const createArticleReducer = createSlice({
   extraReducers(builder) {
     builder
       // Gestion du l'état de la requète associateManga
-      .addCase(associateMangaToArticle.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(associateMangaToArticle.pending, () => {})
       .addCase(associateMangaToArticle.rejected, (state) => {
-        state.isLoading = false;
         state.error =
           "L'association du manga à l'article à rencontré un problème , réessaye s'il te plait";
       })
       // Gestion du l'état de la requète associateUser
-      .addCase(associateUserToArticle.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(associateUserToArticle.pending, () => {})
       .addCase(associateUserToArticle.rejected, (state) => {
-        state.isLoading = true;
         state.error =
           "Problème lors de l'association de l'article à ton compte user , réessaie s'il te plait";
       })
       .addCase(associateUserToArticle.fulfilled, (state) => {
-        state.isLoading = false;
         state.error = '';
-        redirect('/');
       })
 
       // Gestion de l'état de la requête createArticleFetch
-      .addCase(createArticleFetch.pending, (state) => {
-        state.isLoading = true;
-      })
+      .addCase(createArticleFetch.pending, () => {})
       .addCase(createArticleFetch.rejected, (state) => {
-        state.isLoading = false;
         state.error =
           "La création de l'article à rencontré un problème , réessaye s'il te plait";
       })
@@ -150,7 +168,7 @@ export const {
   changeCreateArticleInputValue,
   changeCreateArticleConditionValue,
   changeCreatedArticle,
-  changeCreateArticleMessage,
+
   changeCreateArticleErrorMessage,
 } = createArticleReducer.actions;
 

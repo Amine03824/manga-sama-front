@@ -1,16 +1,24 @@
+import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
-import { changeCreateArticleMessage } from '../../store/reducers/createArticle';
+import { clearMessages } from '../../store/reducers/loading';
 import './Message.scss';
 
 type MessageProps = {
-  message_content: string;
+  messageContent: string;
 };
 
-function Message({ message_content }: MessageProps) {
+function Message({ messageContent }: MessageProps) {
   const dispatch = useAppDispatch();
   function handleCloseMessageModal() {
-    dispatch(changeCreateArticleMessage(''));
+    dispatch(clearMessages());
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(clearMessages());
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [dispatch]);
 
   return (
     <div className="dialogMessage">
@@ -21,7 +29,7 @@ function Message({ message_content }: MessageProps) {
       >
         <img src="/assets/icons/add.png" alt="close icon" />
       </button>
-      <p> {message_content} </p>
+      <p> {messageContent} </p>
     </div>
   );
 }

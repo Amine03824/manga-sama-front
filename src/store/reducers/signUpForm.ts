@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { axiosInstance } from '../../utils/axios';
+import { changeIsLoading, setError } from './loading';
 
 type SignUpFormState = {
   credentials: {
@@ -34,9 +34,17 @@ type SignUpCredentials = {
 
 export const createUser = createAsyncThunk(
   'user/signUp',
-  async (credentials: SignUpCredentials) => {
-    const { data } = await axiosInstance.post('/user', credentials);
-    return data;
+  async (credentials: SignUpCredentials, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(changeIsLoading(true));
+      const { data } = await axiosInstance.post('/user', credentials);
+      thunkAPI.dispatch(changeIsLoading(false));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(setError("Le compte utilisateur n'a pas pu être crée"));
+      throw error;
+    }
   }
 );
 
@@ -57,10 +65,7 @@ const signUpFormReducer = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(createUser.pending, (state) => {
-        state.isLoading = true;
-        state.signUpError = '';
-      })
+      .addCase(createUser.pending, (state) => {})
       .addCase(createUser.rejected, (state) => {
         state.isLoading = false;
         state.signUpError =
