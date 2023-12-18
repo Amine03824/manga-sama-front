@@ -82,10 +82,10 @@ export type TUserConnected = {
   lastname: string;
   pseudo: string;
   adress: string;
-  zipCode: number;
+  zipCode: string;
   city: string;
   email: string;
-  phoneNumber: number;
+  phoneNumber: string;
   created_at: string;
   updated_at: string;
 };

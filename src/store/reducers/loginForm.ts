@@ -42,7 +42,8 @@ export const loginUser = createAsyncThunk(
       user: TUserConnected;
       token: string;
     }>('/auth/login', credentials);
-    LocalStorage.setItem('user', data);
+    LocalStorage.setItem('user', data.user);
+    LocalStorage.setItem('token', data.token);
     return data;
   }
 );
@@ -61,7 +62,7 @@ const loginFormReducer = createSlice({
       const { fieldName, value } = action.payload;
       state.credentials[fieldName] = value;
     },
-    changeUserisConnectedToTrue(state, action: PayloadAction<boolean>) {
+    changeUserisConnected(state, action: PayloadAction<boolean>) {
       state.userIsConnected = action.payload;
     },
     changeMessageLoginPage(state, action: PayloadAction<string>) {
@@ -90,7 +91,7 @@ const loginFormReducer = createSlice({
 });
 export const {
   changeLoginFormInputsField,
-  changeUserisConnectedToTrue,
+  changeUserisConnected,
   changeMessageLoginPage,
   changeErrorLoginPage,
 } = loginFormReducer.actions;

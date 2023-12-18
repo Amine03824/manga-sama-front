@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { Link } from 'react-router-dom';
+import { Link, Navigate, redirect, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import MobileNav from '../../components/MobileNav/MobileNav';
@@ -11,11 +11,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   modifyInputUserInfo,
   modifyUser,
+  resetForm,
 } from '../../store/reducers/userModify';
 
 function UserProfilPage() {
   const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
 
+  // Gestion de l'apparition des différents étatt des formulaire de moifiacations via UseState
   const [pseudoInputIsVisible, setPseudoInputIsVisible] = useState(false);
   const [firstNameInputIsVisible, setFirstNameInputIsVisible] = useState(false);
   const [lastNameInputIsVisible, setLastNameInputIsVisible] = useState(false);
@@ -25,40 +28,44 @@ function UserProfilPage() {
   const [phoneNumberInputIsVisible, setPhoneNumberInputIsVisible] =
     useState(false);
 
+  // Récupération des valeurs des inputs contrôlés via le store redux
   const firstNameInput = useAppSelector(
-    (state) => state.userModify.credentials.firstName
+    (state) => state.userModify.credentials.firstname
   );
   const lastNameInput = useAppSelector(
-    (state) => state.userModify.credentials.lastName
+    (state) => state.userModify.credentials.lastname
   );
   const pseudoInput = useAppSelector(
     (state) => state.userModify.credentials.pseudo
   );
   const adressInput = useAppSelector(
-    (state) => state.userModify.credentials.adress
+    (state) => state.userModify.credentials.address
   );
   const cityInput = useAppSelector(
     (state) => state.userModify.credentials.city
   );
   const zipcodeInput = useAppSelector(
-    (state) => state.userModify.credentials.zipCode
+    (state) => state.userModify.credentials.zip_code
   );
   const phoneNumberInput = useAppSelector(
-    (state) => state.userModify.credentials.phoneNumber
+    (state) => state.userModify.credentials.phone_number
   );
+
+  const user = LocalStorage.getItem('user');
 
   // const error = useAppSelector((state) => state.userModify.error);
 
+  // au changement de l'input dispatch la fonction qui permet de modifier les infos dans le state, il faut préciser le nom de l'input qui est train d'être modifié en argument
   const handleChangeInputUserInfo = (
     event: ChangeEvent<HTMLInputElement>,
     name:
-      | 'firstName'
-      | 'lastName'
+      | 'firstname'
+      | 'lastname'
       | 'pseudo'
-      | 'adress'
+      | 'address'
       | 'city'
-      | 'zipCode'
-      | 'phoneNumber'
+      | 'zip_code'
+      | 'phone_number'
   ): void => {
     dispatch(
       modifyInputUserInfo({
@@ -68,71 +75,34 @@ function UserProfilPage() {
     );
   };
 
-  const handleValidateUserInfo = (event: FormEvent<HTMLFormElement>) => {
+  //  A la soumission du formulaire , on créer un objet qui sera envoyé dans le body de la requête , correspondant aux attente de la base de donnée.
+  const handleValidateUserInfo = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { user } = LocalStorage.getItem('user');
 
     const modifiedUser = {
-      id: user.id,
-      firstName: firstNameInput === '' ? user.firstName : firstNameInput,
-      lastName: lastNameInput === '' ? user.lastName : lastNameInput,
+      firstname: firstNameInput === '' ? user.firstname : firstNameInput,
+      lastname: lastNameInput === '' ? user.lastname : lastNameInput,
       pseudo: pseudoInput === '' ? user.pseudo : pseudoInput,
-      adress: adressInput === '' ? user.adress : adressInput,
-      zipCode: zipcodeInput === '' ? user.zipCode : zipcodeInput,
+      address: adressInput === '' ? user.address : adressInput,
+      birthdate: user.birthdate,
+      zip_code: zipcodeInput === '' ? user.zip_code : zipcodeInput,
       city: cityInput === '' ? user.city : cityInput,
-      phoneNumber:
-        phoneNumberInput === '' ? user.phoneNumber : phoneNumberInput,
+      phone_number:
+        phoneNumberInput === '' ? user.phone_number : phoneNumberInput,
     };
 
-    dispatch(
+    await dispatch(
       modifyUser({
         userCredentials: modifiedUser,
         id: user.id.toString(),
       })
     );
-    // if (pseudoInput === '') {
-    //   const { pseudo } = LocalStorage.getItem('user').user;
-    // } else {
-    //   const pseudo = pseudoInput;
-    // }
-    // if (firstNameInput === '') {
-    //   const { firstName } = LocalStorage.getItem('user').user;
-    // } else {
-    //   const firstName = firstNameInput;
-    // }
-    // if (lastNameInput === '') {
-    //   const { lastName } = LocalStorage.getItem('user').user;
-    // } else {
-    //   const lastName = lastNameInput;
-    // }
-    // if (adressInput === '') {
-    //   const { adress } = LocalStorage.getItem('user').user;
-    // } else {
-    //   const adress = adressInput;
-    // }
-    // if (cityInput === '') {
-    //   const { city } = LocalStorage.getItem('user').user;
-    // } else {
-    //   const city = cityInput;
-    // }
-    // if (zipcodeInput === '') {
-    //   const { zipCode } = LocalStorage.getItem('user').user;
-    // } else {
-    //   const zipCode = zipcodeInput;
-    // }
-    // if (phoneNumberInput === '') {
-    //   const { phoneNumber } = LocalStorage.getItem('user').user;
-    // } else {
-    //   const phoneNumber = phoneNumberInput;
-    // }
-
-    // dispatch(
-    //   modifyUser({
-    //     userCredentials({
-    //     }),
-    //   })
-    // );
+    window.location.reload();
   };
+
+  useEffect(() => {
+    dispatch(resetForm());
+  }, [dispatch]);
 
   return (
     <Page>
@@ -168,7 +138,7 @@ function UserProfilPage() {
                       setPseudoInputIsVisible(true);
                     }}
                   >
-                    Pseudo : {LocalStorage.getItem('user').user.pseudo}
+                    Pseudo : {LocalStorage.getItem('user').pseudo}
                   </button>
                   <input
                     value={pseudoInput}
@@ -192,12 +162,12 @@ function UserProfilPage() {
                       setFirstNameInputIsVisible(true);
                     }}
                   >
-                    Prénom : {LocalStorage.getItem('user').user.firstName}
+                    Prénom : {LocalStorage.getItem('user').firstname}
                   </button>
                   <input
                     value={firstNameInput}
                     onChange={(event) => {
-                      handleChangeInputUserInfo(event, 'firstName');
+                      handleChangeInputUserInfo(event, 'firstname');
                     }}
                     type="text"
                     className={clsx('userpage__infos-input', {
@@ -215,13 +185,12 @@ function UserProfilPage() {
                       setLastNameInputIsVisible(true);
                     }}
                   >
-                    Nom de famille :{' '}
-                    {LocalStorage.getItem('user').user.lastName}
+                    Nom de famille : {LocalStorage.getItem('user').lastname}
                   </button>
                   <input
                     value={lastNameInput}
                     onChange={(event) => {
-                      handleChangeInputUserInfo(event, 'lastName');
+                      handleChangeInputUserInfo(event, 'lastname');
                     }}
                     type="text"
                     className={clsx('userpage__infos-input', {
@@ -239,12 +208,12 @@ function UserProfilPage() {
                       setAdressInputIsVisible(true);
                     }}
                   >
-                    Adresse : {LocalStorage.getItem('user').user.adress}
+                    Adresse : {LocalStorage.getItem('user').address}
                   </button>
                   <input
                     value={adressInput}
                     onChange={(event) => {
-                      handleChangeInputUserInfo(event, 'adress');
+                      handleChangeInputUserInfo(event, 'address');
                     }}
                     type="text"
                     className={clsx('userpage__infos-input', {
@@ -265,7 +234,7 @@ function UserProfilPage() {
                       setPseudoInputIsVisible(true);
                     }}
                   >
-                    Ville : {LocalStorage.getItem('user').user.city}
+                    Ville : {LocalStorage.getItem('user').city}
                   </button>
                   <input
                     value={cityInput}
@@ -288,12 +257,12 @@ function UserProfilPage() {
                       setZipCodeInputIsVisible(true);
                     }}
                   >
-                    Code Postal : {LocalStorage.getItem('user').user.zipCode}
+                    Code Postal : {LocalStorage.getItem('user').zip_code}
                   </button>
                   <input
                     value={zipcodeInput}
                     onChange={(event) => {
-                      handleChangeInputUserInfo(event, 'zipCode');
+                      handleChangeInputUserInfo(event, 'zip_code');
                     }}
                     type="text"
                     className={clsx('userpage__infos-input', {
@@ -313,12 +282,12 @@ function UserProfilPage() {
                     }}
                   >
                     Numéro de téléphone :
-                    {LocalStorage.getItem('user').user.phoneNumber}
+                    {LocalStorage.getItem('user').phone_number}
                   </button>
                   <input
                     value={phoneNumberInput}
                     onChange={(event) => {
-                      handleChangeInputUserInfo(event, 'phoneNumber');
+                      handleChangeInputUserInfo(event, 'phone_number');
                     }}
                     type="text"
                     className={clsx('userpage__infos-input', {

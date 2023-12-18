@@ -11,12 +11,12 @@ export const axiosInstance = axios.create({
 // Je rajoute un intercepteur, cela me permet avant que la requête soit faite de modifier la configuration
 axiosInstance.interceptors.request.use((config) => {
   // Je récupère l'utilisateur connecter en localStorage
-  const user = LocalStorage.getItem('user');
+  const token = LocalStorage.getItem('token');
   // Si il y a bien quelqu'un
-  if (user) {
+  if (token) {
     // Je rajoute son token dans le header Authorization de ma requête
     // eslint-disable-next-line no-param-reassign
-    config.headers.Authorization = `${user.token}`;
+    config.headers.Authorization = `${token}`;
   }
   return config;
 });

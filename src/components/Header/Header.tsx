@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
+import { changeUserisConnected } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
 
 type HeaderProps = {
@@ -20,7 +20,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   }
 
   function handleDisconnect() {
-    dispatch(changeUserisConnectedToTrue(false));
+    dispatch(changeUserisConnected(false));
     LocalStorage.removeItem();
   }
 
@@ -61,7 +61,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
         )}
         {userIsConnected && (
           <div className="header__top_container-links">
-            Bienvenue {LocalStorage.getItem('user').user.pseudo}-sama
+            Bienvenue {LocalStorage.getItem('user').pseudo}-sama
             <div className="header__top_container-links-signup">
               <button
                 type="button"

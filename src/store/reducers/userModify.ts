@@ -1,16 +1,20 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { TUserConnected } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
+import { LocalStorage } from '../../utils/LocalStorage';
 
 type TUserFormModified = {
   id: number;
   firstName: string;
   lastName: string;
   pseudo: string;
-  adress: string;
-  zipCode: number;
+  address: string;
+  birthdate: string;
+  zipCode: string;
   city: string;
-  phoneNumber: number;
+  phoneNumber: string;
+  created_at: string;
+  updated_at: string;
 };
 
 type UserModifyState = {
@@ -28,40 +32,52 @@ const initialState: UserModifyState = {
     firstName: '',
     lastName: '',
     pseudo: '',
-    adress: '',
-    zipCode: 0,
-    city: '',
-    phoneNumber: 0,
-  },
-  credentials: {
-    firstName: '',
-    lastName: '',
-    pseudo: '',
-    adress: '',
+    address: '',
+    birthdate: '',
     zipCode: '',
     city: '',
     phoneNumber: '',
+    created_at: '',
+    updated_at: '',
+  },
+  credentials: {
+    firstname: '',
+    lastname: '',
+    pseudo: '',
+    address: '',
+    birthdate: '',
+    zip_code: '',
+    city: '',
+    phone_number: '',
   },
 };
 
 type UserCredentials = {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   pseudo: string;
-  adress: string;
-  zipCode: string;
+  address: string;
+  birthdate: string;
+  zip_code: string;
   city: string;
-  phoneNumber: string;
+  phone_number: string;
 };
 
 export const modifyUser = createAsyncThunk(
   'modifyUser/fetch',
   async (credentials: { userCredentials: UserCredentials; id: string }) => {
-    const { data } = await axiosInstance.put<TUserFormModified>(
-      `/users/${credentials.id}`,
-      credentials.userCredentials
-    );
-    return data;
+    try {
+      const { data } = await axiosInstance.put<{ user: TUserFormModified }>(
+        `/user/${credentials.id}`,
+        credentials.userCredentials
+      );
+      LocalStorage.setItem('user', data.user);
+      return data;
+    } catch (error) {
+      console.log(error);
+
+      throw error;
+    }
   }
 );
 
@@ -78,30 +94,43 @@ const userModifyReducer = createSlice({
     ) {
       const { fieldName, value } = action.payload;
       switch (fieldName) {
-        case 'firstName':
-          state.credentials.firstName = value as string;
+        case 'firstname':
+          state.credentials.firstname = value as string;
           break;
-        case 'lastName':
-          state.credentials.lastName = value as string;
+        case 'lastname':
+          state.credentials.lastname = value as string;
           break;
         case 'pseudo':
           state.credentials.pseudo = value as string;
           break;
-        case 'adress':
-          state.credentials.adress = value as string;
+        case 'address':
+          state.credentials.address = value as string;
           break;
-        case 'zipCode':
-          state.credentials.zipCode = value as string;
+        case 'zip_code':
+          state.credentials.zip_code = value as string;
           break;
         case 'city':
           state.credentials.city = value as string;
           break;
-        case 'phoneNumber':
-          state.credentials.phoneNumber = value as string;
+        case 'phone_number':
+          state.credentials.phone_number = value as string;
+          break;
+        case 'birthdate':
+          state.credentials.birthdate = value as string;
           break;
         default:
           break;
       }
+    },
+    resetForm(state) {
+      state.credentials.address = '';
+      state.credentials.birthdate = '';
+      state.credentials.city = '';
+      state.credentials.firstname = '';
+      state.credentials.lastname = '';
+      state.credentials.zip_code = '';
+      state.credentials.phone_number = '';
+      state.credentials.pseudo = '';
     },
   },
   extraReducers(builder) {
@@ -115,11 +144,11 @@ const userModifyReducer = createSlice({
         state.error =
           'Un problème est survenue lors de la modification des données';
       })
-      .addCase(modifyUser.fulfilled, (state) => {
+      .addCase(modifyUser.fulfilled, (state, action) => {
         state.isLoading = false;
       });
   },
 });
 
-export const { modifyInputUserInfo } = userModifyReducer.actions;
+export const { modifyInputUserInfo, resetForm } = userModifyReducer.actions;
 export default userModifyReducer.reducer;
