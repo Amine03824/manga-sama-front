@@ -27,8 +27,6 @@ function UserTransactions() {
   // }
 
   useEffect(() => {
-    console.log(user);
-
     const fetch = async () => {
       await dispatch(getArticleByUser(user));
 

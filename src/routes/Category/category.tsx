@@ -2,9 +2,10 @@ import './Category.scss';
 import { Link, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import { useAppSelector } from '../../hooks/redux';
+import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
 
 function Category() {
-  const articles = useAppSelector((state) => state.article.list_articles);
+  const articles = useAppSelector((state) => state.article.filteredArticles);
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );
@@ -23,6 +24,7 @@ function Category() {
 
   return (
     <div className="category">
+      <HeaderBottom />
       <div className="category__articles">
         <div className="category__articles-title-area">
           <h2 className="category__articles-title">

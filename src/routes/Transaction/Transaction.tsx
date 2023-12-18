@@ -28,7 +28,7 @@ function Transaction() {
           </h2>
           <div className="transaction__area-top">
             <div className="transaction__area-top-profile">
-              <h2>Je suis vendeur</h2>
+              <h2> Le vendeur</h2>
               <img
                 src="/assets/logo/tonio.png"
                 className="transaction__area-top-profile-img"

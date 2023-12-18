@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -13,6 +14,7 @@ import './SignUp.scss';
 
 function SignUp() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const pseudoInputValue = useAppSelector(
     (state) => state.signUpForm.credentials.pseudo
@@ -39,10 +41,10 @@ function SignUp() {
     );
   }
 
-  function handleSubmitSignUpForm(event: FormEvent<HTMLFormElement>): void {
+  const handleSubmitSignUpForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    dispatch(
+    await dispatch(
       createUser({
         pseudo: pseudoInputValue,
         email: emailInputValue,
@@ -50,7 +52,8 @@ function SignUp() {
         passwordConfirmation: passwordBisInputValue,
       })
     );
-  }
+    navigate('/login');
+  };
 
   return (
     <Page>

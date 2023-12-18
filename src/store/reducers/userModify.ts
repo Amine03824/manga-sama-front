@@ -144,9 +144,7 @@ const userModifyReducer = createSlice({
         state.error =
           'Un problème est survenue lors de la modification des données';
       })
-      .addCase(modifyUser.fulfilled, (state, action) => {
-        state.isLoading = false;
-      });
+      .addCase(modifyUser.fulfilled, (state, action) => {});
   },
 });
 

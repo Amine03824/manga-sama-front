@@ -27,6 +27,16 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
     (state) => state.searchBar.searchBarInputValue
   );
 
+  const filterArticle = (searchValue: string) => {
+    const filteredArticle = articles.filter(
+      (article) =>
+        article.article.title.toLowerCase().includes(searchValue) &&
+        article.article.transaction_id === null
+    );
+
+    dispatch(changeFilteredArticle(filteredArticle));
+  };
+
   function handleOnCategoryButton() {
     setCategoriesIsVisible(!categoriesIsVisible);
   }
@@ -41,18 +51,19 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
     const newSearchValue = event.target.value.toLowerCase();
 
     dispatch(changeSearchInputValue(newSearchValue));
-
-    const filteredArticle = articles.filter(
-      (article) =>
-        article.article.title.toLowerCase().includes(newSearchValue) &&
-        article.article.transaction_id === null
-    );
-
-    dispatch(changeFilteredArticle(filteredArticle));
+    filterArticle(newSearchValue);
   }
 
   useEffect(() => {
-    dispatch(changeFilteredArticle(articles));
+    const filter = () => {
+      const filteredArticle = articles.filter(
+        (article) =>
+          article.article.title.toLowerCase().includes('') &&
+          article.article.transaction_id === null
+      );
+      dispatch(changeFilteredArticle(filteredArticle));
+    };
+    filter();
   }, [dispatch, articles]);
 
   return (

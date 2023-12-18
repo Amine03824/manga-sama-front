@@ -10,10 +10,9 @@ type LoginFormState = {
     email: string;
     password: string;
   };
-  error: string;
-  isLoading: boolean;
+
   token: string;
-  messageLoginPage: string;
+
   userIsConnected: boolean;
   user: TUserConnected | null;
 };
@@ -23,9 +22,7 @@ export const initialState: LoginFormState = {
     email: '',
     password: '',
   },
-  error: '',
-  messageLoginPage: '',
-  isLoading: false,
+
   token: '',
   userIsConnected: false,
   user: null,
@@ -46,9 +43,9 @@ export const loginUser = createAsyncThunk(
         user: TUserConnected;
         token: string;
       }>('/auth/login', credentials);
-         LocalStorage.setItem('user', data.user);
-    LocalStorage.setItem('token', data.token);
-      
+      LocalStorage.setItem('user', data.user);
+      LocalStorage.setItem('token', data.token);
+
       thunkAPI.dispatch(changeIsLoading(false));
       thunkAPI.dispatch(setInfo('Tu es maintenant connecté ! '));
       return data;
@@ -57,9 +54,13 @@ export const loginUser = createAsyncThunk(
       thunkAPI.dispatch(setError('Mot de passe ou email incorrect'));
       throw error;
     }
-
   }
 );
+
+export const checkLogin = createAsyncThunk('user/check', async () => {
+  const { data } = await axiosInstance.get('/auth/check');
+  return data;
+});
 
 const loginFormReducer = createSlice({
   name: 'loginForm',
@@ -78,26 +79,21 @@ const loginFormReducer = createSlice({
     changeUserisConnected(state, action: PayloadAction<boolean>) {
       state.userIsConnected = action.payload;
     },
-    changeMessageLoginPage(state, action: PayloadAction<string>) {
-      state.messageLoginPage = action.payload;
-    },
-    changeErrorLoginPage(state, action: PayloadAction<string>) {
-      state.error = action.payload;
-    },
   },
   extraReducers(builder) {
-    builder.addCase(loginUser.fulfilled, (state, action) => {
-      state.userIsConnected = true;
-      state.token = action.payload.token;
-      state.user = action.payload.user;
-    });
+    builder
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.userIsConnected = true;
+        state.token = action.payload.token;
+        state.user = action.payload.user;
+      })
+      .addCase(checkLogin.rejected, (state, action) => {
+        LocalStorage.removeItem();
+        state.userIsConnected = false;
+      });
   },
 });
-export const {
-  changeLoginFormInputsField,
-  changeUserisConnected,
-  changeMessageLoginPage,
-  changeErrorLoginPage,
-} = loginFormReducer.actions;
+export const { changeLoginFormInputsField, changeUserisConnected } =
+  loginFormReducer.actions;
 
 export default loginFormReducer.reducer;

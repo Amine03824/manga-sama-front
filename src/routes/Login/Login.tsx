@@ -1,4 +1,4 @@
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import './Login.scss';
 import Footer from '../../components/Footer/Footer';
@@ -11,6 +11,7 @@ import {
 
 function Login() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const emailInputValue = useAppSelector(
     (state) => state.loginForm.credentials.email
@@ -37,7 +38,7 @@ function Login() {
     await dispatch(
       loginUser({ email: emailInputValue, password: passwordInputValue })
     );
-    <Navigate to="/user/dashboard" />;
+    navigate('/');
   };
 
   return (

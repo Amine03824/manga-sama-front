@@ -55,9 +55,14 @@ function Article() {
               <h2 className="Article__container_top-right-title-booktitle">
                 {article.article.title}
               </h2>
-              <h4 className="Article__container_top-right-title-booksubtitle">
-                Volume {article.mangas[0].volume}
-              </h4>
+              {article.mangas.map((manga) => (
+                <h4
+                  key={manga.code_isbn}
+                  className="Article__container_top-right-title-booksubtitle"
+                >
+                  Volume {manga.volume}
+                </h4>
+              ))}
             </div>
 
             <p className="Article__container_top-right-price">

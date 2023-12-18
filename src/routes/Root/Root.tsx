@@ -9,7 +9,10 @@ import { useAppDispatch } from '../../hooks/redux';
 import { getArticles, getConditions } from '../../store/reducers/article';
 import { getCategories } from '../../store/reducers/categories';
 import { LocalStorage } from '../../utils/LocalStorage';
-import { changeUserisConnected } from '../../store/reducers/loginForm';
+import {
+  changeUserisConnected,
+  checkLogin,
+} from '../../store/reducers/loginForm';
 
 function Root() {
   const dispatch = useAppDispatch();
@@ -24,6 +27,7 @@ function Root() {
     dispatch(getCategories());
     dispatch(getConditions());
     if (user) {
+      dispatch(checkLogin());
       dispatch(changeUserisConnected(true));
     }
   }, [dispatch, user]);
@@ -36,7 +40,7 @@ function Root() {
           menuIsVisible={menuIsVisible}
           setMenuIsVisible={setMenuIsVisible}
         />
-        <HeaderBottom />
+
         <Outlet />
       </div>
       <MobileNav />

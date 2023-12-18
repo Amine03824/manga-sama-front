@@ -13,6 +13,7 @@ import {
   modifyUser,
   resetForm,
 } from '../../store/reducers/userModify';
+import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
 
 function UserProfilPage() {
   const dispatch = useAppDispatch();
@@ -106,6 +107,7 @@ function UserProfilPage() {
 
   return (
     <Page>
+      <HeaderBottom />
       <div className="userpage">
         <div className="userpage__picture">
           <img
