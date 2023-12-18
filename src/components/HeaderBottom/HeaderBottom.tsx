@@ -10,7 +10,7 @@ function HeaderBottom() {
             Bienvenue sur Manga-Sama
           </h2>
           <h3 className="header__bottom_content-text">
-            Leader français de la vente de mangas entre particulier
+            Leader français de la vente de mangas entre particuliers
           </h3>
         </div>
       </div>
