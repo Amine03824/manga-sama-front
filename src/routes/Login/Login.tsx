@@ -8,7 +8,6 @@ import {
   changeLoginFormInputsField,
   loginUser,
 } from '../../store/reducers/loginForm';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 function Login() {
   const dispatch = useAppDispatch();
@@ -20,8 +19,6 @@ function Login() {
   const passwordInputValue = useAppSelector(
     (state) => state.loginForm.credentials.password
   );
-
-  const error = useAppSelector((state) => state.loginForm.error);
 
   const handleOnChangeInputField = (
     event: ChangeEvent<HTMLInputElement>,

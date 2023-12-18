@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
 
 import { clearMessages } from '../../store/reducers/loading';

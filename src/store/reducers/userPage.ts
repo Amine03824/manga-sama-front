@@ -4,14 +4,12 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TArticle, TUserArticle } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
 import { LocalStorage } from '../../utils/LocalStorage';
+import { changeIsLoading, setError } from './loading';
 
 type UserPageState = {
   userPageArticle: TArticle[];
   userPageInfo: TUserArticle;
   userId: string | null;
-  isLoading: boolean;
-  messageUserPage: string;
-  errorUserPage: string | null;
 };
 
 const initialState: UserPageState = {
@@ -24,18 +22,23 @@ const initialState: UserPageState = {
     updated_at: '',
   },
   userId: null,
-  isLoading: false,
-  messageUserPage: '',
-  errorUserPage: null,
 };
 
 export const getArticleByUser = createAsyncThunk(
   'userArticle/fetch',
-  async (userId: number) => {
-    const { data } = await axiosInstance.get<TArticle[]>(
-      `/associate/user/${userId}/article`
-    );
-    return data;
+  async (userId: number, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(changeIsLoading(true));
+      const { data } = await axiosInstance.get<TArticle[]>(
+        `/associate/user/${userId}/article`
+      );
+      thunkAPI.dispatch(changeIsLoading(false));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
+      thunkAPI.dispatch(setError('Erreur lors de la récupération des données'));
+      throw error;
+    }
   }
 );
 
@@ -60,15 +63,8 @@ const userPageReducer = createSlice({
   extraReducers(builder) {
     builder
       // Gestion du fetch afin de recuperer les article selon le user
-      .addCase(getArticleByUser.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getArticleByUser.rejected, (state) => {
-        state.isLoading = true;
-        state.errorUserPage = "Cet utilisateur n'a aucun article";
-      })
+
       .addCase(getArticleByUser.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.userPageArticle = action.payload;
 
         LocalStorage.setItem('userArticle', action.payload);

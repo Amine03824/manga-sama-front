@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getArticles } from '../../store/reducers/article';
-import Message from '../../components/Message/Message';
 
 function Home() {
   const articlesFiltered = useAppSelector(
