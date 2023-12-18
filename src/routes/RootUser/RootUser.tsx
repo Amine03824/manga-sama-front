@@ -1,9 +1,5 @@
-
 /* eslint-disable prefer-destructuring */
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
-
-
-
 
 import { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
@@ -40,7 +36,6 @@ function RootUser() {
   if (!user) {
     return <Navigate to="/login" />;
   }
-
 
   return (
     <div className="root__user">

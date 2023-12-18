@@ -12,7 +12,7 @@ import { TArticle } from '../../@types';
 function UserTransactions() {
   const dispatch = useAppDispatch();
   function getUserFromLocalStorage() {
-    const userID = LocalStorage.getItem('user').user.id;
+    const userID = LocalStorage.getItem('user').id;
     return userID;
   }
 

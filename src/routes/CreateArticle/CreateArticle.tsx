@@ -138,7 +138,7 @@ function CreateArticle() {
         });
         await dispatch(
           associateUserToArticle({
-            user_id: LocalStorage.getItem('user').user.id,
+            user_id: LocalStorage.getItem('user').id,
             article_id: createdArticle.payload.article.id,
           })
         );
@@ -146,7 +146,8 @@ function CreateArticle() {
         navigate('/');
       }
     } catch {
-      throw new Error('Problleme lors de la fonction asynchrone');
+      navigate('/');
+      throw new Error('Probleme lors de la fonction asynchrone');
     }
   };
 

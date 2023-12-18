@@ -14,7 +14,7 @@ function ConfirmationTransactionModale() {
   const articleID = useAppSelector(
     (state) => state.article.viewedArticle?.article.id
   );
-  const buyerID = LocalStorage.getItem('user').user.id;
+  const buyerID = LocalStorage.getItem('user').id;
 
   const handleClickAcceptTransaction = async () => {
     const data = await dispatch(
