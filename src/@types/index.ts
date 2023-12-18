@@ -37,7 +37,7 @@ export type TArticle = {
   price: string;
   transaction_id: number | null;
   date_transaction: string | null;
-  state_completion: number | null;
+  state_completion: string | null;
   photo_url: null | string;
   image_url: string;
   condition_id: number;

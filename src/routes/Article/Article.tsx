@@ -113,14 +113,16 @@ function Article() {
             {article.article.description}
           </p>
         </div>
-        <button type="button" className="Article__purchase_btn">
-          Acheter
-          <img
-            className="Article__purchase_img"
-            src="\assets\icons\cart-icon-32px.png"
-            alt="icône de caddy"
-          />
-        </button>
+        <Link to={`/article/${article.article.id}/transaction`}>
+          <button type="button" className="Article__purchase_btn">
+            Acheter
+            <img
+              className="Article__purchase_img"
+              src="\assets\icons\cart-icon-32px.png"
+              alt="icône de caddy"
+            />
+          </button>
+        </Link>
 
         {/* <div className="Article__bottom_section">
           <h5 className="Article__bottom_section-title">

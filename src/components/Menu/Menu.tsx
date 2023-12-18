@@ -42,8 +42,10 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
 
     dispatch(changeSearchInputValue(newSearchValue));
 
-    const filteredArticle = articles.filter((article) =>
-      article.article.title.toLowerCase().includes(newSearchValue)
+    const filteredArticle = articles.filter(
+      (article) =>
+        article.article.title.toLowerCase().includes(newSearchValue) &&
+        article.article.transaction_id === null
     );
 
     dispatch(changeFilteredArticle(filteredArticle));
