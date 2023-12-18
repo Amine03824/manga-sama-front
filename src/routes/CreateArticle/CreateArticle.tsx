@@ -185,7 +185,7 @@ function CreateArticle() {
             </button>
 
             <h3 className="CreateArticle__form_label">
-              Mangas liés à l'annonce
+              Manga(s) lié(s) à l'annonce
             </h3>
             <table>
               <tbody>
@@ -206,7 +206,7 @@ function CreateArticle() {
             </table>
 
             <label htmlFor="price" className="CreateArticle__form_label">
-              Prix:
+              Prix :
             </label>
             <input
               className="CreateArticle__form_input"
