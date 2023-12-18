@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getArticles } from '../../store/reducers/article';
-import Message from '../../components/Message/Message';
 
 function Home() {
   const articlesFiltered = useAppSelector(
@@ -14,15 +13,11 @@ function Home() {
 
   const dispatch = useAppDispatch();
 
-  const messageTransaction = useAppSelector(
-    (state) => state.transaction.messageTransaction
-  );
   useEffect(() => {
     dispatch(getArticles());
   }, [dispatch]);
   return (
     <div className="home">
-      {messageTransaction && <Message message_content={messageTransaction} />}
       <div className="home__articles">
         <div className="home__articles-title-area">
           <h2 className="home__articles-title">

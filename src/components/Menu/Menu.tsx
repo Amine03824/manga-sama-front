@@ -49,12 +49,6 @@ function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
     dispatch(changeFilteredArticle(filteredArticle));
   }
 
-  // const handleChangeSearchBarInputValue = (
-  //   event: ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   dispatch(changeSearchInputValue);
-  // };
-
   useEffect(() => {
     dispatch(changeFilteredArticle(articles));
   }, [dispatch, articles]);

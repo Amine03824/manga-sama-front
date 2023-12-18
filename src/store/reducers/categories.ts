@@ -2,42 +2,39 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { TCategory } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
+import { setError } from './loading';
 
 type CategoriesState = {
   list_categories: TCategory[];
-  error: string | null;
-  isLoading: boolean;
 };
 
 const initialState: CategoriesState = {
   list_categories: [],
-  error: null,
-  isLoading: true,
 };
 
-export const getCategories = createAsyncThunk('categories/fetch', async () => {
-  const { data } = await axiosInstance.get<TCategory[]>('/category');
-  return data;
-});
+export const getCategories = createAsyncThunk(
+  'categories/fetch',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axiosInstance.get<TCategory[]>('/category');
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(
+        setError('Un problème est survenu lors de la récupération des données')
+      );
+      throw error;
+    }
+  }
+);
 
 const categoriesReducer = createSlice({
   name: 'categories',
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder
-      .addCase(getCategories.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(getCategories.rejected, (state) => {
-        state.error = 'Problème lors de la récupération des articles';
-        state.isLoading = false;
-      })
-      .addCase(getCategories.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.list_categories = action.payload;
-      });
+    builder.addCase(getCategories.fulfilled, (state, action) => {
+      state.list_categories = action.payload;
+    });
   },
 });
 
