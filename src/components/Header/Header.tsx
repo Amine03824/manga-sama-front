@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
 import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Message from '../Message/Message';
 
 type HeaderProps = {
   menuIsVisible: boolean;
@@ -17,7 +19,8 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
     (state) => state.loginForm.userIsConnected
   );
   const isLoading = useAppSelector((state) => state.loading.isLoading);
-
+  const errorMessage = useAppSelector((state) => state.loading.errorMessage);
+  const infoMessage = useAppSelector((state) => state.loading.infoMessage);
   function handleOnClickMenuButton() {
     setMenuIsVisible(!menuIsVisible);
   }
@@ -31,6 +34,8 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   return (
     <div className="header">
       {isLoading && <Loader />}
+      {errorMessage && <ErrorMessage errorContent={errorMessage} />}
+      {infoMessage && <Message messageContent={infoMessage} />}
       <div className="header__top_container">
         <div className="header__top_container-button">
           <button

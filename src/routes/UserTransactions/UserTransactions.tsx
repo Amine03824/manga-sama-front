@@ -1,11 +1,12 @@
+import { useEffect, useState } from 'react';
 import Page from '../../components/Page/Page';
 import Footer from '../../components/Footer/Footer';
 import './UserTransactions.scss';
-import { axiosInstance } from '../../utils/axios';
+
 import { LocalStorage } from '../../utils/LocalStorage';
-import { useEffect, useState } from 'react';
+
 import { getArticleByUser } from '../../store/reducers/userPage';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import { TArticle } from '../../@types';
 
 function UserTransactions() {
@@ -33,7 +34,7 @@ function UserTransactions() {
 
       const getArticles = LocalStorage.getItem('userArticle');
       const filteredArticles = getArticles.filter(
-        (article) => article.transaction_id != null
+        (article: { transaction_id: null }) => article.transaction_id != null
       );
       setUserArticle(filteredArticles);
     };
@@ -55,7 +56,8 @@ function UserTransactions() {
                 <img
                   className="user-transactions__cards_item-img"
                   src={article.image_url}
-                ></img>
+                  alt="article"
+                />
                 <div className="user-transactions__cards_item-content">
                   <h4 className="user-transactions__cards_item-content-title">
                     {article.title}

@@ -1,14 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+
 import Page from '../../components/Page/Page';
 import './userInfo.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
-import {
-  changeUserInfo,
-  getArticleByUser,
-} from '../../store/reducers/userPage';
+import { getArticleByUser } from '../../store/reducers/userPage';
 import { findArticleByUserId } from '../../store/selectors/articles';
 
 function UserInfo() {
