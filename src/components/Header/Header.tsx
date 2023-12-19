@@ -37,15 +37,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
       {errorMessage && <ErrorMessage errorContent={errorMessage} />}
       {infoMessage && <Message messageContent={infoMessage} />}
       <div className="header__top_container">
-        <div className="header__top_container-button">
-          <button
-            onClick={handleOnClickMenuButton}
-            type="button"
-            className="header__top_container-button-menu"
-          >
-            <img src="/assets/icons/menuPink.png" alt="logo-menu-burger" />
-          </button>
-        </div>
+        <div className="header__top_container-button"></div>
         <Link to="/">
           <img
             src="/assets/logo/logo.png"

@@ -4,13 +4,17 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  font-size: 2em;
+  font-size: 2rem;
   top: 0px;
   left: 0px;
 
   z-index: 12;
   background-color: V.$grey-menu;
   opacity: 0.9;
+
+  @media screen and (min-width: 768px) {
+    font-size: 3rem;
+  }
 
   &__container {
     position: absolute;
@@ -20,19 +24,17 @@
     align-items: center;
     flex-direction: column;
     gap: 3rem;
-    top: 50%;
-    left: 50%;
+    top: 30%;
     @media screen and (min-width: 768px) {
-      left: 25%;
-      top: 25%;
+      top: 40%;
     }
   }
 
   &__gif {
-    width: 15rem;
+    width: 10rem;
 
     @media screen and (min-width: 768px) {
-      width: 10rem;
+      width: 15rem;
     }
   }
 
