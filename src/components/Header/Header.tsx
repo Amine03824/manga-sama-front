@@ -71,14 +71,17 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
         )}
         {userIsConnected && (
 
+        
           <div className="header__top_connected">
             <div className="header__top_connected-welcome">
-              Bienvenue{' '}
+              Bienvenue
               <div className="header__top_connected-nickname">
-                {LocalStorage.getItem('user').user.pseudo}-sama
+                {LocalStorage.getItem('user').pseudo}-sama
               </div>
              </div>
 
+
+              <div className="header__top_container-links">
             <div className="header__top_container-links-signup">
               <button
                 type="button"

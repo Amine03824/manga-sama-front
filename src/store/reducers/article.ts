@@ -38,6 +38,21 @@ export const getArticles = createAsyncThunk(
   }
 );
 
+export const deleteArticle = createAsyncThunk(
+  'article/delete',
+  async (articleId: number, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(changeIsLoading(true));
+      const { data } = await axiosInstance.delete(`/article/${articleId}`);
+      thunkAPI.dispatch(changeIsLoading(false));
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(changeIsLoading(false));
+      throw error;
+    }
+  }
+);
+
 export const getConditions = createAsyncThunk(
   'condition/fetch',
   async (_, thunkAPI) => {

@@ -21,6 +21,7 @@ import CreateArticle from './routes/CreateArticle/CreateArticle';
 import UserInfo from './routes/UserInfo/UserInfo';
 import Transaction from './routes/Transaction/Transaction';
 import UserTransactions from './routes/UserTransactions/UserTransactions';
+import UserArticle from './routes/UserArticle/UserArticle';
 
 // import mangaData from './data/data';
 
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: 'transactions',
         element: <UserTransactions />,
+      },
+      {
+        path: 'articles',
+        element: <UserArticle />,
       },
     ],
   },
