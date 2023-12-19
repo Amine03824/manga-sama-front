@@ -71,7 +71,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
         )}
         {userIsConnected && (
           <div className="header__top_container-links">
-            Bienvenue {LocalStorage.getItem('user').pseudo}-sama
+            Bienvenue {LocalStorage.getItem('user').pseudo}-Sama
             <div className="header__top_container-links-signup">
               <button
                 type="button"
