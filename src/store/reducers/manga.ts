@@ -6,6 +6,8 @@ import { changeIsLoading, setError } from './loading';
 
 type MangaState = {
   manga: TManga[];
+  arrayURL: string[];
+
   ISBNFormIsVisible: boolean;
   ISBNInputValue: string;
 
@@ -14,6 +16,8 @@ type MangaState = {
 
 const initialState: MangaState = {
   manga: [],
+  arrayURL: [],
+
   ISBNFormIsVisible: true,
   ISBNInputValue: '',
   error: null,
@@ -47,6 +51,7 @@ const mangaReducer = createSlice({
     },
     resetMangaState(state) {
       state.manga = [];
+      state.arrayURL = [];
     },
   },
   extraReducers(builder) {
@@ -61,7 +66,9 @@ const mangaReducer = createSlice({
         state.error = '';
         state.ISBNInputValue = '';
         state.ISBNFormIsVisible = false;
+
         state.manga.push(action.payload);
+        state.arrayURL.push(action.payload.cover_url);
       });
   },
 });

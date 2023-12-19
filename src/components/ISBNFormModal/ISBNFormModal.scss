@@ -30,15 +30,18 @@
   }
 
   &__input {
+    font-family: V.$secondary-font;
     border: 1px solid V.$pink-color;
     border-radius: 10px;
     padding: 0.4rem;
   }
 
   &__btn {
+    font-family: V.$main-font;
+    font-weight: bold;
     background: V.$pink-color;
     padding: 0.5rem;
     border-radius: 15px;
-    color: white;
+    color: V.$font-color-dark-bg;
   }
 }

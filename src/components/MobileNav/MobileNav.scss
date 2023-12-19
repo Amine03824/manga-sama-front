@@ -6,14 +6,14 @@
   width: 100%;
   z-index: 9;
   height: 5rem;
-  background-color: white;
-  border-top: 1px solid #ff2e63;
+  background-color: V.$white-color;
+  border-top: 1px solid V.$pink-color;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   font-weight: 500;
   font-family: V.$secondary-font;
-  color: #6f6f6f;
+  color: V.$gray-icon;
 
   @media screen and (min-width: 768px) {
     visibility: hidden;
@@ -34,6 +34,6 @@
   }
 
   &__icon_title:active {
-    color: #ff2e63;
+    color: V.$pink-color;
   }
 }

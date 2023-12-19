@@ -4,86 +4,140 @@ body {
   overflow-x: hidden;
 }
 
-.CreateArticle__title {
-  font-family: V.$main-font;
-  font-weight: bold;
-  font-size: 1.7rem;
-  margin: 0 auto;
+.CreateArticle {
+  &__title {
+    font-family: V.$main-font;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: center;
 
-  @media screen and (max-width: 768px) {
-    width: 70%;
+    @media screen and (min-width: 768px) {
+      font-size: 1.8rem;
+    }
   }
-}
-.CreateArticle__container {
-  margin: 2rem auto;
-  display: flex;
-  gap: 2rem;
-  @media screen and (max-width: 768px) {
+  &__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 85%;
-  }
-
-  &_left {
-    width: 50%;
-    @media screen and (max-width: 768px) {
+    gap: 2rem;
+    margin: 1.5rem;
+    font-weight: bold;
+    @media screen and (min-width: 600px) {
+      flex-direction: row;
       width: 100%;
     }
-  }
-  &_left img {
-    border-radius: 15px;
-  }
-  &_right {
-    width: 50%;
-    @media screen and (max-width: 768px) {
-      width: 100%;
+
+    &_left {
+      @media screen and (min-width: 450px) {
+      }
+      img {
+        margin: 0 auto;
+        height: 50vh;
+      }
+    }
+    &_right {
     }
   }
-}
-
-.CreateArticle__form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-
-  &-addMangaButton {
-    background-color: V.$pink-color;
-    padding: 0.3rem;
-    margin: 0.5rem;
-    color: white;
-    border-radius: 1rem;
-  }
-  &_label {
-    font-family: V.$main-font;
-    font-weight: bold;
-    margin-top: 0.9rem;
-  }
-
-  &_input {
-    background: V.$pink-bg;
-    padding: 0.5rem;
-    border-radius: 15px;
-    font-family: V.$secondary-font;
-    font-size: 0.95rem;
-  }
-
-  &_btn {
-    padding: 1rem 0;
-    background: V.$pink-color;
-    border-radius: 15px;
-    font-family: V.$main-font;
-    font-weight: bold;
-    color: white;
-    margin-top: 2rem;
+  &__form {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    width: 75%;
-  }
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.9rem;
 
-  &_btn img {
-    width: 28px;
+    &-addMangaButton {
+      background-color: V.$pink-color;
+      padding: 0.3rem;
+      margin: 1rem auto;
+      color: V.$font-color-dark-bg;
+      border-radius: 1rem;
+      width: 50%;
+      @media screen and (min-width: 500px) {
+        width: 50%;
+      }
+    }
+    &-mangaListItem {
+      color: V.$dark-grey;
+    }
+    &_label {
+      font-family: V.$main-font;
+      font-weight: bold;
+      margin-top: 0.9rem;
+    }
+
+    &_input {
+      background: V.$pink-bg;
+      padding: 0.5rem 0.7rem;
+      border-radius: 15px;
+      font-family: V.$secondary-font;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: V.$dark-grey;
+    }
+
+    &_btn {
+      background: V.$pink-color;
+      font-family: V.$main-font;
+      font-weight: bold;
+      font-size: 0.8rem;
+      gap: 1rem;
+      color: V.$font-color-dark-bg;
+      padding: 0.3rem;
+      border-radius: 15px;
+      margin: 2rem auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+      @media screen and (min-width: 500px) {
+        gap: 0.5rem;
+        padding: 0.5rem 0.7rem;
+        margin: 2rem auto;
+      }
+    }
+
+    &_btn img {
+      width: 28px;
+    }
   }
 }
+
+// .CreateArticle__title {
+//   font-family: V.$main-font;
+//   font-weight: bold;
+//   font-size: 1.7rem;
+//   margin: 0 auto;
+
+//   @media screen and (max-width: 768px) {
+//     width: 70%;
+//   }
+// }
+// .CreateArticle__container {
+//   margin: 2rem auto;
+//   display: flex;
+//   gap: 2rem;
+//   @media screen and (max-width: 768px) {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     width: 85%;
+//   }
+
+//   &_left {
+//     width: 50%;
+//     @media screen and (max-width: 768px) {
+//       width: 100%;
+//     }
+//   }
+//   &_left img {
+//     border-radius: 15px;
+//   }
+//   &_right {
+//     width: 50%;
+//     @media screen and (max-width: 768px) {
+//       width: 100%;
+//     }
+//   }
+// }
+
+// .CreateArticle__form {

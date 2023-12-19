@@ -1,4 +1,4 @@
-@use '../../styles/variables' as v;
+@use '../../styles/variables' as V;
 
 .error__container {
   width: 80%;
@@ -16,7 +16,7 @@
     &-title {
       font-size: 1rem;
       font-weight: bold;
-      color: black;
+      color: V.$font-color-light-bg;
       margin: 1rem 0;
 
       @media screen and (min-width: 768px) {
@@ -42,9 +42,9 @@
 
   &-btn {
     padding: 0.7rem;
-    background: v.$pink-color;
+    background: V.$pink-color;
     border-radius: 10px;
-    color: white;
+    color: V.$font-color-dark-bg;
     font-weight: bold;
     margin-bottom: 1rem;
 

@@ -1,8 +1,8 @@
-@use 'src/styles/_variables.scss' as v;
+@use 'src/styles/_variables.scss' as V;
 
 .transaction {
   &__area {
-    background-color: v.$pink-bg;
+    background-color: V.$pink-bg;
     border-radius: 1rem;
     display: flex;
     align-items: center;
@@ -24,9 +24,9 @@
       padding: 2rem;
       align-items: center;
       justify-content: space-evenly;
-      background-color: white;
+      background-color: V.$white-color;
       width: 90%;
-      font-family: v.$main-font;
+      font-family: V.$main-font;
       font-weight: bold;
       @media screen and (max-width: 768px) {
         display: flex;
@@ -46,12 +46,12 @@
           }
         }
         &-name {
-          color: v.$pink-color;
-          font-family: v.$secondary-font;
+          color: V.$pink-color;
+          font-family: V.$secondary-font;
           font-weight: 500;
         }
         &-location {
-          font-family: v.$secondary-font;
+          font-family: V.$secondary-font;
           font-weight: 500;
         }
       }
@@ -78,13 +78,13 @@
           font-size: 1.5rem;
         }
         &-volume {
-          font-family: v.$secondary-font;
+          font-family: V.$secondary-font;
           font-weight: 500;
         }
 
         &-price {
           // padding-top: 1rem;
-          color: v.$pink-color;
+          color: V.$pink-color;
           font-size: 1.5rem;
         }
       }
@@ -93,11 +93,11 @@
       margin-bottom: 15px;
       display: flex;
       justify-content: center;
-      background-color: v.$pink-color;
+      background-color: V.$pink-color;
       padding: 20px 30px;
       border-radius: 20px;
       font-weight: bold;
-      color: white;
+      color: V.$font-color-dark-bg;
     }
   }
 }

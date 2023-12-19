@@ -1,4 +1,4 @@
-@use '../../styles/variables' as v;
+@use '../../styles/variables' as V;
 
 .home-menu {
   display: flex;
@@ -10,7 +10,7 @@
   gap: 1rem;
   justify-content: space-between;
   width: 300px;
-  background-color: v.$grey-menu;
+  background-color: V.$grey-menu;
   padding: 2rem;
   z-index: 2;
   transition: all 300ms ease;
@@ -35,7 +35,7 @@
     height: 3rem;
     width: 3rem;
     border-radius: 50% 50% 50% 50%;
-    background-color: v.$grey-menu;
+    background-color: V.$grey-menu;
 
     @media screen and (min-width: 768px) {
       display: none;
@@ -73,7 +73,7 @@
   &__nav {
     margin-top: 1rem;
     font-size: 1.5rem;
-    color: v.$white-color;
+    color: V.$white-color;
   }
 
   &__socials {
@@ -94,7 +94,7 @@
     transition: color 300ms ease;
 
     &:hover {
-      color: v.$pink-color;
+      color: V.$pink-color;
       cursor: pointer;
     }
   }
@@ -129,7 +129,7 @@
     transition: color 300ms ease;
 
     &:hover {
-      color: v.$pink-color;
+      color: V.$pink-color;
       cursor: pointer;
     }
   }

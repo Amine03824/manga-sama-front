@@ -20,6 +20,7 @@ import {
 
 import { LocalStorage } from '../../utils/LocalStorage';
 import { setError } from '../../store/reducers/loading';
+import Carousel from '../../components/Carousel/Carousel';
 
 function CreateArticle() {
   const dispatch = useAppDispatch();
@@ -28,6 +29,7 @@ function CreateArticle() {
   // Au début de notre composant on récupère toutes les donées du store qui vont être utlisé dans notre composant.
   const ISBNModal = useAppSelector((state) => state.manga.ISBNFormIsVisible);
   const mangas = useAppSelector((state) => state.manga.manga);
+  const arrayURL = useAppSelector((state) => state.manga.arrayURL);
   const articleTitleInputValue = useAppSelector(
     (state) => state.createArticle.credentials.article_title
   );
@@ -91,7 +93,7 @@ function CreateArticle() {
   if (!userIsConnected) {
     dispatch(
       setError(
-        "La création d'un article nécéssite la connexion à un compte Utilisateur !!"
+        "La création d'un article nécessite la connexion à un compte Utilisateur !"
       )
     );
     return <Navigate to="/login" />;
@@ -157,7 +159,8 @@ function CreateArticle() {
 
       <div className="CreateArticle__container">
         <div className="CreateArticle__container_left">
-          <img src={mangas[0]?.cover_url} alt="manga" />
+          {mangas.length !== 0 && <Carousel images={arrayURL} />}
+          {/* <img src={mangas[0]?.cover_url} alt="manga" /> */}
         </div>
         <div className="CreateArticle__container_right">
           <form
@@ -186,7 +189,7 @@ function CreateArticle() {
             </button>
 
             <h3 className="CreateArticle__form_label">
-              Mangas liés à l'annonce
+              Manga(s) lié(s) à l'annonce
             </h3>
             <table>
               <tbody>
@@ -207,7 +210,7 @@ function CreateArticle() {
             </table>
 
             <label htmlFor="price" className="CreateArticle__form_label">
-              Prix:
+              Prix :
             </label>
             <input
               className="CreateArticle__form_input"

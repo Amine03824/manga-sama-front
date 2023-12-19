@@ -40,13 +40,22 @@ function ConfirmationTransactionModale() {
   return (
     <div className="transaction__modale">
       <h2 className="transaction__modale-warning">Attention !</h2>
-      <p className="transaction__modale-content">
-        Manga-Sama se charge uniquement de mettre en relation les utilisateurs
-        entre eux. Un mail de confirmation avec les coordonnées de lautre partie
-        va vous être envoyé afin que vous puissiez procéder à la vente. Nous
-        travaillons actuellement afin de mettre en place un moyen de paiement
-        sécurisé sur le site
-      </p>
+      <div className="transaction__modale-content">
+        <p className="transaction__modale-content-1">
+          Manga-Sama se charge uniquement de mettre en relation les utilisateurs
+          entre eux
+        </p>
+
+        <p className="transaction__modale-content-2">
+          Un email avec les coordonnées du vendeur va vous être envoyé afin que
+          vous puissiez procéder à l'achat
+        </p>
+
+        <p className="transaction__modale-content-3">
+          Nous travaillons actuellement afin de mettre en place un moyen de
+          paiement sécurisé sur le site
+        </p>
+      </div>
       <button
         onClick={handleClickAcceptTransaction}
         className="transaction__modale-btn"

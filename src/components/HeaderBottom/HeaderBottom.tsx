@@ -3,32 +3,32 @@ import './HeaderBottom.scss';
 
 function HeaderBottom() {
   return (
-    <div className="header__bottom">
-      <div className="header__bottom_container">
-        <div className="header__bottom_content">
-          <h2 className="header__bottom_content-title">
+    <div className="header-bottom">
+      <div className="header-bottom__container">
+        <div className="header-bottom__content">
+          <h2 className="header-bottom__content-title">
             Bienvenue sur Manga-Sama
           </h2>
-          <h3 className="header__bottom_content-text">
-            Leader français de la vente de mangas entre particulier
+          <h3 className="header-bottom__content-text">
+            Leader français de la vente de mangas entre particuliers
           </h3>
         </div>
       </div>
-      <div className="header__bottom_button">
-        <Link to="createArticle" className="header__bottom_button-link">
+      <div className="header-bottom__button">
+        <Link to="createArticle" className="header-bottom__button-link">
           Publier une annonce
           <img
             src="/assets/icons/add.png"
             alt="logo-publier-une-annonce"
-            className="header__bottom_button-logo"
+            className="header-bottom__button-logo"
           />
         </Link>
       </div>
-      <div className="header__bottom_input-area">
+      <div className="header-bottom__input-area">
         <input
           type="text"
           placeholder="Rechercher un manga"
-          className="header__bottom_input-text"
+          className="header-bottom__input-text"
         />
       </div>
     </div>
