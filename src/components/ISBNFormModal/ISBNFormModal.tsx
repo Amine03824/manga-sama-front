@@ -23,7 +23,7 @@ function ISBNFormModal() {
   return (
     <dialog className="isbnFormModal">
       <h2>
-        Entres le code ISBN de ton manga (il se trouve au dos de ton livre)
+        Entre le code ISBN de ton manga (il se trouve au dos de ton livre)
       </h2>
       <form className="isbnFormModal__form" onSubmit={handleSubmitISBNForm}>
         <input

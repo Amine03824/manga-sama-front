@@ -1,4 +1,4 @@
-@use '../../styles/variables' as v;
+@use '../../styles/variables' as V;
 
 .team {
   @media screen and (min-width: 768px) {
@@ -8,7 +8,7 @@
   &__title {
     font-size: 2rem;
     text-align: center;
-    color: v.$pink-color;
+    color: V.$pink-color;
     font-weight: bold;
     padding: 2rem;
   }
@@ -34,7 +34,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      background-color: v.$pink-bg;
+      background-color: V.$pink-bg;
       border-radius: 2rem;
       padding: 1rem;
 

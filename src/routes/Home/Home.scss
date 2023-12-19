@@ -8,12 +8,13 @@
       padding: 10px;
     }
     &-title {
+      font-family: V.$main-font;
+      font-size: 1.5rem;
+      font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 10px;
       justify-content: center;
-      font-family: V.$secondary-font;
-      font-weight: bold;
+      gap: 10px;
       @media screen and (min-width: 768px) {
         font-size: 30px;
         align-items: center;
@@ -49,24 +50,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
-      font-family: V.$secondary-font;
-
-      // font-weight: 500;
+      padding: 0.8rem 0; // font-weight: 500;
       &-title {
         font-weight: 500;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
+        font-family: V.$main-font;
+        font-weight: bold;
       }
       &-price {
         color: V.$pink-color;
+        font-size: 1rem;
+        font-weight: bold;
+        font-family: V.$main-font;
         font-weight: bold;
       }
       &-localisation {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         color: V.$gray-icon;
+        font-family: V.$secondary-font;
       }
     }
   }

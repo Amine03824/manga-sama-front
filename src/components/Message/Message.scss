@@ -1,3 +1,5 @@
+@use '../../styles/variables' as V;
+
 .dialogMessage {
   position: fixed;
   height: fit-content;
@@ -5,7 +7,7 @@
   top: 5rem;
   left: 5rem;
   background-color: rgb(181, 221, 181);
-  color: black;
+  color: V.$font-color-light-bg;
 
   border: solid 2px green;
   border-radius: 1rem;

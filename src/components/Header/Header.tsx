@@ -70,8 +70,15 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
           </div>
         )}
         {userIsConnected && (
-          <div className="header__top_container-links">
-            Bienvenue {LocalStorage.getItem('user').pseudo}-sama
+
+          <div className="header__top_connected">
+            <div className="header__top_connected-welcome">
+              Bienvenue{' '}
+              <div className="header__top_connected-nickname">
+                {LocalStorage.getItem('user').user.pseudo}-sama
+              </div>
+             </div>
+
             <div className="header__top_container-links-signup">
               <button
                 type="button"
@@ -81,15 +88,31 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
                 Se déconnecter
                 <img src="/assets/icons/register-icon.png" alt="signup-logo" />
               </button>
+
             </div>
-            <div className="header__top_container-links-login">
-              <Link
-                to="/user/dashboard"
-                className="header__top_container-login"
-              >
-                Page de Profil
-                <img src="/assets/icons/user-icon.png" alt="login-logo" />
-              </Link>
+            <div className="header__top_container-links">
+              <div className="header__top_container-links-signup">
+                <button
+                  type="button"
+                  onClick={handleDisconnect}
+                  className="header__top_container-signup"
+                >
+                  Se déconnecter
+                  <img
+                    src="/assets/icons/register-icon.png"
+                    alt="signup-logo"
+                  />
+                </button>
+              </div>
+              <div className="header__top_container-links-login">
+                <Link
+                  to="/user/dashboard"
+                  className="header__top_container-login"
+                >
+                  Page de Profil
+                  <img src="/assets/icons/user-icon.png" alt="login-logo" />
+                </Link>
+              </div>
             </div>
           </div>
         )}
