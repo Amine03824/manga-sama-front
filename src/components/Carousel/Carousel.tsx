@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Carousel.scss';
 
 interface CarouselProps {
@@ -7,6 +7,7 @@ interface CarouselProps {
 
 function Carousel({ images }: CarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  console.log(currentImageIndex);
 
   const nextImage = () => {
     const newIndex = (currentImageIndex + 1) % images.length;
@@ -21,6 +22,7 @@ function Carousel({ images }: CarouselProps) {
   useEffect(() => {
     const next = () => {
       const newIndex = (currentImageIndex + 1) % images.length;
+
       setCurrentImageIndex(newIndex);
     };
     // Auto rotate images every 5 seconds (5000 milliseconds)

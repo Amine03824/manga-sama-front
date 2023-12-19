@@ -31,6 +31,7 @@ function Article() {
   if (article) {
     article.mangas.forEach((manga) => {
       URLArray.push(manga.cover_url);
+      console.log(URLArray);
     });
   }
 
