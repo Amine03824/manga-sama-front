@@ -11,7 +11,7 @@ function Error() {
         </div>
         <Link to="/">
           <button type="button" className="error__container-btn">
-            Retour à l`&apos`accueil
+            Retour à l`accueil
           </button>
         </Link>
         <div className="error__container-main">
