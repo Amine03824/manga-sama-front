@@ -131,6 +131,7 @@ function UserProfilPage() {
             <div className="userpage__infos-area">
               <ul className="userpage__infos-list">
                 <li className="userpage__infos-item">
+                  <p>Pseudo:</p>
                   <button
                     type="button"
                     className={clsx('userpage__infos-content', {
@@ -140,7 +141,7 @@ function UserProfilPage() {
                       setPseudoInputIsVisible(true);
                     }}
                   >
-                    Pseudo : {LocalStorage.getItem('user').pseudo}
+                    {LocalStorage.getItem('user').pseudo}
                   </button>
                   <input
                     value={pseudoInput}
@@ -154,6 +155,7 @@ function UserProfilPage() {
                   />
                 </li>
                 <li className="userpage__infos-item">
+                  <p>Prénom:</p>
                   <button
                     type="button"
                     className={clsx('userpage__infos-content', {
@@ -164,7 +166,7 @@ function UserProfilPage() {
                       setFirstNameInputIsVisible(true);
                     }}
                   >
-                    Prénom : {LocalStorage.getItem('user').firstname}
+                    {LocalStorage.getItem('user').firstname}
                   </button>
                   <input
                     value={firstNameInput}
@@ -178,6 +180,7 @@ function UserProfilPage() {
                   />
                 </li>
                 <li className="userpage__infos-item">
+                  <p>Nom de famille:</p>
                   <button
                     type="button"
                     className={clsx('userpage__infos-content', {
@@ -187,7 +190,7 @@ function UserProfilPage() {
                       setLastNameInputIsVisible(true);
                     }}
                   >
-                    Nom de famille : {LocalStorage.getItem('user').lastname}
+                    {LocalStorage.getItem('user').lastname}
                   </button>
                   <input
                     value={lastNameInput}
@@ -201,6 +204,7 @@ function UserProfilPage() {
                   />
                 </li>
                 <li className="userpage__infos-item">
+                  <p>Adresse:</p>
                   <button
                     type="button"
                     className={clsx('userpage__infos-content', {
@@ -210,7 +214,7 @@ function UserProfilPage() {
                       setAdressInputIsVisible(true);
                     }}
                   >
-                    Adresse : {LocalStorage.getItem('user').address}
+                    {LocalStorage.getItem('user').address}
                   </button>
                   <input
                     value={adressInput}
@@ -224,6 +228,7 @@ function UserProfilPage() {
                   />
                 </li>
                 <li className="userpage__infos-item">
+                  <p>Ville:</p>
                   <button
                     type="button"
                     className={clsx('userpage__infos-content', {
@@ -236,7 +241,7 @@ function UserProfilPage() {
                       setPseudoInputIsVisible(true);
                     }}
                   >
-                    Ville : {LocalStorage.getItem('user').city}
+                    {LocalStorage.getItem('user').city}
                   </button>
                   <input
                     value={cityInput}
@@ -250,6 +255,7 @@ function UserProfilPage() {
                   />
                 </li>
                 <li className="userpage__infos-item">
+                  <p>Code postal:</p>
                   <button
                     type="button"
                     className={clsx('userpage__infos-content', {
@@ -259,7 +265,7 @@ function UserProfilPage() {
                       setZipCodeInputIsVisible(true);
                     }}
                   >
-                    Code Postal : {LocalStorage.getItem('user').zip_code}
+                    {LocalStorage.getItem('user').zip_code}
                   </button>
                   <input
                     value={zipcodeInput}
@@ -273,6 +279,7 @@ function UserProfilPage() {
                   />
                 </li>
                 <li className="userpage__infos-item">
+                  <p>Numéro de téléphone:</p>
                   <button
                     type="button"
                     className={clsx('userpage__infos-content', {
@@ -283,7 +290,6 @@ function UserProfilPage() {
                       setPhoneNumberInputIsVisible(true);
                     }}
                   >
-                    Numéro de téléphone :
                     {LocalStorage.getItem('user').phone_number}
                   </button>
                   <input

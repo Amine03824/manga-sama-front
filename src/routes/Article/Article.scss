@@ -20,10 +20,12 @@
     &-left {
       width: 60%;
       @media screen and (min-width: 1000px) {
-        width: 60%;
+        width: 300px;
+        height: 400px;
       }
       @media screen and (min-width: 1150px) {
-        width: 40%;
+        width: 300px;
+        height: 400px;
       }
 
       &-img {

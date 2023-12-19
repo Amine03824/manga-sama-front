@@ -15,9 +15,9 @@ const initialState: TransactionState = {
 };
 
 type TransactionCredentials = {
-  buyerID: number;
-  sellerID: number | undefined;
-  articleID: number | undefined;
+  buyerId: number;
+  sellerId: number | undefined;
+  articleId: number | undefined;
 };
 
 export const acceptTransaction = createAsyncThunk(

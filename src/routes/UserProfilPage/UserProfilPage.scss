@@ -44,6 +44,7 @@
   &__infos {
     background-color: V.$pink-bg;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -57,6 +58,7 @@
     }
     &-area {
       display: flex;
+      margin-top: 10px;
       flex-direction: column;
       gap: 30px;
     }
@@ -68,16 +70,17 @@
     }
     &-item {
       font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 5px;
-
-      background-color: V.$white-color;
-
       border-radius: 20px;
       width: 300px;
       font-family: V.$secondary-font;
       font-weight: bold;
+      gap: 10px;
 
-      color: V.$gray-icon;
+      // color: V.$gray-icon;
 
       padding-left: 10px;
     }
@@ -104,6 +107,9 @@
       display: none;
     }
     &-content {
+      background-color: V.$white-color;
+      padding: 5px 20px;
+      border-radius: 10px;
     }
     &-content--hidden {
       display: none;

@@ -24,13 +24,6 @@ function HeaderBottom() {
           />
         </Link>
       </div>
-      <div className="header-bottom__input-area">
-        <input
-          type="text"
-          placeholder="Rechercher un manga"
-          className="header-bottom__input-text"
-        />
-      </div>
     </div>
   );
 }

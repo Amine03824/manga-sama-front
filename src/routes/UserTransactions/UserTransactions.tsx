@@ -61,7 +61,7 @@ function UserTransactions() {
                     {article.title}
                   </h4>
                   <p className="user-transactions__cards_item-content-price">
-                    {article.price}
+                    {article.price} €
                   </p>
                 </div>
                 <p className="user-transactions__cards_item-state">

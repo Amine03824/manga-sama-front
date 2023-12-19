@@ -8,20 +8,20 @@ import { setInfo } from '../../store/reducers/loading';
 function ConfirmationTransactionModale() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const sellerID = useAppSelector(
+  const sellerId = useAppSelector(
     (state) => state.article.viewedArticle?.user.id
   );
-  const articleID = useAppSelector(
+  const articleId = useAppSelector(
     (state) => state.article.viewedArticle?.article.id
   );
-  const buyerID = LocalStorage.getItem('user').id;
+  const buyerId = LocalStorage.getItem('user').id;
 
   const handleClickAcceptTransaction = async () => {
     const data = await dispatch(
       acceptTransaction({
-        sellerID,
-        articleID,
-        buyerID,
+        sellerId,
+        articleId,
+        buyerId,
       })
     );
 

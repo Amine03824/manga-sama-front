@@ -43,11 +43,11 @@
       font-family: V.$main-font;
       font-weight: bold;
       @media screen and (min-width: 768px) {
-        width: 75%;
+        width: 85%;
       }
 
       &-img {
-        width: 4rem;
+        width: 6rem;
         border-radius: 15px;
       }
       &-content {
