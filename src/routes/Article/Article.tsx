@@ -50,30 +50,86 @@ function Article() {
   return (
     <Page>
       <div className="Article">
-        <div className="Article__container_top">
-          <div className="Article__container_top-left">
-            <Carousel images={URLArray} />
-            {/* <img
+        <div className="Article__container">
+          <div className="Article__container_title">
+            {article.article.title}
+          </div>
+          <div className="Article__container_price">
+            {article.article.price} €
+          </div>
+          <div className="Article__container_main">
+            <div className="Article__container_img">
+              <Carousel images={URLArray} />
+              {/* <img
               className="Article__container_top-left-img"
               src={article.mangas[0].cover_url}
               alt="couverture du manga"
             /> */}
-          </div>
-          <div className="Article__container_top-right">
-            <div className="Article__container_top-right-title">
-              <h2 className="Article__container_top-right-title-booktitle">
-                {article.article.title}
-              </h2>
-              {article.mangas.map((manga) => (
-                <h4
-                  key={manga.code_isbn}
-                  className="Article__container_top-right-title-booksubtitle"
-                >
-                  Volume {manga.volume}
-                </h4>
-              ))}
             </div>
-
+            <div className="Article__container_description">
+              <div className="Article__container_description-title">
+                Description :
+              </div>
+              <div className="Article__container_description-content">
+                {article.article.description}
+              </div>
+            </div>
+            <div className="Article__container_state">
+              <div className="Article__container_state-title">
+                Etat de l'article :
+              </div>
+              <div className="Article__container_state-content">
+                Très bon état
+              </div>
+            </div>
+            <div className="Article__container_soldby">
+              <div className="Article__container_soldby-content">
+                Vendu par :{' '}
+                <Link to={`/article/user/${article.user.id}`}>
+                  <div className="Article__container_soldby-name">
+                    {article.user.pseudo}
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="Article__container_bottom">
+            <Link to={`/article/${article.article.id}/transaction`}>
+              <button type="button" className="Article__purchase_btn">
+                Acheter
+                <img
+                  className="Article__purchase_img"
+                  src="\assets\icons\cart-icon-32px.png"
+                  alt="icône de caddy"
+                />
+              </button>
+            </Link>
+          </div>
+        </div>
+        {/* 
+        <div className="Article__container_title">
+          <h2 className="Article__container_top-right-title-booktitle">
+            {article.article.title}
+          </h2>
+          {/* {article.mangas.map((manga) => (
+                // <h4
+                //   key={manga.code_isbn}
+                //   className="Article__container_top-right-title-booksubtitle"
+                // >
+                //   Volume {manga.volume}
+                // </h4>
+              ))} */}
+        {/* </div>
+        <div className="Article__container_top">
+          <div className="Article__container_top-left">
+            <Carousel images={URLArray} /> */}
+        {/* <img
+              className="Article__container_top-left-img"
+              src={article.mangas[0].cover_url}
+              alt="couverture du manga"
+            /> */}
+        {/* </div>
+          <div className="Article__container_top-right">
             <p className="Article__container_top-right-price">
               {article.article.price}€
             </p>
@@ -85,9 +141,9 @@ function Article() {
               <p className="Article__container_top-right-description-content">
                 {article.article.description}
               </p>
-            </div>
+            </div> */}
 
-            <div className="Article__container_top-right-state">
+        {/* <div className="Article__container_top-right-state">
               <h5 className="Article__container_top-right-state-title">
                 Etat de l'article :
               </h5>
@@ -105,8 +161,8 @@ function Article() {
                   {article.user.pseudo}
                 </p>
               </Link>
-            </div>
-            <Link to={`/article/${article.user.id}/transaction`}>
+            </div> */}
+        {/* <Link to={`/article/${article.user.id}/transaction`}>
               <button
                 type="button"
                 className="Article__container_top-right-purchase-btn"
@@ -136,7 +192,7 @@ function Article() {
               alt="icône de caddy"
             />
           </button>
-        </Link>
+        </Link> */}
 
         {/* <div className="Article__bottom_section">
           <h5 className="Article__bottom_section-title">

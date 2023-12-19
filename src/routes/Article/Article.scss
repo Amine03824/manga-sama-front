@@ -2,10 +2,14 @@
 
 .Article {
   width: 95%;
-  background-color: #fcf3f3;
+  // background-color: V.$pink-bg;
+  border: 1px solid whitesmoke;
+  box-shadow: 4px 4px 11px -4px rgba(255, 46, 99, 0.71);
+  -webkit-box-shadow: 4px 4px 11px -4px rgba(255, 46, 99, 0.71);
+  -moz-box-shadow: 4px 4px 11px -4px rgba(255, 46, 99, 0.71);
   margin: 1.5rem auto;
   border-radius: 15px;
-  padding: 1.5rem;
+  padding: 1rem;
   font-family: V.$main-font;
   @media screen and (min-width: 1000px) {
     width: 75%;
@@ -14,11 +18,70 @@
     width: 65%;
   }
 
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    &_title {
+      margin: 0 auto 0.3rem;
+      font-family: V.$main-font;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    &_img {
+      width: 65%;
+      margin: 0 auto;
+    }
+
+    &_price {
+      font-weight: bold;
+      color: V.$pink-color;
+      font-size: 1.8rem;
+      margin: 0 auto 0.5rem;
+    }
+
+    &_description {
+      &-title {
+        font-family: V.$main-font;
+        font-weight: bold;
+        margin: 1rem 0 0;
+      }
+      &-content {
+        font-family: V.$secondary-font;
+      }
+    }
+    &_state {
+      &-title {
+        font-family: V.$main-font;
+        font-weight: bold;
+        margin: 1rem 0 0;
+      }
+      &-content {
+        font-family: V.$secondary-font;
+      }
+    }
+
+    &_soldby {
+      display: flex;
+      &-content {
+        font-family: V.$main-font;
+        font-weight: bold;
+        margin: 1rem 0 0;
+      }
+      &-name {
+        color: V.$pink-color;
+        text-decoration: underline;
+      }
+    }
+  }
+
   &__container_top {
     display: flex;
+    justify-content: center;
 
     &-left {
-      width: 60%;
+      width: 45%;
       @media screen and (min-width: 1000px) {
         width: 300px;
         height: 400px;
@@ -33,16 +96,17 @@
       }
     }
     &-right {
-      width: 65%;
+      width: 55%;
       padding: 0 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
+      gap: 1rem;
 
       &-title {
         &-booktitle {
+          font-family: V.$secondary-font;
           font-weight: bold;
-          font-size: 1.8rem;
+          font-size: 1.15rem;
         }
 
         &-booksubtitle {
@@ -93,12 +157,14 @@
 
       &-price {
         font-weight: bold;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: V.$pink-color;
+        margin: 0 auto;
       }
 
       &-state {
         &-title {
+          font-family: V.$secondary-font;
           font-weight: bold;
           font-size: 0.85rem;
         }
@@ -115,12 +181,13 @@
       }
 
       &-soldby-title {
-        font-family: V.$secondary-font;
+        font-family: V.$main-font;
+        font-weight: bold;
         font-size: 0.85rem;
       }
       &-soldby-sellername {
         font-family: V.$secondary-font;
-        font-weight: bold;
+        color: V.$grey-menu;
         font-size: 0.85rem;
         margin-top: -0.2rem;
       }
