@@ -69,12 +69,16 @@
     &-item {
       font-size: 1rem;
       padding: 5px;
+
       background-color: V.$white-color;
+
       border-radius: 20px;
       width: 300px;
       font-family: V.$secondary-font;
       font-weight: bold;
+
       color: V.$gray-icon;
+
       padding-left: 10px;
     }
     &-footer {
@@ -90,6 +94,19 @@
       padding: 3px;
       color: V.$font-color-dark-bg;
       background-color: V.$pink-color;
+    }
+    &-input {
+      width: 100%;
+      background-color: white;
+      border-radius: 20px;
+    }
+    &-input--hidden {
+      display: none;
+    }
+    &-content {
+    }
+    &-content--hidden {
+      display: none;
     }
   }
 }

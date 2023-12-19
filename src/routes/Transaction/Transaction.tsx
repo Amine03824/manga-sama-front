@@ -5,12 +5,13 @@ import Page from '../../components/Page/Page';
 import { useAppSelector } from '../../hooks/redux';
 import { LocalStorage } from '../../utils/LocalStorage';
 import './Transaction.scss';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 function Transaction() {
   const transactionArticle = useAppSelector(
     (state) => state.article.viewedArticle
   );
-
+  const errorTransaction = useAppSelector((state) => state.transaction.error);
   const [modaleIsVisible, setModaleIsVisible] = useState(false);
 
   function handleClickTransactionBtn() {
@@ -19,6 +20,7 @@ function Transaction() {
 
   return (
     <Page>
+      {errorTransaction && <ErrorMessage errorContent={errorTransaction} />}
       <div className="transaction">
         <div className="transaction__area">
           <h2 className="transaction__area-top-title">
@@ -26,7 +28,7 @@ function Transaction() {
           </h2>
           <div className="transaction__area-top">
             <div className="transaction__area-top-profile">
-              <h2>Je suis vendeur</h2>
+              <h2> Le vendeur</h2>
               <img
                 src="/assets/logo/tonio.png"
                 className="transaction__area-top-profile-img"
@@ -91,10 +93,10 @@ function Transaction() {
                 className="transaction__area-top-profile-img"
               />
               <h3 className="transaction__area-top-profile-name">
-                {LocalStorage.getItem('user').user.pseudo}
+                {LocalStorage.getItem('user').pseudo}
               </h3>
               <p className="transaction__area-top-profile-location">
-                {LocalStorage.getItem('user').user.city}
+                {LocalStorage.getItem('user').city}
               </p>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { changeUserisConnectedToTrue } from '../../store/reducers/loginForm';
+import { changeUserisConnected } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -26,7 +26,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   }
 
   function handleDisconnect() {
-    dispatch(changeUserisConnectedToTrue(false));
+    dispatch(changeUserisConnected(false));
     LocalStorage.removeItem();
     navigate('/');
   }
@@ -70,12 +70,25 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
           </div>
         )}
         {userIsConnected && (
+
           <div className="header__top_connected">
             <div className="header__top_connected-welcome">
               Bienvenue{' '}
               <div className="header__top_connected-nickname">
                 {LocalStorage.getItem('user').user.pseudo}-sama
               </div>
+             </div>
+
+            <div className="header__top_container-links-signup">
+              <button
+                type="button"
+                onClick={handleDisconnect}
+                className="header__top_container-signup"
+              >
+                Se déconnecter
+                <img src="/assets/icons/register-icon.png" alt="signup-logo" />
+              </button>
+
             </div>
             <div className="header__top_container-links">
               <div className="header__top_container-links-signup">

@@ -55,9 +55,14 @@ function Article() {
               <h2 className="Article__container_top-right-title-booktitle">
                 {article.article.title}
               </h2>
-              <h4 className="Article__container_top-right-title-booksubtitle">
-                Volume {article.mangas[0].volume}
-              </h4>
+              {article.mangas.map((manga) => (
+                <h4
+                  key={manga.code_isbn}
+                  className="Article__container_top-right-title-booksubtitle"
+                >
+                  Volume {manga.volume}
+                </h4>
+              ))}
             </div>
 
             <p className="Article__container_top-right-price">
@@ -113,14 +118,16 @@ function Article() {
             {article.article.description}
           </p>
         </div>
-        <button type="button" className="Article__purchase_btn">
-          Acheter
-          <img
-            className="Article__purchase_img"
-            src="\assets\icons\cart-icon-32px.png"
-            alt="icône de caddy"
-          />
-        </button>
+        <Link to={`/article/${article.article.id}/transaction`}>
+          <button type="button" className="Article__purchase_btn">
+            Acheter
+            <img
+              className="Article__purchase_img"
+              src="\assets\icons\cart-icon-32px.png"
+              alt="icône de caddy"
+            />
+          </button>
+        </Link>
 
         {/* <div className="Article__bottom_section">
           <h5 className="Article__bottom_section-title">

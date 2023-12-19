@@ -16,7 +16,6 @@ type ArticleState = {
 const initialState: ArticleState = {
   list_condition: [],
   list_articles: [],
-
   filteredArticles: [],
   viewedArticle: null,
 };
