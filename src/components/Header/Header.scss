@@ -5,11 +5,23 @@
   margin: 0 auto;
   padding: 1rem;
   border-bottom: solid 1px black;
+  font-family: V.$main-font;
+  font-weight: bold;
+
   // position: fixed;
 
   &__top_connected-welcome {
+    font-family: V.$secondary-font;
     text-align: center;
     margin-top: 1rem;
+  }
+
+  &__top_connected-nickname {
+    color: V.$pink-color;
+    font-family: V.$main-font;
+
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
   }
 
   &__top_container {
