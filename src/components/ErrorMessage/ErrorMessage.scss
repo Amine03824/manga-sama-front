@@ -1,9 +1,12 @@
+@use 'src/styles/_variables.scss' as V;
+
 .dialogError {
+  font-family: V.$main-font;
   position: fixed;
   height: fit-content;
 
   background-color: rgb(221, 181, 181);
-  color: black;
+  color: V.$font-color-light-bg;
   border: solid 2px rgb(255, 0, 0);
   border-radius: 1rem;
   padding: 1rem;
