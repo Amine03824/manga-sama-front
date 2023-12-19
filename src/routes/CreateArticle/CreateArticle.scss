@@ -48,7 +48,7 @@ body {
       background-color: V.$pink-color;
       padding: 0.3rem;
       margin: 1rem auto;
-      color: white;
+      color: V.$font-color-dark-bg;
       border-radius: 1rem;
       width: 50%;
       @media screen and (min-width: 500px) {
@@ -56,7 +56,7 @@ body {
       }
     }
     &-mangaListItem {
-      color: grey;
+      color: V.$dark-grey;
     }
     &_label {
       font-family: V.$main-font;
@@ -80,7 +80,7 @@ body {
       font-weight: bold;
       font-size: 0.8rem;
       gap: 1rem;
-      color: white;
+      color: V.$font-color-dark-bg;
       padding: 0.3rem;
       border-radius: 15px;
       margin: 2rem auto 0;

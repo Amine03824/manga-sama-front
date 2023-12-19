@@ -91,7 +91,7 @@ function CreateArticle() {
   if (!userIsConnected) {
     dispatch(
       setError(
-        "La création d'un article nécéssite la connexion à un compte Utilisateur !!"
+        "La création d'un article nécessite la connexion à un compte Utilisateur !"
       )
     );
     return <Navigate to="/login" />;

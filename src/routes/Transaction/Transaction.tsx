@@ -104,7 +104,7 @@ function Transaction() {
               type="button"
               className="transaction__button"
             >
-              Proceder au paiement
+              Procéder au paiement
             </button>
           </div>
         </div>

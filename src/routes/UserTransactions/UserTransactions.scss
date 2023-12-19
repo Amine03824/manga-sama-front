@@ -1,7 +1,7 @@
-@use 'src/styles/_variables.scss' as v;
+@use 'src/styles/_variables.scss' as V;
 
 .user-transactions {
-  background: v.$pink-bg;
+  background: V.$pink-bg;
   border-radius: 15px;
   margin: 1rem;
   display: flex;
@@ -17,7 +17,7 @@
       margin: 1.5rem;
     }
     &_title {
-      font-family: v.$main-font;
+      font-family: V.$main-font;
       font-weight: bold;
     }
   }
@@ -34,13 +34,13 @@
 
     &_item {
       display: flex;
-      background: white;
+      background: V.$white-color;
       border-radius: 10px;
       justify-content: space-between;
       align-items: center;
       width: 90%;
       padding: 0.5rem;
-      font-family: v.$main-font;
+      font-family: V.$main-font;
       font-weight: bold;
       @media screen and (min-width: 768px) {
         width: 75%;
@@ -54,16 +54,16 @@
         &-title {
         }
         &-price {
-          color: v.$pink-color;
+          color: V.$pink-color;
           font-weight: 800;
         }
       }
       &-state {
-        color: white;
+        color: V.$font-color-dark-bg;
         font-family: v.$main-font;
         font-weight: bold;
         font-size: 0.9rem;
-        background: v.$pink-color;
+        background: V.$pink-color;
         padding: 0.4rem 1rem;
         border-radius: 10px;
       }
