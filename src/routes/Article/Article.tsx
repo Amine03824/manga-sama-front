@@ -10,6 +10,7 @@ import { findArticle } from '../../store/selectors/articles';
 
 import { changeUserInfo } from '../../store/reducers/userPage';
 import { changeViewedArticle } from '../../store/reducers/article';
+import Carousel from '../../components/Carousel/Carousel';
 
 function Article() {
   const { id } = useParams();
@@ -26,6 +27,13 @@ function Article() {
   const article = useAppSelector((state) =>
     findArticle(state.article.list_articles, parsedId)
   );
+  const URLArray: string[] = [];
+  if (article) {
+    article.mangas.forEach((manga) => {
+      URLArray.push(manga.cover_url);
+      console.log(URLArray);
+    });
+  }
 
   if (!article) {
     throw new Error(`Article with id ${parsedId} not found`);
@@ -44,11 +52,12 @@ function Article() {
       <div className="Article">
         <div className="Article__container_top">
           <div className="Article__container_top-left">
-            <img
+            <Carousel images={URLArray} />
+            {/* <img
               className="Article__container_top-left-img"
               src={article.mangas[0].cover_url}
               alt="couverture du manga"
-            />
+            /> */}
           </div>
           <div className="Article__container_top-right">
             <div className="Article__container_top-right-title">

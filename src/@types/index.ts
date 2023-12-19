@@ -18,7 +18,7 @@ export type TManga = {
   year_publication: number;
   author: string;
   description: string | undefined;
-  cover_url: string | undefined;
+  cover_url: string;
   category_id: number;
   create_at: string;
   updated_at: string;
