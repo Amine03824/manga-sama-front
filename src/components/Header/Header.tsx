@@ -79,29 +79,27 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
             </div>
 
             <div className="header__top_container-links">
-              <div className="header__top_container-links">
-                <div className="header__top_container-links-signup">
-                  <button
-                    type="button"
-                    onClick={handleDisconnect}
-                    className="header__top_container-signup"
-                  >
-                    Se déconnecter
-                    <img
-                      src="/assets/icons/register-icon.png"
-                      alt="signup-logo"
-                    />
-                  </button>
-                </div>
-                <div className="header__top_container-links-login">
-                  <Link
-                    to="/user/dashboard"
-                    className="header__top_container-login"
-                  >
-                    Page de Profil
-                    <img src="/assets/icons/user-icon.png" alt="login-logo" />
-                  </Link>
-                </div>
+              <div className="header__top_container-links-signup">
+                <button
+                  type="button"
+                  onClick={handleDisconnect}
+                  className="header__top_container-signup"
+                >
+                  Se déconnecter
+                  <img
+                    src="/assets/icons/register-icon.png"
+                    alt="signup-logo"
+                  />
+                </button>
+              </div>
+              <div className="header__top_container-links-login">
+                <Link
+                  to="/user/dashboard"
+                  className="header__top_container-login"
+                >
+                  Page de Profil
+                  <img src="/assets/icons/user-icon.png" alt="login-logo" />
+                </Link>
               </div>
             </div>
           </div>
