@@ -1,0 +1,56 @@
+@use '../../styles/variables' as V;
+
+.error__container {
+  width: 80%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  @media screen and (min-width: 768px) {
+    max-height: 100vh;
+  }
+
+  &-top {
+    &-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: V.$font-color-light-bg;
+      margin: 1rem 0;
+
+      @media screen and (min-width: 768px) {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  &-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    &-img {
+      width: 80%;
+
+      @media screen and (min-width: 768px) {
+        width: 50%;
+      }
+    }
+  }
+
+  &-btn {
+    padding: 0.7rem;
+    background: V.$pink-color;
+    border-radius: 10px;
+    color: V.$font-color-dark-bg;
+    font-weight: bold;
+    margin-bottom: 1rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
