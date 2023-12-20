@@ -21,7 +21,7 @@ function MobileNav() {
           type="button"
         >
           <img
-            src={`/assets/icons/MobileNavSearchIcon${
+            src={`/assets/icons/MobileNavHomeIcon${
               clickedButton === 'search' ? 'Red' : ''
             }.png`}
             className="MobileNav__icon"

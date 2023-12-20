@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import Page from '../../components/Page/Page';
@@ -53,20 +53,22 @@ function UserInfo() {
                 key={article.id}
                 className="user-info__bottom_container-articles-item"
               >
-                <img
-                  src={article.image_url}
-                  alt="/"
-                  className="user-info__bottom_container-articles-image"
-                />
-                <div className="user-info__bottom_container-articles-info">
-                  <h3 className="user-info__bottom_container-articles-info-title">
-                    {article.title}
-                  </h3>
+                <Link to={`/article/${article.id}`}>
+                  <img
+                    src={article.image_url}
+                    alt="/"
+                    className="user-info__bottom_container-articles-image"
+                  />
+                  <div className="user-info__bottom_container-articles-info">
+                    <h3 className="user-info__bottom_container-articles-info-title">
+                      {article.title}
+                    </h3>
 
-                  <p className="user-info__bottom_container-articles-info-price">
-                    {article.price} €
-                  </p>
-                </div>
+                    <p className="user-info__bottom_container-articles-info-price">
+                      {article.price} €
+                    </p>
+                  </div>
+                </Link>
               </li>
             ))}
           </ul>
