@@ -26,6 +26,8 @@ function Root() {
     dispatch(getArticles());
     dispatch(getCategories());
     dispatch(getConditions());
+    console.log(user);
+
     if (user) {
       dispatch(checkLogin());
       dispatch(changeUserisConnected(true));
@@ -34,12 +36,9 @@ function Root() {
 
   return (
     <div className="root">
-      <Menu setMenuIsVisible={setMenuIsVisible} menuIsVisible={menuIsVisible} />
+      <Menu />
       <div className="right__section">
-        <Header
-          menuIsVisible={menuIsVisible}
-          setMenuIsVisible={setMenuIsVisible}
-        />
+        <Header />
 
         <Outlet />
       </div>

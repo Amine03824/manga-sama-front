@@ -34,9 +34,13 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      background-color: V.$pink-bg;
+
       border-radius: 2rem;
       padding: 1rem;
+      border: 1px solid whitesmoke;
+      box-shadow: 4px 4px 11px -4px V.$grey-menu;
+      -webkit-box-shadow: 4px 4px 11px -4px V.$grey-menu;
+      -moz-box-shadow: 4px 4px 11px -4px V.$grey-menu;
 
       @media screen and (min-width: 768px) {
         gap: 2rem;

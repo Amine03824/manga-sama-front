@@ -49,7 +49,7 @@ function CreateArticle() {
   const userIsConnected = useAppSelector(
     (state) => state.loginForm.userIsConnected
   );
-
+  const user = LocalStorage.getItem('user');
   // Fonction qui permet de changer l'état de la modale pour ajouter un manga a l'article
   function handleClickAddMangaToArticle() {
     dispatch(changeISBNFormIsVisible());
@@ -90,7 +90,7 @@ function CreateArticle() {
       })
     );
   }, [dispatch]);
-  if (!userIsConnected) {
+  if (!user) {
     dispatch(
       setError(
         "La création d'un article nécessite la connexion à un compte Utilisateur !"

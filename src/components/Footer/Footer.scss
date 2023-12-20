@@ -51,7 +51,8 @@
     text-align: center;
     color: V.$font-color-dark-bg;
     font-size: 0.8rem;
-    margin: 1rem;
+    margin-top: 1rem;
+    padding-bottom: 0.5rem;
 
     @media screen and (min-width: 768px) {
       margin-left: auto;

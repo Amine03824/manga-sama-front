@@ -7,12 +7,7 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Message from '../Message/Message';
 
-type HeaderProps = {
-  menuIsVisible: boolean;
-  setMenuIsVisible: (setMenuIsVisible: boolean) => void;
-};
-
-function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
+function Header() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userIsConnected = useAppSelector(
@@ -21,9 +16,6 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   const isLoading = useAppSelector((state) => state.loading.isLoading);
   const errorMessage = useAppSelector((state) => state.loading.errorMessage);
   const infoMessage = useAppSelector((state) => state.loading.infoMessage);
-  function handleOnClickMenuButton() {
-    setMenuIsVisible(!menuIsVisible);
-  }
 
   function handleDisconnect() {
     dispatch(changeUserisConnected(false));

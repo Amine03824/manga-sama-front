@@ -8,15 +8,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeSearchInputValue } from '../../store/reducers/searchBarMenu';
 import { changeFilteredArticle } from '../../store/reducers/article';
 
-type MenuProps = {
-  menuIsVisible: boolean;
-  setMenuIsVisible: (setMenuIsVisible: boolean) => void;
-};
-
-function Menu({ menuIsVisible, setMenuIsVisible }: MenuProps) {
+function Menu() {
   const dispatch = useAppDispatch();
 
   const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
+  const [menuIsVisible, setMenuIsVisible] = useState(true);
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );

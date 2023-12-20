@@ -38,9 +38,9 @@ function UserInfo() {
             <p className="user-info__top_container-credentials-nickname">
               {user?.pseudo}
             </p>
-            <p className="user-info__top_container-credentials-city">
+            {/* <p className="user-info__top_container-credentials-city">
               {user?.city}
-            </p>
+            </p> */}
           </div>
         </div>
         <div className="user-info__bottom_container">

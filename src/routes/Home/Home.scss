@@ -33,9 +33,13 @@
       justify-content: space-evenly;
     }
     &-item {
+      border: 1px solid whitesmoke;
+      box-shadow: 4px 4px 11px -4px V.$grey-menu;
+      -webkit-box-shadow: 4px 4px 11px -4px V.$grey-menu;
+      -moz-box-shadow: 4px 4px 11px -4px V.$grey-menu;
       display: flex;
       flex-direction: column;
-      background-color: V.$pink-bg;
+      padding-bottom: 0.5rem;
       border-radius: 10px;
       width: 60vw;
 
