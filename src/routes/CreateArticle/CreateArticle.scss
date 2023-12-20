@@ -20,7 +20,7 @@ body {
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-    margin: 1.5rem;
+    margin: 1.5rem auto;
     font-weight: bold;
     @media screen and (min-width: 600px) {
       flex-direction: row;
@@ -28,7 +28,8 @@ body {
     }
 
     &_left {
-      @media screen and (min-width: 450px) {
+      @media screen and (min-width: 768px) {
+        width: 50%;
       }
       img {
         margin: 0 auto;
@@ -37,6 +38,9 @@ body {
       }
     }
     &_right {
+      @media screen and (min-width: 768px) {
+        width: 30%;
+      }
     }
   }
   &__form {
@@ -44,6 +48,12 @@ body {
     flex-direction: column;
     gap: 0.3rem;
     font-size: 0.9rem;
+    background-image: url('/assets/icons/bg3.png'); /* Replace 'path/to/your/image.jpg' with the actual path to your image file */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 2rem;
+    border-radius: 15px;
 
     &-addMangaButton {
       background-color: V.$pink-color;
@@ -66,7 +76,7 @@ body {
     }
 
     &_input {
-      background: V.$pink-bg;
+      background: V.$white-color;
       padding: 0.5rem 0.7rem;
       border-radius: 15px;
       font-family: V.$secondary-font;
@@ -101,44 +111,3 @@ body {
     }
   }
 }
-
-// .CreateArticle__title {
-//   font-family: V.$main-font;
-//   font-weight: bold;
-//   font-size: 1.7rem;
-//   margin: 0 auto;
-
-//   @media screen and (max-width: 768px) {
-//     width: 70%;
-//   }
-// }
-// .CreateArticle__container {
-//   margin: 2rem auto;
-//   display: flex;
-//   gap: 2rem;
-//   @media screen and (max-width: 768px) {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     width: 85%;
-//   }
-
-//   &_left {
-//     width: 50%;
-//     @media screen and (max-width: 768px) {
-//       width: 100%;
-//     }
-//   }
-//   &_left img {
-//     border-radius: 15px;
-//   }
-//   &_right {
-//     width: 50%;
-//     @media screen and (max-width: 768px) {
-//       width: 100%;
-//     }
-//   }
-// }
-
-// .CreateArticle__form {

@@ -1,7 +1,8 @@
 .carousel {
+  width: 70%;
+  margin: 0 auto;
   &__img {
     max-width: 100%;
-    animation: slideimg 500ms ease 0 1 normal forwards;
   }
 
   &__nav {

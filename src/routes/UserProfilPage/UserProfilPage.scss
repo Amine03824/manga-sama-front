@@ -5,16 +5,24 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  background-image: url('/assets/icons/bg3.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 1rem;
   @media screen and (min-width: 768px) {
-    background-color: V.$pink-bg;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
-    width: 50vw;
+    width: 95%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 1rem;
     margin-bottom: 50px;
-    padding: 20px;
+    padding: 1rem;
+  }
+
+  @media screen and (min-width: 1500px) {
+    width: 75%;
   }
   &__picture {
     display: flex;
@@ -27,8 +35,9 @@
       flex-direction: column;
       align-items: center;
       gap: 25px;
-      margin-left: 150px;
+      margin-left: 20px;
       padding: 20px;
+      width: 50%;
     }
 
     &-user {
@@ -42,15 +51,24 @@
     }
   }
   &__infos {
-    background-color: V.$pink-bg;
+    background: rgba(255, 255, 255, 0.36);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px);
+    border: 1px solid rgba(255, 255, 255, 0.37);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    border-radius: 8%;
-    padding: 10px;
-    width: 90%;
+    border-radius: 15px;
+    padding: 2rem;
+    width: 80%;
+
+    @media screen and (min-width: 768px) {
+      width: 50%;
+    }
 
     &-title {
       font-size: 1.3rem;
@@ -69,13 +87,14 @@
       gap: 10px;
     }
     &-item {
-      font-size: 1rem;
+      font-size: 1.2rem;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: space-between;
       padding: 5px;
       border-radius: 20px;
-      width: 300px;
+      width: 100%;
       font-family: V.$secondary-font;
       font-weight: bold;
       gap: 10px;
@@ -83,6 +102,11 @@
       // color: V.$gray-icon;
 
       padding-left: 10px;
+
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        font-size: 1rem;
+      }
     }
     &-footer {
       display: flex;
@@ -102,6 +126,17 @@
       width: 100%;
       background-color: white;
       border-radius: 20px;
+      width: 100%;
+      padding: 0.3rem 1rem;
+      font-family: V.$secondary-font;
+      color: grey;
+
+      @media screen and (min-width: 768px) {
+        width: 8rem;
+      }
+      @media screen and (min-width: 1000px) {
+        width: 15rem;
+      }
     }
     &-input--hidden {
       display: none;
@@ -110,6 +145,14 @@
       background-color: V.$white-color;
       padding: 5px 20px;
       border-radius: 10px;
+      width: 100%;
+
+      @media screen and (min-width: 768px) {
+        width: 8rem;
+      }
+      @media screen and (min-width: 1000px) {
+        width: 15rem;
+      }
     }
     &-content--hidden {
       display: none;

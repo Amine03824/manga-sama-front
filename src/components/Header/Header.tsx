@@ -7,12 +7,7 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Message from '../Message/Message';
 
-type HeaderProps = {
-  menuIsVisible: boolean;
-  setMenuIsVisible: (setMenuIsVisible: boolean) => void;
-};
-
-function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
+function Header() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userIsConnected = useAppSelector(
@@ -21,9 +16,6 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
   const isLoading = useAppSelector((state) => state.loading.isLoading);
   const errorMessage = useAppSelector((state) => state.loading.errorMessage);
   const infoMessage = useAppSelector((state) => state.loading.infoMessage);
-  function handleOnClickMenuButton() {
-    setMenuIsVisible(!menuIsVisible);
-  }
 
   function handleDisconnect() {
     dispatch(changeUserisConnected(false));
@@ -37,15 +29,7 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
       {errorMessage && <ErrorMessage errorContent={errorMessage} />}
       {infoMessage && <Message messageContent={infoMessage} />}
       <div className="header__top_container">
-        <div className="header__top_container-button">
-          <button
-            onClick={handleOnClickMenuButton}
-            type="button"
-            className="header__top_container-button-menu"
-          >
-            <img src="/assets/icons/menuPink.png" alt="logo-menu-burger" />
-          </button>
-        </div>
+        <div className="header__top_container-button"></div>
         <Link to="/">
           <img
             src="/assets/logo/logo.png"
@@ -79,29 +63,27 @@ function Header({ menuIsVisible, setMenuIsVisible }: HeaderProps) {
             </div>
 
             <div className="header__top_container-links">
-              <div className="header__top_container-links">
-                <div className="header__top_container-links-signup">
-                  <button
-                    type="button"
-                    onClick={handleDisconnect}
-                    className="header__top_container-signup"
-                  >
-                    Se déconnecter
-                    <img
-                      src="/assets/icons/register-icon.png"
-                      alt="signup-logo"
-                    />
-                  </button>
-                </div>
-                <div className="header__top_container-links-login">
-                  <Link
-                    to="/user/dashboard"
-                    className="header__top_container-login"
-                  >
-                    Page de Profil
-                    <img src="/assets/icons/user-icon.png" alt="login-logo" />
-                  </Link>
-                </div>
+              <div className="header__top_container-links-signup">
+                <button
+                  type="button"
+                  onClick={handleDisconnect}
+                  className="header__top_container-signup"
+                >
+                  Se déconnecter
+                  <img
+                    src="/assets/icons/register-icon.png"
+                    alt="signup-logo"
+                  />
+                </button>
+              </div>
+              <div className="header__top_container-links-login">
+                <Link
+                  to="/user/dashboard"
+                  className="header__top_container-login"
+                >
+                  Page de Profil
+                  <img src="/assets/icons/user-icon.png" alt="login-logo" />
+                </Link>
               </div>
             </div>
           </div>

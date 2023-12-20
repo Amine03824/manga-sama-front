@@ -24,11 +24,11 @@ function Transaction() {
       <div className="transaction">
         <div className="transaction__area">
           <h2 className="transaction__area-top-title">
-            Récapitulatif de la commande :
+            Récapitulatif de la commande
           </h2>
           <div className="transaction__area-top">
             <div className="transaction__area-top-profile">
-              <h2> Le vendeur</h2>
+              <h2>Le vendeur</h2>
               <img
                 src="/assets/logo/tonio.png"
                 className="transaction__area-top-profile-img"
@@ -53,7 +53,7 @@ function Transaction() {
                 className="transaction__area-top-article-image"
               />
               <table>
-                <tbody>
+                <tbody className="transaction__area-top-article-table">
                   {transactionArticle?.mangas.map((manga) => (
                     <tr key={manga.code_isbn}>
                       <td
@@ -69,12 +69,6 @@ function Transaction() {
                   ))}
                 </tbody>
               </table>
-              {/* <p className="transaction__area-top-article-title">
-                {transactionArticle?.mangas[0].title}
-              </p>
-              <p className="transaction__area-top-article-volume">
-                Tome {transactionArticle?.mangas[0].volume}
-              </p> */}
 
               <p className="transaction__area-top-article-price">
                 {transactionArticle?.article.price} €

@@ -10,7 +10,11 @@ function Team() {
 
         <ul className="team__list">
           <li className="team__list-item">
-            <img className="team__list-img" alt="houd-img" src="/" />
+            <img
+              className="team__list-img"
+              alt="houd-img"
+              src="/assets/logo/houd.png"
+            />
             <h2 className="team__list-name">Hado</h2>
             <p className="team__list-role">
               Product-Owner / Banker / ShareOlder / AlCapone{' '}
