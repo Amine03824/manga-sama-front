@@ -4,14 +4,10 @@ import { changeIsLoading, setError } from './loading';
 
 type TransactionState = {
   isLoading: boolean;
-  error: string;
-  messageTransaction: string;
 };
 
 const initialState: TransactionState = {
   isLoading: false,
-  error: '',
-  messageTransaction: '',
 };
 
 type TransactionCredentials = {
@@ -47,13 +43,9 @@ const transactionReducer = createSlice({
       })
       .addCase(acceptTransaction.rejected, (state) => {
         state.isLoading = false;
-        state.error =
-          'La transaction a échoué... Veuillez réessayer ou contacter le support';
       })
       .addCase(acceptTransaction.fulfilled, (state) => {
         state.isLoading = false;
-        state.messageTransaction =
-          "Félicitations ! Vous serez bientôt propriétaire d'un ou plusieurs nouveaux mangas !";
       });
   },
 });

@@ -100,6 +100,9 @@ function Article() {
                       {article.user.pseudo}
                     </div>
                   </Link>
+                  <p className="home__articles-info-localisation">
+                    A {article.user.city}
+                  </p>
                 </div>
               </div>
             </div>

@@ -20,12 +20,6 @@ function UserTransactions() {
 
   const [userArticle, setUserArticle] = useState<TArticle[]>([]);
 
-  // function filterArticles() {
-  //   setUserArticle(
-  //     getArticles.filter((article) => article.transaction_id != null)
-  //   );
-  // }
-
   useEffect(() => {
     const fetch = async () => {
       await dispatch(getArticleByUser(user));

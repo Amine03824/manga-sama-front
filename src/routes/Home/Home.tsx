@@ -56,10 +56,6 @@ function Home() {
                     <p className="home__articles-info-price">
                       {article.article.price} €
                     </p>
-
-                    <p className="home__articles-info-localisation">
-                      {article.user.city}
-                    </p>
                   </div>
                 </li>
               </Link>

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { Link, Navigate, redirect, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import MobileNav from '../../components/MobileNav/MobileNav';
@@ -17,7 +17,6 @@ import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
 
 function UserProfilPage() {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
 
   // Gestion de l'apparition des différents étatt des formulaire de moifiacations via UseState
   const [pseudoInputIsVisible, setPseudoInputIsVisible] = useState(false);
@@ -53,8 +52,6 @@ function UserProfilPage() {
   );
 
   const user = LocalStorage.getItem('user');
-
-  // const error = useAppSelector((state) => state.userModify.error);
 
   // au changement de l'input dispatch la fonction qui permet de modifier les infos dans le state, il faut préciser le nom de l'input qui est train d'être modifié en argument
   const handleChangeInputUserInfo = (

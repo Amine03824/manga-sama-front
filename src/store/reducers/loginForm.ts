@@ -10,9 +10,7 @@ type LoginFormState = {
     email: string;
     password: string;
   };
-
   token: string;
-
   userIsConnected: boolean;
   user: TUserConnected | null;
 };
@@ -22,7 +20,6 @@ export const initialState: LoginFormState = {
     email: '',
     password: '',
   },
-
   token: '',
   userIsConnected: false,
   user: null,
