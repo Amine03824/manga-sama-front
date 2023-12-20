@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 function MobileNav() {
   const [clickedButton, setClickedButton] = useState(null);
 
-  function handleClickedButton(buttonType) {
+  function handleClickedButton(buttonType: any) {
     setClickedButton(clickedButton === buttonType ? null : buttonType);
   }
 
