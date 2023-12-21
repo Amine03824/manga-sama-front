@@ -85,7 +85,7 @@ const articleReducer = createSlice({
     builder
 
       .addCase(getArticles.fulfilled, (state, action) => {
-        state.list_articles = action.payload;
+        state.list_articles = action.payload.reverse();
       })
 
       .addCase(getConditions.fulfilled, (state, action) => {
