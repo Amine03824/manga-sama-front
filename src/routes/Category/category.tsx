@@ -55,15 +55,15 @@ function Category() {
                     <h3 className="category__articles-info-title">
                       {article.article.title}
                     </h3>
-                    <p className="category__articles-info-tome">
+                    {/* <p className="category__articles-info-tome">
                       Tome {article.mangas[0].volume}
-                    </p>
+                    </p> */}
                     <p className="category__articles-info-price">
                       {article.article.price} €
                     </p>
-                    <p className="category__articles-info-localisation">
+                    {/* <p className="category__articles-info-localisation">
                       {article.user.city}
-                    </p>
+                    </p> */}
                   </div>
                 </li>
               </Link>

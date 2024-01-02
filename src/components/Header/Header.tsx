@@ -29,7 +29,7 @@ function Header() {
       {errorMessage && <ErrorMessage errorContent={errorMessage} />}
       {infoMessage && <Message messageContent={infoMessage} />}
       <div className="header__top_container">
-        <div className="header__top_container-button"></div>
+        <div className="header__top_container-button" />
         <Link to="/">
           <img
             src="/assets/logo/logo.png"

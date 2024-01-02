@@ -83,6 +83,7 @@ function SignUp() {
                     onChange={(event) =>
                       handleChangeInputValue(event, 'pseudo')
                     }
+                    required
                   />
                 </li>
                 <li className="signUp__area-item signUp__area-item--email">
@@ -91,6 +92,7 @@ function SignUp() {
                     type="email"
                     placeholder="E-mail"
                     onChange={(event) => handleChangeInputValue(event, 'email')}
+                    required
                   />
                 </li>
                 <li className="signUp__area-item">

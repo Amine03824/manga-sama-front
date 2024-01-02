@@ -60,8 +60,9 @@ function Login() {
                       handleOnChangeInputField(event, 'email')
                     }
                     value={emailInputValue}
-                    type="text"
+                    type="email"
                     placeholder="Email"
+                    required
                   />
                 </li>
                 <li className="login__area-item">
@@ -70,8 +71,9 @@ function Login() {
                       handleOnChangeInputField(event, 'password')
                     }
                     value={passwordInputValue}
-                    type="text"
+                    type="password"
                     placeholder="Mot de passe"
+                    required
                   />
                 </li>
               </ul>

@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    margin-bottom: 1rem;
   }
   &__top_container {
     background-image: url('/assets/icons/bg3.png'); /* Replace 'path/to/your/image.jpg' with the actual path to your image file */
@@ -45,8 +46,6 @@
       &-city {
         color: black;
       }
-    }
-    &-city {
     }
   }
 
@@ -99,7 +98,9 @@
         }
       }
       &-image {
+        aspect-ratio: 2/3;
       }
+
       &-info {
         &-title {
           font-weight: bold;
@@ -112,7 +113,6 @@
           text-align: center;
         }
         @media screen and (min-width: 1150px) {
-          width: 25%;
         }
       }
     }

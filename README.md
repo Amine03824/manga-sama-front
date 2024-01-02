@@ -1,4 +1,4 @@
-# README du repo FRONT de MAGA SAMA 
+# README du repo FRONT de MANGA SAMA 
 
 ## Bienvenue!
 

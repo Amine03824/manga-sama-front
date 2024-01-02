@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import { getArticleByUser } from '../../store/reducers/userPage';
 import { findArticleByUserId } from '../../store/selectors/articles';
+import Footer from '../../components/Footer/Footer';
 
 function UserInfo() {
   const dispatch = useAppDispatch();
@@ -74,6 +75,7 @@ function UserInfo() {
           </ul>
         </div>
       </div>
+      <Footer />
     </Page>
   );
 }
