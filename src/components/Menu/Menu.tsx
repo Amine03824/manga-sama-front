@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import './Menu.scss';
 import clsx from 'clsx';
 
@@ -12,7 +12,7 @@ function Menu() {
   const dispatch = useAppDispatch();
 
   const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
-  const [menuIsVisible, setMenuIsVisible] = useState(true);
+  const [menuIsVisible, setMenuIsVisible] = useState(false);
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );
@@ -62,8 +62,14 @@ function Menu() {
     filter();
   }, [dispatch, articles]);
 
+  function handleSubmitSearchInput(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setMenuIsVisible(false);
+    dispatch(changeSearchInputValue(''));
+  }
+
   return (
-    <>
+    <div className="menu-mobile">
       <button
         onClick={handleOnMenuButton}
         type="button"
@@ -81,7 +87,7 @@ function Menu() {
         <div className="home-menu__container">
           <img className="home-menu__logo" src="/assets/logo/logo.png" alt="" />
 
-          <form className="home-menu__form">
+          <form className="home-menu__form" onSubmit={handleSubmitSearchInput}>
             <input
               type="text"
               placeholder="Rechercher..."
@@ -136,7 +142,7 @@ function Menu() {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
