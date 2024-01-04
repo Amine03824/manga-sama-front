@@ -46,9 +46,6 @@ function CreateArticle() {
     (state) => state.createArticle.article_condition
   );
 
-  const userIsConnected = useAppSelector(
-    (state) => state.loginForm.userIsConnected
-  );
   const user = LocalStorage.getItem('user');
   // Fonction qui permet de changer l'état de la modale pour ajouter un manga a l'article
   function handleClickAddMangaToArticle() {

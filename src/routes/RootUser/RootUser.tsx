@@ -10,10 +10,11 @@ import UserMenu from '../../components/UserMenu/UserMenu';
 import { useAppDispatch } from '../../hooks/redux';
 import { changeUserisConnected } from '../../store/reducers/loginForm';
 import { LocalStorage } from '../../utils/LocalStorage';
+import UserMenuDesktop from '../../components/UserMenuDesktop/UserMenuDesktop';
 
 function RootUser() {
   const dispatch = useAppDispatch();
-  const [menuIsVisible, setMenuIsVisible] = useState(true);
+
   const user = LocalStorage.getItem('user');
 
   useEffect(() => {
@@ -35,10 +36,8 @@ function RootUser() {
 
   return (
     <div className="root__user">
-      <UserMenu
-        setMenuIsVisible={setMenuIsVisible}
-        menuIsVisible={menuIsVisible}
-      />
+      <UserMenu />
+      <UserMenuDesktop />
       <div className="right__section">
         <Header />
         <Outlet />
