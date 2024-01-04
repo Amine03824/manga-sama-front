@@ -8,7 +8,7 @@
   left: 5rem;
   background-color: rgb(181, 221, 181);
   color: V.$font-color-light-bg;
-  z-index: 5;
+  z-index: 20;
 
   border: solid 2px green;
   border-radius: 1rem;
@@ -17,7 +17,7 @@
   @media screen and (min-width: 768px) {
     width: 20rem;
     top: 5rem;
-    left: 50%;
+    left: 40%;
   }
   &__close-btn {
     position: absolute;

@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/no-unescaped-entities */
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
@@ -11,6 +11,8 @@ import { findArticle } from '../../store/selectors/articles';
 import { changeUserInfo } from '../../store/reducers/userPage';
 import { changeViewedArticle } from '../../store/reducers/article';
 import Carousel from '../../components/Carousel/Carousel';
+import { LocalStorage } from '../../utils/LocalStorage';
+import { setError } from '../../store/reducers/loading';
 
 function Article() {
   const { id } = useParams();
@@ -29,7 +31,6 @@ function Article() {
   if (article) {
     article.mangas.forEach((manga) => {
       URLArray.push(manga.cover_url);
-      console.log(URLArray);
     });
   }
 
@@ -41,6 +42,7 @@ function Article() {
     dispatch(changeUserInfo(article.user));
     dispatch(changeViewedArticle(article));
   });
+
   return (
     <Page>
       <div className="Article">

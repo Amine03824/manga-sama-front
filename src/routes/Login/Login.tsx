@@ -62,6 +62,7 @@ function Login() {
                     value={emailInputValue}
                     type="email"
                     placeholder="Email"
+                    autoComplete="email"
                     required
                   />
                 </li>
@@ -74,6 +75,7 @@ function Login() {
                     type="password"
                     placeholder="Mot de passe"
                     required
+                    autoComplete="current-password"
                   />
                 </li>
               </ul>

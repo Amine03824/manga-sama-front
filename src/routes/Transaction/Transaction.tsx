@@ -1,12 +1,15 @@
+import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import ConfirmationTransactionModale from '../../components/ConfirmationTransactionModale/ConfirmationTransactionModale';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { LocalStorage } from '../../utils/LocalStorage';
 import './Transaction.scss';
+import { setError } from '../../store/reducers/loading';
 
 function Transaction() {
+  const dispatch = useAppDispatch();
   const transactionArticle = useAppSelector(
     (state) => state.article.viewedArticle
   );
@@ -15,6 +18,15 @@ function Transaction() {
 
   function handleClickTransactionBtn() {
     setModaleIsVisible(true);
+  }
+
+  if (!LocalStorage.getItem('user')) {
+    dispatch(
+      setError(
+        "L'achat d'un article nécessite la connexion à un compte Utilisateur !"
+      )
+    );
+    return <Navigate to="/login" />;
   }
 
   return (
