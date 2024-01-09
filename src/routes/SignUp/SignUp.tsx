@@ -97,6 +97,7 @@ function SignUp() {
                 </li>
                 <li className="signUp__area-item">
                   <input
+                    id="password"
                     value={passwordInputValue}
                     type="password"
                     placeholder="Mot de passe"
@@ -104,6 +105,13 @@ function SignUp() {
                       handleChangeInputValue(event, 'password')
                     }
                   />
+                  <label
+                    htmlFor="password"
+                    className="signUp__area-item--label"
+                  >
+                    Le mot de passe doit contenir au moins 1 Majuscule, 1
+                    minuscule, 1 caractère spécial et 1 chiffre
+                  </label>
                 </li>
                 <li className="signUp__area-item">
                   <input
