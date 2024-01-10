@@ -66,9 +66,12 @@ function SignUp() {
   const handleSubmitSignUpForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const regex =
+    const pseudoRegex = /^[a-zA-ZÀ-ÿ0-9\s]*$/;
+    const pseudoOk = pseudoRegex.exec(pseudoInputValue);
+
+    const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]+$/;
-    const regexOk = regex.exec(passwordInputValue);
+    const passwordOk = passwordRegex.exec(passwordInputValue);
 
     if (
       !pseudoInputValue ||
@@ -84,12 +87,18 @@ function SignUp() {
       return;
     }
 
+    if (!pseudoOk) {
+      dispatch(
+        setError('le pseudo ne peut pas contenir de caractères spéciaux ')
+      );
+    }
+
     if (pseudoNotDisp) {
       dispatch(setError('Ce pseudo est déjà pris !'));
       return;
     }
 
-    if (!regexOk) {
+    if (!passwordOk) {
       dispatch(
         setError(
           'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial parmi !@#$%^&*'
