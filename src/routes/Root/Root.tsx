@@ -24,6 +24,8 @@ function Root() {
 
   // Au premier chargement de Root , on fait des demande a l'API pour qu'elle nous donnes les donées nécéssaire :  tous les articles , toutes les catégories , toutes les conditions d'article
   useEffect(() => {
+    console.log('coucou');
+
     dispatch(getArticles());
     dispatch(getCategories());
     dispatch(getConditions());

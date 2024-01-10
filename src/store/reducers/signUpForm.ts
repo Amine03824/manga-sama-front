@@ -10,6 +10,8 @@ type SignUpFormState = {
     password: string;
     password_bis: string;
   };
+  loadingPseudo: boolean;
+  pseudoNotDisp: boolean;
 };
 
 export const initialState: SignUpFormState = {
@@ -19,6 +21,8 @@ export const initialState: SignUpFormState = {
     password: '',
     password_bis: '',
   },
+  loadingPseudo: false,
+  pseudoNotDisp: false,
 };
 
 type SignUpCredentials = {
@@ -47,6 +51,11 @@ export const createUser = createAsyncThunk(
   }
 );
 
+export const findUser = createAsyncThunk('user/findUser', async () => {
+  const { data } = await axiosInstance.get('/user');
+  return data;
+});
+
 const signUpFormReducer = createSlice({
   name: 'signupForm',
   initialState,
@@ -61,20 +70,40 @@ const signUpFormReducer = createSlice({
       const { fieldName, value } = action.payload;
       state.credentials[fieldName] = value;
     },
+    resetForm(state) {
+      state.credentials.pseudo = '';
+      state.credentials.email = '';
+      state.credentials.password = '';
+      state.credentials.password_bis = '';
+      state.loadingPseudo = false;
+      state.pseudoNotDisp = false;
+    },
   },
   extraReducers(builder) {
+    builder.addCase(createUser.fulfilled, (state) => {
+      state.credentials.email = '';
+      state.credentials.password = '';
+      state.credentials.password_bis = '';
+      state.credentials.pseudo = '';
+    });
     builder
-      .addCase(createUser.pending, (state) => {})
-      .addCase(createUser.rejected, (state) => {})
-      .addCase(createUser.fulfilled, (state) => {
-        state.credentials.email = '';
-        state.credentials.password = '';
-        state.credentials.password_bis = '';
-        state.credentials.pseudo = '';
+      .addCase(findUser.pending, (state) => {
+        state.loadingPseudo = true;
+        state.pseudoNotDisp = false;
+      })
+      .addCase(findUser.fulfilled, (state, action) => {
+        state.loadingPseudo = false;
+        const findedPseudo = action.payload.find(
+          (user: { pseudo: string }) => user.pseudo === state.credentials.pseudo
+        );
+        if (findedPseudo) {
+          state.pseudoNotDisp = true;
+        }
       });
   },
 });
 
-export const { changeSignUpFormInputFields } = signUpFormReducer.actions;
+export const { changeSignUpFormInputFields, resetForm } =
+  signUpFormReducer.actions;
 
 export default signUpFormReducer.reducer;
