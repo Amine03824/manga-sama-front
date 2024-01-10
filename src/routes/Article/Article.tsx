@@ -1,22 +1,22 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/no-unescaped-entities */
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './Article.scss';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import { findArticle } from '../../store/selectors/articles';
 
 import { changeUserInfo } from '../../store/reducers/userPage';
 import { changeViewedArticle } from '../../store/reducers/article';
 import Carousel from '../../components/Carousel/Carousel';
 import { LocalStorage } from '../../utils/LocalStorage';
-import { setError } from '../../store/reducers/loading';
 
 function Article() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
+  const articles = LocalStorage.getItem('articles');
 
   if (!id) {
     throw new Error('id is missing');
@@ -24,34 +24,32 @@ function Article() {
 
   const parsedId = parseInt(id, 10);
 
-  const article = useAppSelector((state) =>
-    findArticle(state.article.list_articles, parsedId)
-  );
+  const articleFinded = findArticle(articles, parsedId);
   const URLArray: string[] = [];
-  if (article) {
-    article.mangas.forEach((manga) => {
+  if (articleFinded) {
+    articleFinded.mangas.forEach((manga) => {
       URLArray.push(manga.cover_url);
     });
   }
 
-  if (!article) {
+  if (!articleFinded) {
     throw new Error(`Article with id ${parsedId} not found`);
   }
 
   useEffect(() => {
-    dispatch(changeUserInfo(article.user));
-    dispatch(changeViewedArticle(article));
-  });
+    dispatch(changeUserInfo(articleFinded.user));
+    dispatch(changeViewedArticle(articleFinded));
+  }, [dispatch, articleFinded]);
 
   return (
     <Page>
       <div className="Article">
         <div className="Article__container">
           <div className="Article__container_title">
-            {article.article.title}
+            {articleFinded.article.title}
           </div>
           <div className="Article__container_price">
-            {article.article.price} €
+            {articleFinded.article.price} €
           </div>
           <div className="Article__container_main">
             <div className="Article__container_img">
@@ -61,7 +59,7 @@ function Article() {
               <div className="Article__container_manga-info">
                 <table>
                   <tbody>
-                    {article.mangas.map((manga) => (
+                    {articleFinded.mangas.map((manga) => (
                       <tr key={manga.code_isbn}>
                         <td
                           className="Article__container_manga-title"
@@ -83,7 +81,7 @@ function Article() {
                   Description :
                 </div>
                 <div className="Article__container_description-content">
-                  {article.article.description}
+                  {articleFinded.article.description}
                 </div>
               </div>
               <div className="Article__container_state">
@@ -97,20 +95,20 @@ function Article() {
               <div className="Article__container_soldby">
                 <div className="Article__container_soldby-content">
                   Vendu par :
-                  <Link to={`/article/user/${article.user.id}`}>
+                  <Link to={`/article/user/${articleFinded.user.id}`}>
                     <div className="Article__container_soldby-name">
-                      {article.user.pseudo}
+                      {articleFinded.user.pseudo}
                     </div>
                   </Link>
                   <p className="home__articles-info-localisation">
-                    A {article.user.city}
+                    A {articleFinded.user.city}
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <div className="Article__container_bottom">
-            <Link to={`/article/${article.article.id}/transaction`}>
+            <Link to={`/article/${articleFinded.article.id}/transaction`}>
               <button type="button" className="Article__purchase_btn">
                 Acheter
                 <img

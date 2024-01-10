@@ -7,7 +7,6 @@ interface CarouselProps {
 
 function Carousel({ images }: CarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  console.log(currentImageIndex);
 
   const nextImage = () => {
     const newIndex = (currentImageIndex + 1) % images.length;

@@ -4,6 +4,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Article, TCondition } from '../../@types';
 import { axiosInstance } from '../../utils/axios';
 import { changeIsLoading, setError } from './loading';
+import { LocalStorage } from '../../utils/LocalStorage';
 
 type ArticleState = {
   list_articles: Article[];
@@ -86,6 +87,7 @@ const articleReducer = createSlice({
 
       .addCase(getArticles.fulfilled, (state, action) => {
         state.list_articles = action.payload.reverse();
+        LocalStorage.setItem('articles', action.payload);
       })
 
       .addCase(getConditions.fulfilled, (state, action) => {
