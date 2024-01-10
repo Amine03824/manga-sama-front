@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/no-unescaped-entities */
 
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
@@ -9,8 +9,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   changeSignUpFormInputFields,
   createUser,
+  findUser,
+  resetForm,
 } from '../../store/reducers/signUpForm';
 import './SignUp.scss';
+import { setError } from '../../store/reducers/loading';
 
 function SignUp() {
   const dispatch = useAppDispatch();
@@ -28,32 +31,93 @@ function SignUp() {
   const passwordBisInputValue = useAppSelector(
     (state) => state.signUpForm.credentials.password_bis
   );
+  const loadingPseudo = useAppSelector(
+    (state) => state.signUpForm.loadingPseudo
+  );
+  const pseudoNotDisp = useAppSelector(
+    (state) => state.signUpForm.pseudoNotDisp
+  );
+  const [timer, setTimer] = useState<number | null>(null);
 
-  function handleChangeInputValue(
+  const handleChangeInputValue = (
     event: ChangeEvent<HTMLInputElement>,
     name: 'email' | 'password' | 'pseudo' | 'password_bis'
-  ): void {
+  ) => {
+    if (timer) {
+      clearTimeout(timer);
+      setTimer(null);
+    }
     dispatch(
       changeSignUpFormInputFields({
         fieldName: name,
         value: event.target.value,
       })
     );
-  }
+
+    if (name === 'pseudo' && pseudoInputValue) {
+      const newTimer = setTimeout(() => {
+        dispatch(findUser());
+        setTimer(null);
+      }, 3000);
+      setTimer(newTimer);
+    }
+  };
 
   const handleSubmitSignUpForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await dispatch(
-      createUser({
-        pseudo: pseudoInputValue,
-        email: emailInputValue,
-        password: passwordInputValue,
-        passwordConfirmation: passwordBisInputValue,
-      })
-    );
-    navigate('/login');
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]+$/;
+    const regexOk = regex.exec(passwordInputValue);
+
+    if (
+      !pseudoInputValue ||
+      !emailInputValue ||
+      !passwordBisInputValue ||
+      !passwordInputValue
+    ) {
+      dispatch(
+        setError(
+          "Un ou plusieurs champ sont manquants pour valdier l'inscription"
+        )
+      );
+      return;
+    }
+
+    if (pseudoNotDisp) {
+      dispatch(setError('Ce pseudo est déjà pris !'));
+      return;
+    }
+
+    if (!regexOk) {
+      dispatch(
+        setError(
+          'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial parmi !@#$%^&*'
+        )
+      );
+      return;
+    }
+
+    if (passwordInputValue === passwordBisInputValue) {
+      await dispatch(
+        createUser({
+          pseudo: pseudoInputValue,
+          email: emailInputValue,
+          password: passwordInputValue,
+          passwordConfirmation: passwordBisInputValue,
+        })
+      );
+      navigate('/login');
+    } else {
+      dispatch(
+        setError('Le mot de passe et sa confirmation ne sont pas identiques')
+      );
+    }
   };
+
+  useEffect(() => {
+    dispatch(resetForm());
+  }, [dispatch]);
 
   return (
     <Page>
@@ -76,15 +140,31 @@ function SignUp() {
             >
               <ul className="signUp__area-lists">
                 <li className="signUp__area-item">
-                  <input
-                    value={pseudoInputValue}
-                    type="text"
-                    placeholder="Nom d'utilisateur"
-                    onChange={(event) =>
-                      handleChangeInputValue(event, 'pseudo')
-                    }
-                    required
-                  />
+                  <div className="signUp__area-item--pseudo">
+                    <input
+                      value={pseudoInputValue}
+                      type="text"
+                      placeholder="Nom d'utilisateur"
+                      onChange={(event) =>
+                        handleChangeInputValue(event, 'pseudo')
+                      }
+                      required
+                      autoComplete="username"
+                    />
+                    {loadingPseudo && (
+                      <img
+                        className="signUp__area-item--loader"
+                        src="assets/icons/loading.png"
+                        alt="loader"
+                      />
+                    )}
+                  </div>
+
+                  {pseudoNotDisp && (
+                    <p className="signUp__area-item--error">
+                      Le pseudo n'est pas disponible !
+                    </p>
+                  )}
                 </li>
                 <li className="signUp__area-item signUp__area-item--email">
                   <input
@@ -93,6 +173,7 @@ function SignUp() {
                     placeholder="E-mail"
                     onChange={(event) => handleChangeInputValue(event, 'email')}
                     required
+                    autoComplete="email"
                   />
                 </li>
                 <li className="signUp__area-item">
@@ -104,13 +185,15 @@ function SignUp() {
                     onChange={(event) =>
                       handleChangeInputValue(event, 'password')
                     }
+                    autoComplete="current-password"
+                    required
                   />
                   <label
                     htmlFor="password"
                     className="signUp__area-item--label"
                   >
-                    Le mot de passe doit contenir au moins 1 Majuscule, 1
-                    minuscule, 1 caractère spécial et 1 chiffre
+                    Doit contenir au moins 1 Majuscule, 1 minuscule, 1 caractère
+                    spécial et 1 chiffre
                   </label>
                 </li>
                 <li className="signUp__area-item">
@@ -121,6 +204,8 @@ function SignUp() {
                     onChange={(event) =>
                       handleChangeInputValue(event, 'password_bis')
                     }
+                    autoComplete="current-password"
+                    required
                   />
                 </li>
               </ul>
