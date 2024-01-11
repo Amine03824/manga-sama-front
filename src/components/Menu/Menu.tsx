@@ -7,22 +7,25 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeSearchInputValue } from '../../store/reducers/searchBarMenu';
 import { changeFilteredArticle } from '../../store/reducers/article';
+import { getCategories } from '../../store/reducers/categories';
 
 function Menu() {
   const dispatch = useAppDispatch();
 
-  const [categoriesIsVisible, setCategoriesIsVisible] = useState(false);
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
+  const [categoriesIsVisible, setCategoriesIsVisible] = useState(false); // État pour gérer la visibilité des catégories.
+  const [menuIsVisible, setMenuIsVisible] = useState(false); // État pour gérer la visibilité du menu
+  // Sélecteur Redux pour récupérer la liste des catégories.
   const categories = useAppSelector(
     (state) => state.categories.list_categories
   );
-
+  // Sélecteur Redux pour récupérer la liste des articles.
   const articles = useAppSelector((state) => state.article.list_articles);
-
+  // Sélecteur Redux pour récupérer la valeur de l'input de recherche
   const searchBarInputValue = useAppSelector(
     (state) => state.searchBar.searchBarInputValue
   );
 
+  // Fonction pour filtrer les articles en fonction de l'input de recherche
   const filterArticle = (searchValue: string) => {
     const filteredArticle = articles.filter(
       (article) =>
@@ -30,27 +33,29 @@ function Menu() {
         article.article.transaction_id === null
     );
 
-    dispatch(changeFilteredArticle(filteredArticle));
+    dispatch(changeFilteredArticle(filteredArticle)); // Dispatch une action pour mettre à jour les articles filtrés dans le Redux store.
   };
 
-  function handleOnCategoryButton() {
-    setCategoriesIsVisible(!categoriesIsVisible);
-  }
+  const handleOnCategoryButton = () => {
+    setCategoriesIsVisible(!categoriesIsVisible); // Inverse la visibilité des catégories.
+  };
 
-  function handleOnMenuButton() {
-    setMenuIsVisible(!menuIsVisible);
-  }
+  const handleOnMenuButton = () => {
+    setMenuIsVisible(!menuIsVisible); // Inverse la visibilité du menu.
+  };
 
-  function handleChangeSearchBarInputValue(
+  const handleChangeSearchBarInputValue = (
     event: ChangeEvent<HTMLInputElement>
-  ) {
+  ) => {
     const newSearchValue = event.target.value.toLowerCase();
 
-    dispatch(changeSearchInputValue(newSearchValue));
-    filterArticle(newSearchValue);
-  }
+    dispatch(changeSearchInputValue(newSearchValue)); // Dispatch une action pour mettre à jour la valeur de l'input de recherche dans le Redux store.
+    filterArticle(newSearchValue); // Applique le filtrage des articles en fonction de la nouvelle valeur de l'input
+  };
 
+  // Effet qui s'exécute lors du premier rendu du composant et lorsque la liste des articles change.
   useEffect(() => {
+    dispatch(getCategories());
     const filter = () => {
       const filteredArticle = articles.filter(
         (article) =>
@@ -62,11 +67,11 @@ function Menu() {
     filter();
   }, [dispatch, articles]);
 
-  function handleSubmitSearchInput(event: FormEvent<HTMLFormElement>) {
+  const handleSubmitSearchInput = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setMenuIsVisible(false);
-    dispatch(changeSearchInputValue(''));
-  }
+    setMenuIsVisible(false); // Masque le menu après la soumission du formulaire.
+    dispatch(changeSearchInputValue('')); // Réinitialise la valeur de l'input de recherche dans le Redux store.
+  };
 
   return (
     <div className="menu-mobile">

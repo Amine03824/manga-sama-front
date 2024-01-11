@@ -16,20 +16,18 @@ import {
 import MenuDesktop from '../../components/MenuDesktop/MenuDesktop';
 
 function Root() {
+  // Utilise le hook useAppDispatch de Redux Toolkit pour obtenir la fonction dispatch.
   const dispatch = useAppDispatch();
 
-  // Utilisation d'un useState pour faire passer l'etat de la barre de menu directement en props dans le composant menu
-
+  // Récupère l'utilisateur depuis le stockage local.
   const user = LocalStorage.getItem('user');
 
   // Au premier chargement de Root , on fait des demande a l'API pour qu'elle nous donnes les donées nécéssaire :  tous les articles , toutes les catégories , toutes les conditions d'article
   useEffect(() => {
-    console.log('coucou');
-
     dispatch(getArticles());
-    dispatch(getCategories());
     dispatch(getConditions());
 
+    // Si un utilisateur est présent dans le stockage local, effectue des actions de connexion automatique.
     if (user) {
       dispatch(checkLogin());
       dispatch(changeUserisConnected(true));
@@ -44,6 +42,7 @@ function Root() {
         <Header />
 
         <Outlet />
+        {/* Composant représentant le point de sortie pour le routage. */}
       </div>
       <MobileNav />
     </div>

@@ -39,22 +39,32 @@ function Carousel({ images }: CarouselProps) {
         src={images[currentImageIndex]}
         alt={`slide-${currentImageIndex}`}
       />
-      <div className="carousel__nav">
-        <button className="carousel__nav-btn" type="button" onClick={prevImage}>
-          <img
-            className="carousel__nav-btn--left"
-            src="/assets/icons/arrow-point-to-right.png"
-            alt="left arrow"
-          />
-        </button>
-        <button className="carousel__nav-btn" type="button" onClick={nextImage}>
-          <img
-            className="carousel__nav-btn--right"
-            src="/assets/icons/arrow-point-to-right.png"
-            alt="right arrow"
-          />
-        </button>
-      </div>
+      {images.length > 1 && (
+        <div className="carousel__nav">
+          <button
+            className="carousel__nav-btn"
+            type="button"
+            onClick={prevImage}
+          >
+            <img
+              className="carousel__nav-btn--left"
+              src="/assets/icons/arrow-point-to-right.png"
+              alt="left arrow"
+            />
+          </button>
+          <button
+            className="carousel__nav-btn"
+            type="button"
+            onClick={nextImage}
+          >
+            <img
+              className="carousel__nav-btn--right"
+              src="/assets/icons/arrow-point-to-right.png"
+              alt="right arrow"
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

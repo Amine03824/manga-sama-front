@@ -5,16 +5,18 @@ import { axiosInstance } from '../../utils/axios';
 import { LocalStorage } from '../../utils/LocalStorage';
 import { changeIsLoading, setError, setInfo } from './loading';
 
+// Définition du type d'état initial pour le formulaire de connexion.
 type LoginFormState = {
   credentials: {
     email: string;
     password: string;
   };
   token: string;
-  userIsConnected: boolean;
-  user: TUserConnected | null;
+  userIsConnected: boolean; // Indique si l'utilisateur est connecté.
+  user: TUserConnected | null; // Détails de l'utilisateur connecté.
 };
 
+// Initialisation de l'état initial pour le formulaire de connexion.
 export const initialState: LoginFormState = {
   credentials: {
     email: '',
@@ -25,11 +27,13 @@ export const initialState: LoginFormState = {
   user: null,
 };
 
+// Définition du type des informations nécessaires pour la connexion d'un utilisateur.
 type LoginCredentials = {
   email: string;
   password: string;
 };
 
+// Création d'une action asynchrone pour connecter un utilisateur.
 export const loginUser = createAsyncThunk(
   'user/login',
 
@@ -39,9 +43,9 @@ export const loginUser = createAsyncThunk(
       const { data } = await axiosInstance.post<{
         user: TUserConnected;
         token: string;
-      }>('/auth/login', credentials);
-      LocalStorage.setItem('user', data.user);
-      LocalStorage.setItem('token', data.token);
+      }>('/auth/login', credentials); // Envoie la requête pour connecter un utilisateur.
+      LocalStorage.setItem('user', data.user); // Stocke les informations de l'utilisateur dans le stockage local.
+      LocalStorage.setItem('token', data.token); // Stocke le token dans le stockage local.
 
       thunkAPI.dispatch(changeIsLoading(false));
       thunkAPI.dispatch(setInfo('Tu es maintenant connecté ! '));
@@ -54,15 +58,18 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+// Création d'une action asynchrone pour vérifier si l'utilisateur est connecté.
 export const checkLogin = createAsyncThunk('user/check', async () => {
-  const { data } = await axiosInstance.get('/auth/check');
+  const { data } = await axiosInstance.get('/auth/check'); // Envoie une requête pour vérifier la connexion de l'utilisateur.
   return data;
 });
 
+// Création d'un slice Redux pour gérer l'état du formulaire de connexion.
 const loginFormReducer = createSlice({
-  name: 'loginForm',
-  initialState,
+  name: 'loginForm', // Nom du slice
+  initialState, // État initial du slice.
   reducers: {
+    // Réducteur pour changer les champs du formulaire de connexion.
     changeLoginFormInputsField(
       state,
       action: PayloadAction<{
@@ -73,19 +80,22 @@ const loginFormReducer = createSlice({
       const { fieldName, value } = action.payload;
       state.credentials[fieldName] = value;
     },
+    // Réducteur pour changer l'état d'authentification de l'utilisateur.
     changeUserisConnected(state, action: PayloadAction<boolean>) {
       state.userIsConnected = action.payload;
     },
   },
   extraReducers(builder) {
     builder
+      // Réducteur pour traiter le succès de la connexion d'un utilisateur.
       .addCase(loginUser.fulfilled, (state, action) => {
         state.userIsConnected = true;
         state.token = action.payload.token;
         state.user = action.payload.user;
       })
-      .addCase(checkLogin.rejected, (state, action) => {
-        LocalStorage.removeItem();
+      // Réducteur pour traiter le rejet de la vérification de la connexion.
+      .addCase(checkLogin.rejected, (state) => {
+        LocalStorage.removeItem(); // Supprime les informations stockées dans le stockage local.
         state.userIsConnected = false;
       });
   },

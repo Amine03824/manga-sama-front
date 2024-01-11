@@ -125,6 +125,14 @@
         text-decoration: underline;
       }
     }
+
+    &_info {
+      &-localisation {
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: rgb(51, 51, 51);
+      }
+    }
   }
   &__purchase_btn {
     font-family: V.$main-font;
