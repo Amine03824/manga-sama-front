@@ -87,6 +87,8 @@ function CreateArticle() {
       })
     );
   }, [dispatch]);
+
+  // Si l'utilisateur n'est pas connecté lors du click sur le bouton pour acceder à la page de creation d'article , ça le redirige vers la page de connexion avec un message d'erreur lui demandant de se connecter
   if (!user) {
     dispatch(
       setError(
@@ -127,6 +129,7 @@ function CreateArticle() {
 
       // si l'API crée l'article , elle me renvoie l'article qui vient d'etre crée dans le base de donnée
       if (createdArticle) {
+        // ce qui me permet de lancer une boucle : pour chaque manga qui ont été ajouté a l'article , je fait une requete pour associer le manga a l'article dans la BDD
         mangas.forEach(async (manga) => {
           await dispatch(
             associateMangaToArticle({
@@ -135,13 +138,14 @@ function CreateArticle() {
             })
           );
         });
+        // Je fais enfin une derniere requete pour associer l'utilisateur à son article dans la BDD
         await dispatch(
           associateUserToArticle({
             user_id: LocalStorage.getItem('user').id,
             article_id: createdArticle.payload.article.id,
           })
         );
-
+        // puis je suis redirigé vers la home page
         navigate('/');
       }
     } catch {
@@ -156,8 +160,10 @@ function CreateArticle() {
 
       <div className="CreateArticle__container">
         <div className="CreateArticle__container_left">
-          {mangas.length !== 0 && <Carousel images={arrayURL} />}
-          {/* <img src={mangas[0]?.cover_url} alt="manga" /> */}
+          {mangas.length > 1 && <Carousel images={arrayURL} />}
+          {mangas.length === 1 && (
+            <img src={mangas[0]?.cover_url} alt="manga" />
+          )}
         </div>
         <div className="CreateArticle__container_right">
           <form

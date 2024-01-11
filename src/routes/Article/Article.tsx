@@ -100,9 +100,11 @@ function Article() {
                       {articleFinded.user.pseudo}
                     </div>
                   </Link>
-                  <p className="home__articles-info-localisation">
-                    A {articleFinded.user.city}
-                  </p>
+                  {articleFinded.user.city && (
+                    <p className="Article__container_info-localisation">
+                      A {articleFinded.user.city}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

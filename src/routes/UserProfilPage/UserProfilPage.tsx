@@ -127,6 +127,8 @@ function UserProfilPage() {
             <p>Cliquez sur un champ pour le modifier</p>
             <div className="userpage__infos-area">
               <ul className="userpage__infos-list">
+                {/* Pour chaque item du formulaire , il y a un bouton et un input qui se cotoie , le bouton est d'abord visible , puis si on clique dessus , c'est l'input qui devient visible et on peut changer sa valeur */}
+                {/* De base , si la valeur du champs n'est pas vide en base de donnée , on récupère les information via le localStorage */}
                 <li className="userpage__infos-item">
                   <p>Pseudo:</p>
                   <button

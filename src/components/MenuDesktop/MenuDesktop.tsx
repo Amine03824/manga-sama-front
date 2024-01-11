@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { changeFilteredArticle } from '../../store/reducers/article';
 import { changeSearchInputValue } from '../../store/reducers/searchBarMenu';
 import './MenuDesktop.scss';
+import { getCategories } from '../../store/reducers/categories';
 
 function MenuDesktop() {
   const dispatch = useAppDispatch();
@@ -47,6 +48,7 @@ function MenuDesktop() {
   }
 
   useEffect(() => {
+    dispatch(getCategories());
     const filter = () => {
       const filteredArticle = articles.filter(
         (article) =>
