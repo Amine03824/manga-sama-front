@@ -146,7 +146,7 @@ function CreateArticle() {
           })
         );
         // puis je suis redirigé vers la home page
-        navigate('/');
+        window.location.assign('/');
       }
     } catch {
       navigate('/');

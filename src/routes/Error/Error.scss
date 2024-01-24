@@ -1,26 +1,27 @@
 @use '../../styles/variables' as V;
 
 .error__container {
-  width: 80%;
-  margin: 0 auto 1.5rem;
+  background-color: #c8cfd7;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
   @media screen and (min-width: 768px) {
     max-height: 100vh;
   }
 
   &-top {
     &-title {
-      font-size: 1rem;
+      font-size: 1.5rem;
       font-weight: bold;
-      color: V.$font-color-light-bg;
+      color: V.$pink-color;
       margin: 1rem 0;
+      text-shadow: 1px 1px rgb(92, 92, 92);
 
       @media screen and (min-width: 768px) {
         font-size: 3rem;
+        text-shadow: 2px 1px rgb(0, 0, 0);
       }
     }
   }

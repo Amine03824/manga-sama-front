@@ -55,7 +55,7 @@ function Menu() {
 
   // Effet qui s'exécute lors du premier rendu du composant et lorsque la liste des articles change.
   useEffect(() => {
-    dispatch(getCategories());
+    // dispatch(getCategories());
     const filter = () => {
       const filteredArticle = articles.filter(
         (article) =>

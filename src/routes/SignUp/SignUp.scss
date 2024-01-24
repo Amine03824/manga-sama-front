@@ -104,6 +104,13 @@
         color: red;
         font-size: 0.8rem;
       }
+      &--link {
+        color: V.$pink-color;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
     &-item input {
       border-radius: 10px;

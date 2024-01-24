@@ -14,6 +14,7 @@ import {
   resetForm,
 } from '../../store/reducers/userModify';
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
+import { setError } from '../../store/reducers/loading';
 
 function UserProfilPage() {
   const dispatch = useAppDispatch();
@@ -76,6 +77,20 @@ function UserProfilPage() {
   //  A la soumission du formulaire , on créer un objet qui sera envoyé dans le body de la requête , correspondant aux attente de la base de donnée.
   const handleValidateUserInfo = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const regex = /^[a-zA-ZÀ-ÿ0-9\s]*$/;
+    if (
+      (pseudoInput && !regex.exec(pseudoInput)) ||
+      (firstNameInput && regex.exec(firstNameInput)) ||
+      (lastNameInput && !regex.exec(lastNameInput))
+    ) {
+      dispatch(
+        setError(
+          'Le prénom , nom et pseudo ne peuvent pas contenir de caractère spéciaux'
+        )
+      );
+      return;
+    }
 
     const modifiedUser = {
       firstname: firstNameInput === '' ? user.firstname : firstNameInput,
@@ -296,7 +311,7 @@ function UserProfilPage() {
                     onChange={(event) => {
                       handleChangeInputUserInfo(event, 'phone_number');
                     }}
-                    type="text"
+                    type="tel"
                     className={clsx('userpage__infos-input', {
                       'userpage__infos-input--hidden':
                         !phoneNumberInputIsVisible,

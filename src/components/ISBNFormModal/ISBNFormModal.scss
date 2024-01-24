@@ -4,8 +4,8 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 25rem;
-  height: 20rem;
+  width: 19.5rem;
+  height: 27rem;
   border-radius: 15px;
   border: solid 1px V.$pink-color;
   background-image: url('/assets/icons/bg3.png');
@@ -24,6 +24,9 @@
     font-family: V.$main-font;
     font-weight: bold;
     text-align: center;
+  }
+  &__img {
+    width: 15rem;
   }
 
   &__form {
@@ -46,5 +49,23 @@
     padding: 0.5rem;
     border-radius: 15px;
     color: V.$font-color-dark-bg;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .isbnFormModal {
+    width: 25rem;
+    height: 30rem;
+    left: 50%;
+
+    &__img {
+      width: 20rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .isbnFormModal {
+    left: 30%;
   }
 }

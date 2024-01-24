@@ -25,9 +25,12 @@ function Article() {
   const parsedId = parseInt(id, 10);
 
   const articleFinded = findArticle(articles, parsedId);
+
   const URLArray: string[] = [];
   if (articleFinded) {
     articleFinded.mangas.forEach((manga) => {
+      console.log(manga.cover_url);
+
       URLArray.push(manga.cover_url);
     });
   }
@@ -89,7 +92,7 @@ function Article() {
                   Etat de l'article :
                 </div>
                 <div className="Article__container_state-content">
-                  Très bon état
+                  {articleFinded.article.condition_id}
                 </div>
               </div>
               <div className="Article__container_soldby">

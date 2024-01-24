@@ -48,7 +48,7 @@ function MenuDesktop() {
   }
 
   useEffect(() => {
-    dispatch(getCategories());
+    // dispatch(getCategories());
     const filter = () => {
       const filteredArticle = articles.filter(
         (article) =>

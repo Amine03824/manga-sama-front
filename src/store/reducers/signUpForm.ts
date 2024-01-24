@@ -11,6 +11,7 @@ type SignUpFormState = {
     password: string;
     password_bis: string;
   };
+
   loadingPseudo: boolean; // Indique si la vérification du pseudo est en cours.
   pseudoNotDisp: boolean; // Indique si le pseudo n'est pas disponible.
 };
@@ -22,6 +23,7 @@ export const initialState: SignUpFormState = {
     password: '',
     password_bis: '',
   },
+
   loadingPseudo: false,
   pseudoNotDisp: false,
 };

@@ -17,7 +17,7 @@ function Error() {
         <div className="error__container-main">
           <img
             className="error__container-main-img"
-            src="\assets\icons\Octopus_error01.png"
+            src="\assets\logo\404.jpeg"
             alt=" poulpe erreur 404"
           />
         </div>

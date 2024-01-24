@@ -26,7 +26,7 @@ function Root() {
   useEffect(() => {
     dispatch(getArticles());
     dispatch(getConditions());
-
+    dispatch(getCategories());
     // Si un utilisateur est présent dans le stockage local, effectue des actions de connexion automatique.
     if (user) {
       dispatch(checkLogin());

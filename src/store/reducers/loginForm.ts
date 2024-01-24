@@ -95,7 +95,8 @@ const loginFormReducer = createSlice({
       })
       // Réducteur pour traiter le rejet de la vérification de la connexion.
       .addCase(checkLogin.rejected, (state) => {
-        LocalStorage.removeItem(); // Supprime les informations stockées dans le stockage local.
+        LocalStorage.removeItem('user');
+        LocalStorage.removeItem('token'); // Supprime les informations stockées dans le stockage local.
         state.userIsConnected = false;
       });
   },

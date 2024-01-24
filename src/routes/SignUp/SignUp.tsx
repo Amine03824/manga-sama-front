@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -216,6 +216,31 @@ function SignUp() {
                     autoComplete="current-password"
                     required
                   />
+                </li>
+                <li className="signUp__area-item">
+                  <div className="signUp__area-item--pseudo">
+                    <input type="checkbox" id="checkbox" required />
+                    <label htmlFor="checkbox">
+                      J'ai lu les
+                      <Link className="signUp__area-item--link" to={'/'}>
+                        {' '}
+                        CGV
+                      </Link>
+                      , les{' '}
+                      <Link
+                        className="signUp__area-item--link"
+                        to={'/copyright'}
+                      >
+                        {' '}
+                        mentions légales
+                      </Link>{' '}
+                      et la{' '}
+                      <Link className="signUp__area-item--link" to={'/'}>
+                        {' '}
+                        politique de confidentialité
+                      </Link>
+                    </label>
+                  </div>
                 </li>
               </ul>
               <button type="submit" className="signUp__area-button">
