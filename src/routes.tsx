@@ -23,8 +23,6 @@ import Transaction from './routes/Transaction/Transaction';
 import UserTransactions from './routes/UserTransactions/UserTransactions';
 import UserArticle from './routes/UserArticle/UserArticle';
 
-// import mangaData from './data/data';
-
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -51,6 +49,7 @@ export const router = createBrowserRouter([
         path: 'copyright',
         element: <LegalNotice />,
       },
+
       {
         path: 'about',
         element: <About />,
@@ -76,10 +75,6 @@ export const router = createBrowserRouter([
         path: '/article/:id/transaction',
         element: <Transaction />,
       },
-      // {
-      //   path: '/usertransactions',
-      //   element: <UserTransactions />,
-      // },
     ],
   },
   {

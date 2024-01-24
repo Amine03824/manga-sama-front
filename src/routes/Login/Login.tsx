@@ -8,6 +8,7 @@ import {
   changeLoginFormInputsField,
   loginUser,
 } from '../../store/reducers/loginForm';
+import { LocalStorage } from '../../utils/LocalStorage';
 
 function Login() {
   const dispatch = useAppDispatch();
@@ -38,7 +39,9 @@ function Login() {
     await dispatch(
       loginUser({ email: emailInputValue, password: passwordInputValue })
     );
-    navigate('/');
+    if (LocalStorage.getItem('user')) {
+      navigate('/');
+    }
   };
 
   return (
@@ -62,6 +65,7 @@ function Login() {
                     value={emailInputValue}
                     type="email"
                     placeholder="Email"
+                    autoComplete="email"
                     required
                   />
                 </li>
@@ -74,6 +78,7 @@ function Login() {
                     type="password"
                     placeholder="Mot de passe"
                     required
+                    autoComplete="current-password"
                   />
                 </li>
               </ul>

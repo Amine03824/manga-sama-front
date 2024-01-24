@@ -12,7 +12,7 @@ function Footer() {
               <Link to="/copyright">Mentions légales</Link>
             </li>
             <li className="Footer__list_item">
-              <Link to="/">Politique de confidentialité</Link>
+              <Link to="/privacy">Politique de confidentialité</Link>
             </li>
             <li className="Footer__list_item">
               <Link to="/">C.G.V.</Link>

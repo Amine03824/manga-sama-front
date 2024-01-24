@@ -6,17 +6,17 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import { getArticles } from '../../store/reducers/article';
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
+import { LocalStorage } from '../../utils/LocalStorage';
 
 function Home() {
   const articlesFiltered = useAppSelector(
     (state) => state.article.filteredArticles
   );
+  // const dispatch = useAppDispatch();
 
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getArticles());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getArticles());
+  // }, [dispatch]);
   return (
     <div className="home">
       <HeaderBottom />

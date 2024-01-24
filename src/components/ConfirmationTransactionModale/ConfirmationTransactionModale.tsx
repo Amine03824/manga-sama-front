@@ -31,7 +31,7 @@ function ConfirmationTransactionModale() {
           " Félicitations ! Vous serez bientôt propriétaire d'un ou plusieurs nouveaux mangas !"
         )
       );
-      return navigate('/');
+      window.location.assign('/');
     }
 
     throw new Error('Transaction échouéeS');

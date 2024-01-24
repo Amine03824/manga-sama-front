@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
 import './Root.scss';
 import MobileNav from '../../components/MobileNav/MobileNav';
-import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
+
 import { useAppDispatch } from '../../hooks/redux';
 import { getArticles, getConditions } from '../../store/reducers/article';
 import { getCategories } from '../../store/reducers/categories';
@@ -13,21 +13,21 @@ import {
   changeUserisConnected,
   checkLogin,
 } from '../../store/reducers/loginForm';
+import MenuDesktop from '../../components/MenuDesktop/MenuDesktop';
 
 function Root() {
+  // Utilise le hook useAppDispatch de Redux Toolkit pour obtenir la fonction dispatch.
   const dispatch = useAppDispatch();
 
-  // Utilisation d'un useState pour faire passer l'etat de la barre de menu directement en props dans le composant menu
-  const [menuIsVisible, setMenuIsVisible] = useState(true);
+  // Récupère l'utilisateur depuis le stockage local.
   const user = LocalStorage.getItem('user');
 
   // Au premier chargement de Root , on fait des demande a l'API pour qu'elle nous donnes les donées nécéssaire :  tous les articles , toutes les catégories , toutes les conditions d'article
   useEffect(() => {
     dispatch(getArticles());
-    dispatch(getCategories());
     dispatch(getConditions());
-    console.log(user);
-
+    dispatch(getCategories());
+    // Si un utilisateur est présent dans le stockage local, effectue des actions de connexion automatique.
     if (user) {
       dispatch(checkLogin());
       dispatch(changeUserisConnected(true));
@@ -37,10 +37,12 @@ function Root() {
   return (
     <div className="root">
       <Menu />
+      <MenuDesktop />
       <div className="right__section">
         <Header />
 
         <Outlet />
+        {/* Composant représentant le point de sortie pour le routage. */}
       </div>
       <MobileNav />
     </div>

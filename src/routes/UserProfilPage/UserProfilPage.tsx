@@ -14,6 +14,7 @@ import {
   resetForm,
 } from '../../store/reducers/userModify';
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom';
+import { setError } from '../../store/reducers/loading';
 
 function UserProfilPage() {
   const dispatch = useAppDispatch();
@@ -77,6 +78,20 @@ function UserProfilPage() {
   const handleValidateUserInfo = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const regex = /^[a-zA-ZÀ-ÿ0-9\s]*$/;
+    if (
+      (pseudoInput && !regex.exec(pseudoInput)) ||
+      (firstNameInput && regex.exec(firstNameInput)) ||
+      (lastNameInput && !regex.exec(lastNameInput))
+    ) {
+      dispatch(
+        setError(
+          'Le prénom , nom et pseudo ne peuvent pas contenir de caractère spéciaux'
+        )
+      );
+      return;
+    }
+
     const modifiedUser = {
       firstname: firstNameInput === '' ? user.firstname : firstNameInput,
       lastname: lastNameInput === '' ? user.lastname : lastNameInput,
@@ -127,6 +142,8 @@ function UserProfilPage() {
             <p>Cliquez sur un champ pour le modifier</p>
             <div className="userpage__infos-area">
               <ul className="userpage__infos-list">
+                {/* Pour chaque item du formulaire , il y a un bouton et un input qui se cotoie , le bouton est d'abord visible , puis si on clique dessus , c'est l'input qui devient visible et on peut changer sa valeur */}
+                {/* De base , si la valeur du champs n'est pas vide en base de donnée , on récupère les information via le localStorage */}
                 <li className="userpage__infos-item">
                   <p>Pseudo:</p>
                   <button
@@ -294,7 +311,7 @@ function UserProfilPage() {
                     onChange={(event) => {
                       handleChangeInputUserInfo(event, 'phone_number');
                     }}
-                    type="text"
+                    type="tel"
                     className={clsx('userpage__infos-input', {
                       'userpage__infos-input--hidden':
                         !phoneNumberInputIsVisible,

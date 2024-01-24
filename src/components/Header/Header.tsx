@@ -19,7 +19,8 @@ function Header() {
 
   function handleDisconnect() {
     dispatch(changeUserisConnected(false));
-    LocalStorage.removeItem();
+    LocalStorage.removeItem('user');
+    LocalStorage.removeItem('token');
     navigate('/');
   }
 
