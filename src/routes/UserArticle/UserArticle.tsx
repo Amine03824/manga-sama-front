@@ -38,8 +38,8 @@ function UserArticle() {
     fetch();
   }, [dispatch, userID]);
 
-  const deleteArticleOnClick = (articleId: number) => {
-    dispatch(deleteArticle(articleId));
+  const deleteArticleOnClick = async (articleId: number) => {
+    await dispatch(deleteArticle(articleId));
     filterArticle();
   };
 
