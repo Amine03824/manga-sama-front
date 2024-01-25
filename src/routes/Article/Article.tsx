@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Page from '../../components/Page/Page';
 import './Article.scss';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { findArticle } from '../../store/selectors/articles';
 
 import { changeUserInfo } from '../../store/reducers/userPage';
@@ -16,6 +16,8 @@ import { LocalStorage } from '../../utils/LocalStorage';
 function Article() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
+  const conditions = useAppSelector((state) => state.article.list_condition);
+
   const articles = LocalStorage.getItem('articles');
 
   if (!id) {
@@ -92,7 +94,10 @@ function Article() {
                   Etat de l'article :
                 </div>
                 <div className="Article__container_state-content">
-                  {articleFinded.article.condition_id}
+                  {
+                    conditions[articleFinded.article.condition_id - 1]
+                      .condition_name
+                  }
                 </div>
               </div>
               <div className="Article__container_soldby">
