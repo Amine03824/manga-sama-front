@@ -25,6 +25,9 @@
         }
       }
     }
+    &-area {
+      min-height: 25rem;
+    }
     &-noarticles {
       color: V.$pink-color;
       text-align: center;

@@ -34,6 +34,11 @@ function Home() {
           </h2>
         </div>
         <div className="home__articles-area">
+          {articlesFiltered.length === 0 && (
+            <p className="category__articles-noarticles">
+              Il n'y a pas d'article correspondant à cette recherche en vente !
+            </p>
+          )}
           <ul className="home__articles-list">
             {articlesFiltered.map((article) => (
               <Link
