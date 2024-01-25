@@ -27,6 +27,9 @@
       }
     }
 
+    &-area {
+      min-height: 25rem;
+    }
     &-list {
       display: flex;
       flex-wrap: wrap;

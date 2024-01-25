@@ -76,7 +76,7 @@ function Article() {
                           {manga.title}
                         </td>
                         <td className="Article__container_manga-volume">
-                          Volume : {manga.volume}
+                          Volume {manga.volume}
                         </td>
                       </tr>
                     ))}
