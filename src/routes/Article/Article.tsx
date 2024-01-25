@@ -9,15 +9,18 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { findArticle } from '../../store/selectors/articles';
 
 import { changeUserInfo } from '../../store/reducers/userPage';
-import { changeViewedArticle } from '../../store/reducers/article';
+import {
+  changeViewedArticle,
+  getConditions,
+} from '../../store/reducers/article';
 import Carousel from '../../components/Carousel/Carousel';
 import { LocalStorage } from '../../utils/LocalStorage';
+import { getCategories } from '../../store/reducers/categories';
 
 function Article() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const conditions = useAppSelector((state) => state.article.list_condition);
-
+  const conditions = LocalStorage.getItem('conditions');
   const articles = LocalStorage.getItem('articles');
 
   if (!id) {

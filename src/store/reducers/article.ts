@@ -104,6 +104,7 @@ const articleReducer = createSlice({
 
       .addCase(getConditions.fulfilled, (state, action) => {
         state.list_condition = action.payload;
+        LocalStorage.setItem('conditions', action.payload);
       });
   },
 });
