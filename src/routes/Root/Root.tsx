@@ -14,6 +14,7 @@ import {
   checkLogin,
 } from '../../store/reducers/loginForm';
 import MenuDesktop from '../../components/MenuDesktop/MenuDesktop';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 function Root() {
   // Utilise le hook useAppDispatch de Redux Toolkit pour obtenir la fonction dispatch.
@@ -36,6 +37,7 @@ function Root() {
 
   return (
     <div className="root">
+      <ScrollToTop />
       <Menu />
       <MenuDesktop />
       <div className="right__section">

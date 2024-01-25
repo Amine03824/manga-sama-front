@@ -23,77 +23,80 @@ import Transaction from './routes/Transaction/Transaction';
 import UserTransactions from './routes/UserTransactions/UserTransactions';
 import UserArticle from './routes/UserArticle/UserArticle';
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: 'signup',
-        element: <SignUp />,
-      },
-      {
-        path: 'login',
-        element: <Login />,
-      },
-      {
-        path: 'contact',
-        element: <Contact />,
-      },
-      {
-        path: 'copyright',
-        element: <LegalNotice />,
-      },
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Root />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: 'signup',
+          element: <SignUp />,
+        },
+        {
+          path: 'login',
+          element: <Login />,
+        },
+        {
+          path: 'contact',
+          element: <Contact />,
+        },
+        {
+          path: 'copyright',
+          element: <LegalNotice />,
+        },
 
-      {
-        path: 'about',
-        element: <About />,
-      },
-      { path: 'team', element: <Team /> },
-      {
-        path: 'article/:id',
-        element: <Article />,
-      },
-      {
-        path: 'category/:id',
-        element: <Category />,
-      },
-      {
-        path: 'createarticle',
-        element: <CreateArticle />,
-      },
-      {
-        path: '/article/user/:id',
-        element: <UserInfo />,
-      },
-      {
-        path: '/article/:id/transaction',
-        element: <Transaction />,
-      },
-    ],
-  },
-  {
-    path: '/user/dashboard',
-    element: <RootUser />,
+        {
+          path: 'about',
+          element: <About />,
+        },
+        { path: 'team', element: <Team /> },
+        {
+          path: 'article/:id',
+          element: <Article />,
+        },
+        {
+          path: 'category/:id',
+          element: <Category />,
+        },
+        {
+          path: 'createarticle',
+          element: <CreateArticle />,
+        },
+        {
+          path: '/article/user/:id',
+          element: <UserInfo />,
+        },
+        {
+          path: '/article/:id/transaction',
+          element: <Transaction />,
+        },
+      ],
+    },
+    {
+      path: '/user/dashboard',
+      element: <RootUser />,
 
-    children: [
-      {
-        path: '/user/dashboard',
-        element: <UserProfilPage />,
-      },
-      {
-        path: 'transactions',
-        element: <UserTransactions />,
-      },
-      {
-        path: 'articles',
-        element: <UserArticle />,
-      },
-    ],
-  },
-]);
+      children: [
+        {
+          path: '/user/dashboard',
+          element: <UserProfilPage />,
+        },
+        {
+          path: 'transactions',
+          element: <UserTransactions />,
+        },
+        {
+          path: 'articles',
+          element: <UserArticle />,
+        },
+      ],
+    },
+  ]
+  // { basename: 'https://manga-sama.onrender.com' }
+);

@@ -125,6 +125,9 @@ function Menu() {
                 <Link
                   key={category.category_name}
                   to={`/category/${category.id}`}
+                  onClick={() => {
+                    setMenuIsVisible(false);
+                  }}
                 >
                   <li className="nav__categories-item">
                     {category.category_name}

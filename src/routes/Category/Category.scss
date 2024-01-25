@@ -25,6 +25,11 @@
         }
       }
     }
+    &-noarticles {
+      color: V.$pink-color;
+      text-align: center;
+      font-weight: bold;
+    }
 
     &-list {
       display: flex;

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './Page.scss';
 
 interface PageProps {

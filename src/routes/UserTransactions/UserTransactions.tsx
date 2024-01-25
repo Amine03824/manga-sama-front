@@ -45,22 +45,36 @@ function UserTransactions() {
           <ul className="user-transactions__cards">
             {userArticle.map((article) => (
               <li key={article.id} className="user-transactions__cards_item">
-                <img
-                  className="user-transactions__cards_item-img"
-                  src={article.image_url}
-                  alt="article"
-                />
-                <div className="user-transactions__cards_item-content">
-                  <h4 className="user-transactions__cards_item-content-title">
-                    {article.title}
-                  </h4>
-                  <p className="user-transactions__cards_item-content-price">
-                    {article.price} €
+                {/* <img
+                    className="user-transactions__cards_item-img"
+                    src={article.image_url}
+                    alt="article"
+                  /> */}
+                <div className="user-transactions__cards_item-info">
+                  <div className="user-transactions__cards_item-content">
+                    <h4 className="user-transactions__cards_item-content-title">
+                      {article.title}
+                    </h4>
+                    <p className="user-transactions__cards_item-content-price">
+                      {article.price} €
+                    </p>
+                  </div>
+                  <div className="user-transactions__cards_item-content">
+                    <div>
+                      <p> N° de transaction : </p>
+                      <p className="user-transactions__cards_item-content-price">
+                        {article.transaction_id}
+                      </p>
+                    </div>
+                    <div>
+                      <p>le {article.date_transaction}</p>
+                    </div>
+                  </div>
+
+                  <p className="user-transactions__cards_item-state">
+                    {article.state_completion}
                   </p>
                 </div>
-                <p className="user-transactions__cards_item-state">
-                  {article.state_completion}
-                </p>
               </li>
             ))}
           </ul>

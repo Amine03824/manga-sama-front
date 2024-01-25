@@ -68,11 +68,13 @@ function MenuDesktop() {
   return (
     <div className="home-menuDesktop">
       <div className="home-menuDesktop__container">
-        <img
-          className="home-menuDesktop__logo"
-          src="/assets/logo/logo.png"
-          alt=""
-        />
+        <Link to="/">
+          <img
+            className="home-menuDesktop__logo"
+            src="/assets/logo/logo.png"
+            alt=""
+          />
+        </Link>
 
         <form
           className="home-menuDesktop__form"

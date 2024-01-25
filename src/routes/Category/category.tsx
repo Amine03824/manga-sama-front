@@ -39,6 +39,11 @@ function Category() {
           </h2>
         </div>
         <div className="category__articles-area">
+          {filteredArticles.length === 0 && (
+            <p className="category__articles-noarticles">
+              Il n'y a pas d'article correspondant à cette catégorie en vente !
+            </p>
+          )}
           <ul className="category__articles-list">
             {filteredArticles.map((article) => (
               <Link
