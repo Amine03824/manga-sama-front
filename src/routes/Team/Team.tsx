@@ -15,7 +15,7 @@ function Team() {
               alt="houd-img"
               src="/assets/logo/houd.png"
             />
-            <h2 className="team__list-name">Hado</h2>
+            <h2 className="team__list-name">Houd</h2>
             <p className="team__list-role">
               Product-Owner / Banker / ShareOlder / AlCapone{' '}
             </p>
@@ -26,7 +26,7 @@ function Team() {
               alt="oliv-img"
               src="/assets/logo/oliv.png"
             />
-            <h2 className="team__list-name">Le O</h2>
+            <h2 className="team__list-name">Olivier</h2>
             <p className="team__list-role">Lead Front</p>
           </li>
           <li className="team__list-item">
@@ -35,8 +35,8 @@ function Team() {
               alt="amine-img"
               src="/assets/logo/amile.png"
             />
-            <h2 className="team__list-name">Amile</h2>
-            <p className="team__list-role">Scrotum Master</p>
+            <h2 className="team__list-name">Amine</h2>
+            <p className="team__list-role">Scrum Master</p>
           </li>
           <li className="team__list-item">
             <img
@@ -44,7 +44,7 @@ function Team() {
               alt="tonio-img"
               src="/assets/logo/tonio.png"
             />
-            <h2 className="team__list-name">GlamTonio</h2>
+            <h2 className="team__list-name">Tonio</h2>
             <p className="team__list-role">Lead Back</p>
           </li>
           <li className="team__list-item">
@@ -53,8 +53,8 @@ function Team() {
               alt="tonio-img"
               src="/assets/logo/yst.png"
             />
-            <h2 className="team__list-name">YsT</h2>
-            <p className="team__list-role">Git guardian</p>
+            <h2 className="team__list-name">Tanguy</h2>
+            <p className="team__list-role">Git master</p>
           </li>
         </ul>
       </div>
