@@ -10,7 +10,7 @@
 
 > ### 🚀 Liens Importants
 > 
-> ⚙️ [**DÉCOUVRIR LE REPO BACKEND**](https://github.com/Amine03824/manga-sama-back)
+> ⚙️ [**DÉCOUVRIR LE REPO BACKEND**](https://github.com/Amine03824/manga-sama-back2)
 >
 > 📁 [**ACCÉDER AU DOSSIER COMPLET DU PROJET**](https://amine.works/download-dossier)
 > 
